@@ -1,5 +1,10 @@
 # React + Vite
-
+Used libraries-
+1. React router
+2. tailwind css
+3. DaisyUi
+4. react hook form
+5. react icons
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
