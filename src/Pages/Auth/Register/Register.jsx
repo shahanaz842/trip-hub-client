@@ -1,20 +1,43 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import SocialLogin from '../SocialLogin/SocialLogin';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
+import axios from 'axios';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { registerUser } = useAuth();
+    const { registerUser, updateUserProfile } = useAuth();
     const location = useLocation();
+    const navigate = useNavigate();
 
 
     const handleRegistration = (data) => {
-        console.log(data);
+        console.log(data.photo[0]);
+        const profileImg = data.photo[0];
+
         registerUser(data.email, data.password)
             .then((result) => {
                 console.log(result.user)
+                // store the image and get the photo url
+                const formData = new FormData();
+                formData.append('image', profileImg)
+                const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`
+
+                axios.post(image_API_URL, formData)
+                .then(res => {
+                    console.log('after image upload', res.data.data.url)
+                    // update user profile
+                    const userProfile = {
+                        displayName: data.name,
+                        photoURL: res.data.data.url
+                    }
+                    updateUserProfile(userProfile)
+                        .then(()=>{
+                            navigate(location?.state || '/');
+                        })
+                        .catch(error=> console.log(error))
+                })
             })
             .catch(error => {
                 console.log(error);
