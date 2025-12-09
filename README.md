@@ -5,6 +5,8 @@ Used libraries-
 3. DaisyUi
 4. react hook form
 5. react icons
+6. Axios js
+7. 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
