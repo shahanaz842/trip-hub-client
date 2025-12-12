@@ -17,7 +17,7 @@ const Navbar = () => {
     const links = <>
     <li><NavLink to='/'>Home</NavLink></li>
     <li><NavLink to=''>All Tickets</NavLink></li>
-    <li><NavLink to=''>Dashboard</NavLink></li>
+    <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
     
     </>
     return (
@@ -48,7 +48,7 @@ const Navbar = () => {
                         <Link to='/register' className="btn btn-outline btn-primary lg:px-5 ml-2">Sign Up</Link>
                         </>
                 }
-                <Link to='/rider' className="btn btn-secondary border-0 lg:px-5 mx-4 ">Be a Vendor</Link>
+                <Link to='/vendor' className="btn btn-secondary border-0 lg:px-5 mx-4 ">Be a Vendor</Link>
             </div>
         </div>
     );
