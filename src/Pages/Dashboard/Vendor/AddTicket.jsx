@@ -4,51 +4,76 @@ import { districts } from "../../../Utils/districts";
 import useAuth from "../../../hooks/useAuth";
 import { imageUpload } from "../../../Utils";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const AddTicket = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset
     } = useForm();
 
     const { user } = useAuth();
     const axiosSecure = UseAxiosSecure();
 
-    const handleAddTicket =async (data) => {
+    const { isPending, isError, mutateAsync, reset: mutationReset } = useMutation({
+        mutationFn: async (payload) =>
+            await axiosSecure.post('/tickets', payload),
+        onSuccess: data => {
+            console.log(data)
+            // show toast
+            toast.success('Ticket Added Successfully')
+            mutationReset()
+        },
+        onError: error => {
+            console.log(error)
+        },
+        onMutate: payload => {
+            console.log('the data after mutate', payload)
+        },
+        onSettled: (data, error) => {
+            console.log(data);
+            if (error) console.log(error)
+        },
+        retry: 3
+    })
+
+    const handleAddTicket = async (data) => {
         console.log("Ticket Data:", data);
         const { ticketTitle, from, to, transportType, price, quantity, departureDate, departureTime, perks, image
         } = data;
         const imageFile = image[0];
-        
-       try{
-        const imageURL = await imageUpload(imageFile);
-        const ticketData = {
-            ticketTitle,
-            from,
-            to,
-            transportType,
-            price: Number(price),
-            quantity: Number(quantity),
-            departureDate,
-            departureTime,
-            perks,
-            image: imageURL,
-            vendor: {
-                image: user?.photoURL,
-                name: user?.displayName,
-                email: user?.email
-            },
-            createdAt: new Date(),
-            status: 'pending'
-        }
-        const res = await axiosSecure.post('/tickets', ticketData)
-       console.log(res.data)
-       }catch(err){
-        console.log(err)
-       }
-    };
 
+        try {
+            const imageURL = await imageUpload(imageFile);
+            const ticketData = {
+                ticketTitle,
+                from,
+                to,
+                transportType,
+                price: Number(price),
+                quantity: Number(quantity),
+                departureDate,
+                departureTime,
+                perks,
+                image: imageURL,
+                vendor: {
+                    image: user?.photoURL,
+                    name: user?.displayName,
+                    email: user?.email
+                },
+                createdAt: new Date(),
+                status: 'pending'
+            }
+            await mutateAsync(ticketData);
+            reset();
+        } catch (err) {
+            console.log(err)
+        }
+    };
+    if(isError) return <h2>Error</h2>
     return (
         <div className="w-full min-h-[calc(100vh-40px)] flex justify-center items-center bg-gray-50 py-10">
             <form
@@ -290,7 +315,11 @@ const AddTicket = () => {
                             type="submit"
                             className="btn btn-primary w-full mt-5 text-white"
                         >
-                            Add Ticket
+                            {
+                                isPending? <span className="loading loading-spinner text-white"></span> 
+                                :  'Add Ticket'
+                            }
+                           
                         </button>
                     </div>
                 </div>

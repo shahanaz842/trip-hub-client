@@ -7,6 +7,10 @@ import Register from "../Pages/Auth/Register/Register";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import AddTicket from "../Pages/Dashboard/Vendor/AddTicket";
 import MyAddedTickets from "../Pages/Dashboard/Vendor/MyAddedTickets";
+import TicketDetails from "../Pages/TicketDetails/TicketDetails";
+import MyBookedTickets from "../Pages/Dashboard/User/MyBookedTickets";
+import RequestedBookings from "../Pages/Dashboard/Vendor/RequestedBookings";
+import ManageTickets from "../Pages/Dashboard/Admin/ManageTickets";
 
 export const router = createBrowserRouter([
     {
@@ -16,6 +20,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home
+            },
+            {
+                path: '/ticket/:id',
+                Component: TicketDetails
             }
         ]
     },
@@ -44,6 +52,18 @@ export const router = createBrowserRouter([
             {
                 path: 'my-added-tickets',
                 Component: MyAddedTickets
+            },
+            {
+                path: 'my-booked-tickets',
+                Component: MyBookedTickets
+            },
+            {
+                path: 'requested-bookings',
+                Component: RequestedBookings
+            },
+            {
+                path: 'manage-tickets',
+                Component: ManageTickets
             }
         ]
     }

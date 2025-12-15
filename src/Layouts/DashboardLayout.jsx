@@ -3,7 +3,8 @@ import { Link, NavLink, Outlet } from 'react-router';
 import logoImg from '../assets/logo.png'
 import { FaBoxOpen, FaMotorcycle, FaRegCreditCard, FaTasks, FaUsers } from 'react-icons/fa';
 import { BiSolidAddToQueue } from 'react-icons/bi';
-import { MdOutlineLibraryAddCheck } from 'react-icons/md';
+import { MdOutlineLibraryAddCheck, MdOutlineManageSearch } from 'react-icons/md';
+import { VscRequestChanges } from 'react-icons/vsc';
 
 const DashboardLayout = () => {
 
@@ -45,9 +46,9 @@ const DashboardLayout = () => {
 
                         {/* our dashboard links */}
                         <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="MyParcels" to="/dashboard/my-parcels">
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Booked Tickets" to="/dashboard/my-booked-tickets">
                                 <FaBoxOpen />
-                                <span className="is-drawer-close:hidden">My Parcels</span>
+                                <span className="is-drawer-close:hidden">My Booked Tickets</span>
                             </NavLink>
                         </li>
                         <li>
@@ -63,9 +64,21 @@ const DashboardLayout = () => {
                             </NavLink>
                         </li>
                         <li>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Requested Bookings" to="/dashboard/requested-bookings">
+                                <VscRequestChanges />
+                                <span className="is-drawer-close:hidden">Requested Bookings</span>
+                            </NavLink>
+                        </li>
+                        <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History" to="/dashboard/payment-history">
                                 <FaRegCreditCard />
                                 <span className="is-drawer-close:hidden">Payment History</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Tickets" to="/dashboard/manage-tickets">
+                                <MdOutlineManageSearch />
+                                <span className="is-drawer-close:hidden">Manage Tickets</span>
                             </NavLink>
                         </li>
                         {/* {
