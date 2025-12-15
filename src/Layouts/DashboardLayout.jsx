@@ -5,6 +5,7 @@ import { FaBoxOpen, FaMotorcycle, FaRegCreditCard, FaTasks, FaUsers } from 'reac
 import { BiSolidAddToQueue } from 'react-icons/bi';
 import { MdOutlineLibraryAddCheck, MdOutlineManageSearch } from 'react-icons/md';
 import { VscRequestChanges } from 'react-icons/vsc';
+import { Megaphone } from 'lucide-react';
 
 const DashboardLayout = () => {
 
@@ -79,6 +80,12 @@ const DashboardLayout = () => {
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Tickets" to="/dashboard/manage-tickets">
                                 <MdOutlineManageSearch />
                                 <span className="is-drawer-close:hidden">Manage Tickets</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Advertise Tickets" to="/dashboard/advertise-tickets">
+                                <Megaphone />
+                                <span className="is-drawer-close:hidden">Advertise Tickets</span>
                             </NavLink>
                         </li>
                         {/* {

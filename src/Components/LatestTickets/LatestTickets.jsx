@@ -8,15 +8,15 @@ const LatestTickets = () => {
     const axiosSecure = UseAxiosSecure();
 
     const { data: tickets = [], isLoading } = useQuery({
-        queryKey: ['tickets'],
+        queryKey: ['latestTickets'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/tickets')
+            const res = await axiosSecure.get('/tickets/latest');
             return res.data;
         }
-    })
+    });
 
-    if(isLoading) return <h2>Loading...</h2>
-    
+    if (isLoading) return <p>Loading latest tickets...</p>;
+
     return (
         <div>
             {

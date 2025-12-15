@@ -4,12 +4,14 @@ import useAuth from '../../hooks/useAuth';
 import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { Navigate, useNavigate } from 'react-router';
 
 
 const BookingModal = ({ ticket, closeModal }) => {
     const queryClient = useQueryClient();
     const { user } = useAuth();
     const axiosSecure = UseAxiosSecure();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -36,6 +38,7 @@ const BookingModal = ({ ticket, closeModal }) => {
                 showConfirmButton: false,
                 timer: 1500
             });
+            navigate('/dashboard/my-booked-tickets')
         },
     });
 

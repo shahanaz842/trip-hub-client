@@ -6,6 +6,7 @@ import { imageUpload } from "../../../Utils";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const AddTicket = () => {
     const {
@@ -24,7 +25,13 @@ const AddTicket = () => {
         onSuccess: data => {
             console.log(data)
             // show toast
-            toast.success('Ticket Added Successfully')
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Ticket has been added successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
             mutationReset()
         },
         onError: error => {
@@ -73,7 +80,7 @@ const AddTicket = () => {
             console.log(err)
         }
     };
-    if(isError) return <h2>Error</h2>
+    if (isError) return <h2>Error</h2>
     return (
         <div className="w-full min-h-[calc(100vh-40px)] flex justify-center items-center bg-gray-50 py-10">
             <form
@@ -316,10 +323,10 @@ const AddTicket = () => {
                             className="btn btn-primary w-full mt-5 text-white"
                         >
                             {
-                                isPending? <span className="loading loading-spinner text-white"></span> 
-                                :  'Add Ticket'
+                                isPending ? <span className="loading loading-spinner text-white"></span>
+                                    : 'Add Ticket'
                             }
-                           
+
                         </button>
                     </div>
                 </div>
