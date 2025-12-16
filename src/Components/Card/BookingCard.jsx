@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getTimeLeft } from '../../Utils/countdown';
+import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 
 const BookingCard = ({ booking }) => {
     const [timeLeft, setTimeLeft] = useState({});
+    const axiosSecure = UseAxiosSecure();
 
 
     useEffect(() => {
@@ -14,6 +16,20 @@ const BookingCard = ({ booking }) => {
 
         return () => clearInterval(timer);
     }, [booking.departureDate, booking.departureTime]);
+
+     const handlePayment = async(booking) => {
+        const paymentInfo = {
+            totalPrice: booking.totalPrice,
+            bookingId: booking._id, 
+            ticketId: booking.ticketId,
+            userEmail: booking.userEmail,
+            ticketTitle: booking.ticketTitle
+        }
+
+        const res = await axiosSecure.post('/payment-checkout-session', paymentInfo);
+        console.log(res.data)
+        window.location.assign(res.data.url);
+    }
 
     return (
         <div className="card bg-base-100 shadow-xl">
@@ -56,7 +72,10 @@ const BookingCard = ({ booking }) => {
                             <strong>Status:</strong> <span className='text-green-600'>{booking.bookingStatus}</span>
                         </p>
                         {
-                            !timeLeft.expired && <button className='btn btn-secondary'>Pay Now</button>
+                            booking.paymentStatus === 'paid'? 
+                            <span className='text-green-500'>Paid</span> 
+                            : !timeLeft.expired && <button onClick={() => handlePayment(booking)}
+                            className='btn btn-secondary'>Pay Now</button>
                         }
                     </div>
                 }

@@ -13,6 +13,9 @@ import RequestedBookings from "../Pages/Dashboard/Vendor/RequestedBookings";
 import ManageTickets from "../Pages/Dashboard/Admin/ManageTickets";
 import AllTickets from "../Pages/AllTickets/AllTickets";
 import AdvertiseTickets from "../Pages/Dashboard/Admin/AdvertiseTickets";
+import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSuccess";
+import PaymentCancel from "../Pages/Dashboard/Payment/PaymentCancel";
+import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -39,7 +42,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'login',
-                Component: Login 
+                Component: Login
             },
             {
                 path: 'register',
@@ -74,6 +77,18 @@ export const router = createBrowserRouter([
             {
                 path: 'advertise-tickets',
                 Component: AdvertiseTickets
+            },
+            {
+                path: 'payment-success',
+                Component: PaymentSuccess
+            },
+            {
+                path: 'payment-cancelled',
+                Component: PaymentCancel
+            },
+            {
+                path: 'payment-history',
+                Component: PaymentHistory
             }
         ]
     }

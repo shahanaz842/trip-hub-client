@@ -5,7 +5,6 @@ import useAuth from "../../../hooks/useAuth";
 import { imageUpload } from "../../../Utils";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const AddTicket = () => {
