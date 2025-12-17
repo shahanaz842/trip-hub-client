@@ -1,9 +1,11 @@
 import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router';
+import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
 
 const SocialLogin = () => {
     const { signInGoogle } = useAuth();
+    const axiosSecure = UseAxiosSecure();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -11,14 +13,26 @@ const SocialLogin = () => {
         signInGoogle()
             .then(result => {
                 console.log(result.user)
-                navigate(location?.state || '/')
+                // create user in the database
+                const userInfo = {
+                    email: result.user.email,
+                    displayName: result.user.displayName,
+                    photoURL: result.user.photoURL
+                }
+
+                axiosSecure.post('/users', userInfo)
+                    .then(res => {
+                        console.log('user data has been stored', res.data)
+                        navigate(location?.state || '/')
+                    })
+                
             })
             .catch(error => {
                 console.log(error)
             })
     }
 
-     return (
+    return (
         <div className='text-center pb-8'>
             <p className='mb-2'>Or</p>
             {/* Google */}
@@ -29,7 +43,7 @@ const SocialLogin = () => {
                 Login with Google
             </button>
         </div>
-    );   
+    );
 };
 
 export default SocialLogin;

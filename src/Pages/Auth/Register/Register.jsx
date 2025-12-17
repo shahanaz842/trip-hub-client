@@ -5,10 +5,12 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { imageUpload } from '../../../Utils';
+import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { registerUser, updateUserProfile } = useAuth();
+    const axiosSecure = UseAxiosSecure();
 
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
@@ -23,17 +25,29 @@ const Register = () => {
 
             // 2. Upload image to imgbb
             const uploadedImageURL = await imageUpload(profileImg);
+            // 3. create user in the database
+            const userInfo = {
+                email: data.email,
+                displayName: data.name,
+                photoURL: uploadedImageURL
+            }
+            axiosSecure.post('/users', userInfo)
+                .then(res => {
+                    if (res.data.insertedId) {
+                        console.log('user created in the database')
+                    }
+                })
 
-            // 3. Prepare user profile data
+            // 4. Prepare user profile data
             const userProfile = {
                 displayName: data.name,
                 photoURL: uploadedImageURL
             };
 
-            // 4. Update Firebase profile
+            // 5. Update Firebase profile
             await updateUserProfile(userProfile);
 
-            // 5. Redirect user
+            // 6. Redirect user
             navigate(location?.state || '/');
 
         } catch (error) {

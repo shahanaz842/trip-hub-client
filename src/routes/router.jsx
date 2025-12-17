@@ -16,6 +16,7 @@ import AdvertiseTickets from "../Pages/Dashboard/Admin/AdvertiseTickets";
 import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../Pages/Dashboard/Payment/PaymentCancel";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -52,7 +53,7 @@ export const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        Component: DashboardLayout,
+        element: <DashboardLayout></DashboardLayout>,
         children: [
             {
                 path: 'add-ticket',
