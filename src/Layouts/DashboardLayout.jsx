@@ -6,10 +6,11 @@ import { BiSolidAddToQueue } from 'react-icons/bi';
 import { MdOutlineLibraryAddCheck, MdOutlineManageSearch } from 'react-icons/md';
 import { VscRequestChanges } from 'react-icons/vsc';
 import { Megaphone } from 'lucide-react';
+import UseRole from '../hooks/UseRole';
 
 
 const DashboardLayout = () => {
-
+    const { role } = UseRole();
     return (
         <div className="drawer lg:drawer-open max-w-7xl mx-auto">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -54,103 +55,77 @@ const DashboardLayout = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Add Ticket" to="/dashboard/add-ticket">
-                                <BiSolidAddToQueue />
-                                <span className="is-drawer-close:hidden">Add Ticket</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Added Tickets" to="/dashboard/my-added-tickets">
-                                <MdOutlineLibraryAddCheck />
-                                <span className="is-drawer-close:hidden">My Added Tickets</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Requested Bookings" to="/dashboard/requested-bookings">
-                                <VscRequestChanges />
-                                <span className="is-drawer-close:hidden">Requested Bookings</span>
-                            </NavLink>
-                        </li>
-                        <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History" to="/dashboard/payment-history">
                                 <FaRegCreditCard />
                                 <span className="is-drawer-close:hidden">Payment History</span>
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Tickets" to="/dashboard/manage-tickets">
-                                <MdOutlineManageSearch />
-                                <span className="is-drawer-close:hidden">Manage Tickets</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Advertise Tickets" to="/dashboard/advertise-tickets">
-                                <Megaphone />
-                                <span className="is-drawer-close:hidden">Advertise Tickets</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Vendors" to="/dashboard/approve-vendors">
-                                <FaUserTie />
-                                <span className="is-drawer-close:hidden">Approve Vendors</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Users" to="/dashboard/manage-users">
-                                <FaUsers />
-                                <span className="is-drawer-close:hidden">Manage Users</span>
-                            </NavLink>
-                        </li>
-                    {/* {
-                            role === 'rider' && <>
+                       
+                        {/* vendor only links */}
+                        {
+                            role === 'vendor' && <>
                                 <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assigned Deliveries" to="/dashboard/assigned-deliveries">
-                                        <FaTasks />
-                                        <span className="is-drawer-close:hidden">Assigned Deliveries</span>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Add Ticket" to="/dashboard/add-ticket">
+                                        <BiSolidAddToQueue />
+                                        <span className="is-drawer-close:hidden">Add Ticket</span>
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Completed Deliveries" to="/dashboard/completed-deliveries">
-                                        <MdTaskAlt />
-                                        <span className="is-drawer-close:hidden">Completed Deliveries</span>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Added Tickets" to="/dashboard/my-added-tickets">
+                                        <MdOutlineLibraryAddCheck />
+                                        <span className="is-drawer-close:hidden">My Added Tickets</span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Requested Bookings" to="/dashboard/requested-bookings">
+                                        <VscRequestChanges />
+                                        <span className="is-drawer-close:hidden">Requested Bookings</span>
+                                    </NavLink>
+                                </li>
+
+                            </>
+                        }
+                        {/* admin only links */}
+                        {
+                            role === 'admin' && <>
+                                <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Vendors" to="/dashboard/approve-vendors">
+                                        <FaUserTie />
+                                        <span className="is-drawer-close:hidden">Approve Vendors</span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Tickets" to="/dashboard/manage-tickets">
+                                        <MdOutlineManageSearch />
+                                        <span className="is-drawer-close:hidden">Manage Tickets</span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Users" to="/dashboard/manage-users">
+                                        <FaUsers />
+                                        <span className="is-drawer-close:hidden">Manage Users</span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Advertise Tickets" to="/dashboard/advertise-tickets">
+                                        <Megaphone />
+                                        <span className="is-drawer-close:hidden">Advertise Tickets</span>
                                     </NavLink>
                                 </li>
                             </>
                         }
-                        {/* admin only links */}
-                    {/* {
-                            role === 'admin' && <>
-                                <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Riders" to="/dashboard/approve-riders">
-                                        <FaMotorcycle />
-                                        <span className="is-drawer-close:hidden">Approve Riders</span>
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign Riders" to="/dashboard/assign-riders">
-                                        <RiEBikeFill />
-                                        <span className="is-drawer-close:hidden">Assign Riders</span>
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users Management" to="/dashboard/users-management">
-                                        <FaUsers />
-                                        <span className="is-drawer-close:hidden">Users Management</span>
-                                    </NavLink>
-                                </li></>
-                        } */}
 
-                    {/* List item */}
-                    <li>
-                        <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
-                            {/* Settings icon */}
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
-                            <span className="is-drawer-close:hidden">Settings</span>
-                        </button>
-                    </li>
-                </ul>
+                        {/* List item */}
+                        <li>
+                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
+                                {/* Settings icon */}
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
+                                <span className="is-drawer-close:hidden">Settings</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
         </div >
     );
 };
