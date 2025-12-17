@@ -19,6 +19,7 @@ import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 import PrivateRoute from "./PrivateRoute";
 import Vendor from "../Pages/Vendor/Vendor";
 import ApproveVendors from "../Pages/Dashboard/Admin/ApproveVendors";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 
 export const router = createBrowserRouter([
     {
@@ -100,6 +101,10 @@ export const router = createBrowserRouter([
             {
                 path: 'approve-vendors',
                 Component: ApproveVendors
+            },
+            {
+                path: 'manage-users',
+                Component: ManageUsers
             }
         ]
     }
