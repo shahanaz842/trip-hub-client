@@ -20,6 +20,7 @@ import PrivateRoute from "./PrivateRoute";
 import Vendor from "../Pages/Vendor/Vendor";
 import ApproveVendors from "../Pages/Dashboard/Admin/ApproveVendors";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
+import Profile from "../Pages/Dashboard/Profile/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <DashboardLayout></DashboardLayout>,
         children: [
+            {
+                index: true,
+                Component: Profile
+            },
             {
                 path: 'add-ticket',
                 Component: AddTicket
