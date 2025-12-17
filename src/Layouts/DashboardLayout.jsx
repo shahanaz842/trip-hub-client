@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import logoImg from '../assets/logo.png'
-import { FaBoxOpen, FaMotorcycle, FaRegCreditCard, FaTasks, FaUsers } from 'react-icons/fa';
+import { FaBoxOpen, FaMotorcycle, FaRegCreditCard, FaTasks, FaUsers, FaUserTie } from 'react-icons/fa';
 import { BiSolidAddToQueue } from 'react-icons/bi';
 import { MdOutlineLibraryAddCheck, MdOutlineManageSearch } from 'react-icons/md';
 import { VscRequestChanges } from 'react-icons/vsc';
@@ -88,6 +88,12 @@ const DashboardLayout = () => {
                                 <span className="is-drawer-close:hidden">Advertise Tickets</span>
                             </NavLink>
                         </li>
+                        <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Vendors" to="/dashboard/approve-vendors">
+                                        <FaUserTie />
+                                        <span className="is-drawer-close:hidden">Approve Vendors</span>
+                                    </NavLink>
+                                </li>
                         {/* {
                             role === 'rider' && <>
                                 <li>
