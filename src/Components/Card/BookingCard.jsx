@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { getTimeLeft } from '../../Utils/countdown';
 import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 
+
 const BookingCard = ({ booking }) => {
     const [timeLeft, setTimeLeft] = useState({});
     const axiosSecure = UseAxiosSecure();
 
-
+console.log(booking)
     useEffect(() => {
         const timer = setInterval(() => {
             setTimeLeft(
@@ -23,7 +24,8 @@ const BookingCard = ({ booking }) => {
             bookingId: booking._id, 
             ticketId: booking.ticketId,
             userEmail: booking.userEmail,
-            ticketTitle: booking.ticketTitle
+            ticketTitle: booking.ticketTitle,
+            vendorEmail: booking.vendorEmail,
         }
 
         const res = await axiosSecure.post('/payment-checkout-session', paymentInfo);

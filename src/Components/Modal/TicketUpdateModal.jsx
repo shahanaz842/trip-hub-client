@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
-import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 
 const TicketUpdateModal = ({ ticket, closeModal }) => {
     const queryClient = useQueryClient();
@@ -77,20 +77,6 @@ const TicketUpdateModal = ({ ticket, closeModal }) => {
                         )}
                     </div>
 
-                    {/* Quantity */}
-                    <div>
-                        <label className="label-text">Quantity</label>
-                        <input
-                            type="number"
-                            className="input input-bordered w-full"
-                            {...register("quantity")}
-                        />
-                        {errors.quantity && (
-                            <p className="text-red-500 text-sm">
-                                {errors.quantity.message}
-                            </p>
-                        )}
-                    </div>
                     {/* Departure */}
                     <div>
                         <label className="label-text">Departure Date</label>

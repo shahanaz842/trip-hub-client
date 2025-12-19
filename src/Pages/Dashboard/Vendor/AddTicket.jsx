@@ -6,8 +6,10 @@ import { imageUpload } from "../../../Utils";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const AddTicket = () => {
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -32,6 +34,7 @@ const AddTicket = () => {
                 timer: 1500
             });
             mutationReset()
+            navigate('/dashboard/my-added-tickets')
         },
         onError: error => {
             console.log(error)
@@ -48,7 +51,7 @@ const AddTicket = () => {
 
     const handleAddTicket = async (data) => {
         console.log("Ticket Data:", data);
-        const { ticketTitle, from, to, transportType, price, quantity, departureDate, departureTime, perks, image
+        const { ticketTitle, from, to, transportType, price, quantity,totalQuantity, departureDate, departureTime, perks, image
         } = data;
         const imageFile = image[0];
 
@@ -61,6 +64,7 @@ const AddTicket = () => {
                 transportType,
                 price: Number(price),
                 quantity: Number(quantity),
+                totalQuantity: Number(totalQuantity),
                 departureDate,
                 departureTime,
                 perks,
@@ -71,7 +75,8 @@ const AddTicket = () => {
                     email: user?.email
                 },
                 createdAt: new Date(),
-                status: 'pending'
+                status: 'pending',
+                isVisible: true
             }
             await mutateAsync(ticketData);
             reset();
@@ -175,9 +180,10 @@ const AddTicket = () => {
                             )}
                         </div>
 
-                        {/* Price & Quantity */}
-                        <div className="flex gap-4">
-                            <div className="w-full">
+                        {/* Price, Total Quantity & Available Quantity */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {/* Price */}
+                            <div>
                                 <label className="label-text">Price</label>
                                 <input
                                     {...register("price", { required: true })}
@@ -187,16 +193,41 @@ const AddTicket = () => {
                                 />
                             </div>
 
-                            <div className="w-full">
-                                <label className="label-text">Quantity</label>
+                            {/* Total Quantity */}
+                            <div>
+                                <label className="label-text">Total Quantity</label>
                                 <input
-                                    {...register("quantity", { required: true })}
+                                    {...register("totalQuantity", {
+                                        required: true,
+                                        min: 1
+                                    })}
                                     type="number"
-                                    placeholder="Available quantity"
+                                    placeholder="Total tickets"
                                     className="input input-bordered w-full"
                                 />
+                                {errors.totalQuantity && (
+                                    <p className="text-red-500 text-sm">Total quantity is required</p>
+                                )}
+                            </div>
+
+                            {/* Available Quantity */}
+                            <div>
+                                <label className="label-text">Available Quantity</label>
+                                <input
+                                    {...register("quantity", {
+                                        required: true,
+                                        min: 0
+                                    })}
+                                    type="number"
+                                    placeholder="Available tickets"
+                                    className="input input-bordered w-full"
+                                />
+                                {errors.quantity && (
+                                    <p className="text-red-500 text-sm">Available quantity is required</p>
+                                )}
                             </div>
                         </div>
+
 
                         {/* Departure Section */}
                         <h2 className="text-xl font-semibold mt-6 mb-3">Departure</h2>
@@ -237,7 +268,7 @@ const AddTicket = () => {
                         <fieldset className="fieldset border border-gray-300 p-4 rounded-lg">
                             <legend className="font-semibold text-primary">Perks</legend>
 
-                            <div className="flex flex-col space-y-2">
+                            <div className="flex flex-col md:flex-row gap-3">
                                 <label className="flex items-center gap-2">
                                     <input
                                         type="checkbox"
@@ -252,12 +283,21 @@ const AddTicket = () => {
                                     <input
                                         type="checkbox"
                                         {...register("perks")}
+                                        value="Wi-Fi"
+                                        className="checkbox"
+                                    />
+                                    Wi-Fi
+                                </label>
+
+                                <label className="flex items-center gap-2">
+                                    <input
+                                        type="checkbox"
+                                        {...register("perks")}
                                         value="Breakfast"
                                         className="checkbox"
                                     />
-                                    Lunch
+                                    Breakfast
                                 </label>
-
                                 <label className="flex items-center gap-2">
                                     <input
                                         type="checkbox"
@@ -266,6 +306,15 @@ const AddTicket = () => {
                                         className="checkbox"
                                     />
                                     Snacks
+                                </label>
+                                <label className="flex items-center gap-2">
+                                    <input
+                                        type="checkbox"
+                                        {...register("perks")}
+                                        value="Water"
+                                        className="checkbox"
+                                    />
+                                    Water
                                 </label>
                             </div>
                         </fieldset>

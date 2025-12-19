@@ -1,10 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../hooks/useAuth';
-import UseAxiosSecure from '../../hooks/UseAxiosSecure';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { Navigate, useNavigate } from 'react-router';
+import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 
 
 const BookingModal = ({ ticket, closeModal }) => {
@@ -56,7 +57,8 @@ const BookingModal = ({ ticket, closeModal }) => {
             departureDate: ticket.departureDate,
             departureTime: ticket.departureTime,
             bookingDate: new Date(),
-            bookingStatus: 'pending'
+            bookingStatus: 'pending',
+            vendorEmail: ticket.vendor.email
         };
         mutate(bookingInfo);
     };

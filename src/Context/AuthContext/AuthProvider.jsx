@@ -6,49 +6,50 @@ import { auth } from '../../firebase/firebase.init';
 const googleProvider = new GoogleAuthProvider()
 
 const AuthProvider = ({ children }) => {
-      const [user, setUser] = useState(null);
+   
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const registerUser = (email, password) =>{
+    const registerUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    const signInUser = (email, password) =>{
+    const signInUser = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-     const signInGoogle = () =>{
+    const signInGoogle = () => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider)
     }
 
-    const logout = () =>{
+    const logout = () => {
         setLoading(true);
         return signOut(auth);
     }
 
-    const updateUserProfile = (profile) =>{
+    const updateUserProfile = (profile) => {
         return updateProfile(auth.currentUser, profile)
     }
 
-    const resetPassword = (email) =>{
+    const resetPassword = (email) => {
         setLoading(true)
-       return sendPasswordResetEmail(auth, email);
+        return sendPasswordResetEmail(auth, email);
     }
 
-     // observe user state
-    useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
+    // observe user state
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setLoading(false);
             console.log(currentUser)
         })
-        return () =>{
+        return () => {
             unsubscribe();
         }
-    },[]);
+    }, []);
 
     const authInfo = {
         user,
@@ -63,7 +64,7 @@ const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext value={authInfo}>
-            { children }
+            {children}
         </AuthContext>
     );
 };

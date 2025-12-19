@@ -3,13 +3,11 @@ import useAuth from '../../../hooks/useAuth';
 import UseRole from '../../../hooks/UseRole';
 import coverImg from '../../../assets/coverImg.jpg';
 
+
 const Profile = () => {
     const { user } = useAuth();
     const { role } = UseRole();
-
-
-    console.log(role)
-
+ 
     return (
         <div className="min-h-screen bg-gray-100 py-10 px-4">
             <div className="mx-auto max-w-4xl bg-white shadow-xl rounded-2xl overflow-hidden">

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 import Swal from 'sweetalert2';
 import { useQueryClient } from '@tanstack/react-query';
 import TicketUpdateModal from '../Modal/TicketUpdateModal';
+import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 
 const AddedTicketCard = ({ ticket }) => {
     const axiosSecure = UseAxiosSecure();
     const queryClient = useQueryClient();
     const [isOpenModal, setIsOpenModal] = useState(false);
-    
+
 
     const handleTicketDelete = id => {
         console.log(id);
@@ -40,23 +40,30 @@ const AddedTicketCard = ({ ticket }) => {
         });
     }
 
-     const closeModal = () => {
+    const closeModal = () => {
         setIsOpenModal(false)
     }
 
     return (
-        <div className="card bg-base-100 shadow-xl relative">
+        <div className="card bg-base-100 shadow-xl relative overflow-hidden">
 
-            <figure>
+            <figure className='relative'>
                 <img
                     src={ticket.image}
                     alt={ticket.ticketTitle}
                     className="h-40 w-full object-cover"
                 />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+                {/* Title on image */}
+                <h2 className="absolute bottom-3 left-4 right-4 text-white text-lg font-bold drop-shadow-md">
+                    {ticket.ticketTitle}
+                </h2>
             </figure>
 
             <div className="card-body space-y-2">
-                <h2 className="card-title absolute top-32 text-white">{ticket.ticketTitle}</h2>
+
 
                 <p className="text-sm">
                     <strong>Route:</strong> {ticket.from} → {ticket.to}
@@ -106,13 +113,13 @@ const AddedTicketCard = ({ ticket }) => {
                         onClick={() => handleTicketDelete(ticket._id)}
                         className='btn btn-secondary px-10'>Delete</button>
                 </div>
-                 {
-                        isOpenModal && <TicketUpdateModal
-                            ticket={ticket}
-                            closeModal={closeModal}
-                            isOpenModal={isOpenModal}
-                        />
-                    }
+                {
+                    isOpenModal && <TicketUpdateModal
+                        ticket={ticket}
+                        closeModal={closeModal}
+                        isOpenModal={isOpenModal}
+                    />
+                }
 
             </div>
         </div>

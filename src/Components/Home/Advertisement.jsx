@@ -1,10 +1,11 @@
 import React from 'react';
-import UseAxiosSecure from '../../hooks/UseAxiosSecure';
+
 import { useQuery } from '@tanstack/react-query';
 import TicketCard from '../Card/TicketCard';
+import useAxiosSecure from '../../hooks/UseAxiosSecure';
 
 const Advertisement = () => {
-    const axiosSecure = UseAxiosSecure();
+    const axiosSecure = useAxiosSecure();
 
     const { data: tickets = [] } = useQuery({
         queryKey: ['advertisedTickets'],

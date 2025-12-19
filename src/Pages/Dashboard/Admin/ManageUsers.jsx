@@ -1,38 +1,69 @@
-import React, { useState } from 'react';
+
 import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { FaUserShield, FaStore } from 'react-icons/fa';
 import { MdBlock } from 'react-icons/md';
 
 const ManageUsers = () => {
     const axiosSecure = UseAxiosSecure();
-    const [searchText, setSearchText] = useState('');
+    const queryClient = useQueryClient();
 
-    const { refetch, data: users = [] } = useQuery({
-        queryKey: ['users', searchText],
+    const { refetch, data: users = [], isUpdating } = useQuery({
+        queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/users?searchText=${searchText}`);
+            const res = await axiosSecure.get('/users');
             return res.data;
         }
     })
+    console.log(users)
+    const handleRoleUpdate = (email, role, name) => {
+        Swal.fire({
+            title: "Change Role?",
+            text: "This will grant protected access",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            confirmButtonText: "Yes, change role"
+        }).then(async (result) => {
+            if (!result.isConfirmed) return;
 
-    const handleUserRole = (user, role) => {
-        axiosSecure.patch(`/users/${user._id}/role`)
-            .then(res => {
-                console.log(res.data);
-                if (res.data.modifiedCount) {
-                    refetch();
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: `${user.displayName} marked as an ${role}`,
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
+            //  Optimistic UI update
+            queryClient.setQueryData(['users'], (oldUsers = []) =>
+                oldUsers.map(user =>
+                    user.email === email ? { ...user, role } : user
+                )
+            );
+
+            try {
+                const res = await axiosSecure.patch('/update-role', {
+                    email,
+                    role,
+                    name
+                });
+
+                if (!res.data.userModified) {
+                    throw new Error('Role update failed');
                 }
-            })
-    }
+                queryClient.invalidateQueries(['user-role']);
+                queryClient.invalidateQueries(['users']);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `Role changed to ${role}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+            } catch (error) {
+                console.log(error)
+                //  rollback if failed
+                queryClient.invalidateQueries(['users']);
+
+                Swal.fire("Error", "Failed to update role", "error");
+            }
+        });
+    };
 
     const handleMarkFraud = (user) => {
         Swal.fire({
@@ -44,7 +75,7 @@ const ManageUsers = () => {
             confirmButtonText: "Yes, mark fraud"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.patch(`/vendors/fraud/${user.email}`)
+                axiosSecure.patch(`/vendors/fraud/${user?.email}`)
                     .then(() => {
                         refetch();
                         Swal.fire("Done!", "Vendor marked as fraud", "success");
@@ -56,26 +87,7 @@ const ManageUsers = () => {
 
     return (
         <div className='py-5 pl-2'>
-            <h2 className="text-4xl">Manage Users : {users.length}</h2>
-            <label className="input my-5">
-                <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <g
-                        strokeLinejoin="round"
-                        strokeLinecap="round"
-                        strokeWidth="2.5"
-                        fill="none"
-                        stroke="currentColor"
-                    >
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.3-4.3"></path>
-                    </g>
-                </svg>
-                <input
-                    onChange={(e) => setSearchText(e.target.value)}
-                    type="search"
-                    className="grow"
-                    placeholder="Search users" />
-            </label>
+            <h2 className="text-4xl">Manage Users : {users?.length}</h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -127,7 +139,7 @@ const ManageUsers = () => {
 
                                 <td className="flex gap-2">
                                     <button
-                                        onClick={() => handleUserRole(user, 'admin')}
+                                        onClick={() => handleRoleUpdate(user.email, 'admin', user.displayName)}
                                         className="btn btn-sm btn-success"
                                         title="Make Admin"
                                     >
@@ -135,9 +147,10 @@ const ManageUsers = () => {
                                     </button>
 
                                     <button
-                                        onClick={() => handleUserRole(user, 'vendor')}
+                                        onClick={() => handleRoleUpdate(user.email, 'vendor', user.displayName)}
                                         className="btn btn-sm btn-info"
                                         title="Make Vendor"
+                                        disabled={isUpdating}
                                     >
                                         <FaStore />
                                     </button>
@@ -146,6 +159,7 @@ const ManageUsers = () => {
                                 <td>
                                     {user.role === 'vendor' && (
                                         <button
+                                            disabled={isUpdating}
                                             onClick={() => handleMarkFraud(user)}
                                             className="btn btn-sm btn-error"
                                             title="Mark Fraud"

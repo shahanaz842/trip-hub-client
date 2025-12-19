@@ -6,10 +6,11 @@ import useAuth from '../../../hooks/useAuth';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { imageUpload } from '../../../Utils';
 import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
+import toast from 'react-hot-toast';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { registerUser, updateUserProfile } = useAuth();
+    const { registerUser, updateUserProfile, loading } = useAuth();
     const axiosSecure = UseAxiosSecure();
 
     const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +23,7 @@ const Register = () => {
 
             // 1. Register user
             const result = await registerUser(data.email, data.password);
+            console.log(result);
 
             // 2. Upload image to imgbb
             const uploadedImageURL = await imageUpload(profileImg);
@@ -52,6 +54,7 @@ const Register = () => {
 
         } catch (error) {
             console.error("Registration Error:", error);
+            toast.error(error.message)
         }
     };
 
@@ -127,7 +130,11 @@ const Register = () => {
                         </p>
                     )}
 
-                    <button className="btn btn-primary mt-4 hover:bg-blue-600">Register</button>
+                    <button className="btn btn-primary mt-4 hover:bg-blue-600">{loading ? (
+                <span className="loading loading-spinner text-white"></span>
+              ) : (
+                'Register'
+              )}</button>
 
                 </fieldset>
 

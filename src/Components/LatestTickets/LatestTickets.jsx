@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 import LatestTicketCard from '../Card/LatestTicketCard';
+import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 
 
 const LatestTickets = () => {

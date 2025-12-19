@@ -17,10 +17,11 @@ import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../Pages/Dashboard/Payment/PaymentCancel";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 import PrivateRoute from "./PrivateRoute";
-import Vendor from "../Pages/Vendor/Vendor";
+import Vendor from "../Pages/BecomeVendor/Vendor";
 import ApproveVendors from "../Pages/Dashboard/Admin/ApproveVendors";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import Profile from "../Pages/Dashboard/Profile/Profile";
+import RevenueOverview from "../Pages/Dashboard/Vendor/RevenueOverview";
 
 export const router = createBrowserRouter([
     {
@@ -110,6 +111,10 @@ export const router = createBrowserRouter([
             {
                 path: 'manage-users',
                 Component: ManageUsers
+            },
+            {
+                path: 'revenue-overview',
+                Component: RevenueOverview
             }
         ]
     }

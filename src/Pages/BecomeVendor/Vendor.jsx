@@ -26,6 +26,7 @@ const Vendor = () => {
                 });
             }
         } catch (err) {
+            console.log(err);
             Swal.fire({
                 icon: 'error',
                 title: 'Submission Failed',
@@ -63,6 +64,16 @@ const Vendor = () => {
                                     defaultValue={user?.displayName}
                                     className="input input-bordered w-full"
                                     placeholder="Your full name"
+                                />
+                                {errors.name && <p className="text-error text-sm">Name is required</p>}
+                            </div>
+                            <div>
+                                <label className="label font-medium">Vendor Photo</label>
+                                <input
+                                    {...register('', { required: true })}
+                                    defaultValue={user?.photoURL}
+                                    className="input input-bordered w-full"
+                                    disabled
                                 />
                                 {errors.name && <p className="text-error text-sm">Name is required</p>}
                             </div>

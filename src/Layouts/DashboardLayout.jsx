@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import logoImg from '../assets/logo.png'
-import { FaBoxOpen, FaMotorcycle, FaRegCreditCard, FaTasks, FaUsers, FaUserTie } from 'react-icons/fa';
+import { FaBoxOpen, FaChartLine, FaMotorcycle, FaRegCreditCard, FaTasks, FaUsers, FaUserTie } from 'react-icons/fa';
 import { BiSolidAddToQueue } from 'react-icons/bi';
 import { MdOutlineLibraryAddCheck, MdOutlineManageSearch } from 'react-icons/md';
 import { VscRequestChanges } from 'react-icons/vsc';
@@ -11,6 +11,7 @@ import UseRole from '../hooks/UseRole';
 
 const DashboardLayout = () => {
     const { role } = UseRole();
+    console.log(role);
     return (
         <div className="drawer lg:drawer-open max-w-7xl mx-auto">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -58,6 +59,12 @@ const DashboardLayout = () => {
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History" to="/dashboard/payment-history">
                                 <FaRegCreditCard />
                                 <span className="is-drawer-close:hidden">Payment History</span>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Revenue Overview" to="/dashboard/revenue-overview">
+                                <FaChartLine />
+                                <span className="is-drawer-close:hidden">Revenue Overview</span>
                             </NavLink>
                         </li>
                        
