@@ -1,6 +1,8 @@
 import React from 'react';
 import useAuth from '../hooks/useAuth';
 import UseRole from '../hooks/UseRole';
+import LoadingSpinner from '../Components/LoadingSpinner/LoadingSpinner';
+import { Navigate } from 'react-router';
 
 
 const AdminRoute = ({children}) => {
@@ -8,13 +10,11 @@ const AdminRoute = ({children}) => {
     const { role, roleLoading} = UseRole();
 
     if(loading || roleLoading){
-        return <div>
-            <span className="loading loading-infinity loading-xl"></span>
-        </div>
+        return <LoadingSpinner/>
     }
 
     if(role !== 'admin'){
-        return <div>This Page is Forbidden</div>
+        return <Navigate to='/' replace='true' />
     }
     return children;
 };

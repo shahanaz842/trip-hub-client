@@ -1,6 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import TicketCard from '../../Components/Card/TicketCard';
 import UseAxiosSecure from '../../hooks/UseAxiosSecure';
+import LoadingSpinner from '../../Components/LoadingSpinner/LoadingSpinner';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
 
 
 const AllTickets = () => {
@@ -15,8 +18,31 @@ const AllTickets = () => {
   });
 
   if (isLoading) {
-    return <p className="text-center mt-10">Loading tickets...</p>;
+    return <LoadingSpinner />;
   }
+
+      // <Swiper
+      //     loop={true}
+      //     effect={'coverflow'}
+      //     grabCursor={true}
+      //     centeredSlides={true}
+      //     slidesPerView={3}
+      //     coverflowEffect={{
+      //       rotate: 30,
+      //       stretch: '50%',
+      //       depth: 200,
+      //       modifier: 1,
+      //       scale: 0.75,
+      //       slideShadows: true,
+      //     }}
+      //     autoplay={{
+      //       delay: 2000,
+      //       disableOnInteraction: false,
+      //     }}
+      //     pagination={true}
+      //     modules={[EffectCoverflow, Pagination, Autoplay]}
+      //     className="mySwiper"
+      //   ></Swiper>
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -25,9 +51,15 @@ const AllTickets = () => {
       </h2>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tickets.map(ticket => (
-          <TicketCard key={ticket._id} ticket={ticket} />
-        ))}
+          {
+            tickets.map(ticket => <SwiperSlide key={ticket.id}>
+              <TicketCard ticket={ticket} />
+            </SwiperSlide>)
+          }
+        </Swiper>
+        {/* {tickets.map(ticket => (
+          <TicketCard ticket={ticket} />
+        ))} */}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import useAuth from '../../../hooks/useAuth';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { imageUpload } from '../../../Utils';
 import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
-import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -54,7 +54,7 @@ const Register = () => {
 
         } catch (error) {
             console.error("Registration Error:", error);
-            toast.error(error.message)
+            Swal.fire(`error,${error.message},error`)
         }
     };
 

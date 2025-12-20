@@ -6,45 +6,68 @@ import { FaPhone } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <footer className="footer sm:footer-horizontal bg-base-300 text-base-content p-10">
-            <nav>
-                <h6 className="-ms-3.5 -mt-3"><Logo></Logo></h6>
-                <a className="link link-hover -mt-5">Book bus, train, launch & <br /> flight tickets easily</a>
-               
-            </nav>
-            <nav>
-                <h6 className="footer-title">Company</h6>
-                <a className="link link-hover">Home</a>
-                <a className="link link-hover">All Tickets</a>
-                <a className="link link-hover">Contact Us</a>
-                <a className="link link-hover">About</a>
-            </nav>
-            <nav>
-                <h6 className="footer-title">Contact</h6>
-                <div className="grid grid-flow-col gap-4">
-                    <a>
-                        <MdEmail className='text-blue-950' size={25} />
-                    </a>
-                    <a>
-                        <FaPhone className='text-blue-950' size={24} />
-                    </a>
-                    <a>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            className="fill-current">
-                            <path
-                                d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-                        </svg>
-                    </a>
+        <footer className="bg-base-300 text-base-content">
+            {/* Main Footer */}
+            <div className="footer max-w-7xl mx-auto p-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+
+                {/* Brand */}
+                <div>
+                    <Logo />
+                    <p className="mt-3 text-sm leading-relaxed opacity-80">
+                        Book bus, train, launch & flight tickets easily
+                    </p>
                 </div>
-            </nav>
-             <nav>
-                <h6 className="footer-title">Payment</h6>
-                <img src={stripeImg} className="link link-hover w-20 -ms-2 -mt-3" alt="" />
-            </nav>
+
+                {/* Company */}
+                <nav>
+                    <h6 className="footer-title">Company</h6>
+                    <a className="link link-hover">Home</a>
+                    <a className="link link-hover">All Tickets</a>
+                    <a className="link link-hover">Contact Us</a>
+                    <a className="link link-hover">About</a>
+                </nav>
+
+                {/* Contact */}
+                <nav>
+                    <h6 className="footer-title">Contact</h6>
+                    <div className="flex gap-4 mt-2">
+                        <a className="hover:text-primary transition">
+                            <MdEmail size={22} />
+                        </a>
+                        <a className="hover:text-primary transition">
+                            <FaPhone size={21} />
+                        </a>
+                        <a className="hover:text-primary transition">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                            </svg>
+                        </a>
+                    </div>
+                </nav>
+
+                {/* Payment */}
+                <nav>
+                    <h6 className="footer-title">Payment</h6>
+                    <img
+                        src={stripeImg}
+                        alt="Stripe"
+                        className="w-24 mt-2 opacity-90"
+                    />
+                </nav>
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="border-t border-base-content/10">
+                <div className="max-w-7xl mx-auto px-10 py-4 text-center text-sm opacity-70">
+                    © 2025 <span className="font-semibold">TicketBari</span>. All rights reserved.
+                </div>
+            </div>
         </footer>
     );
 };

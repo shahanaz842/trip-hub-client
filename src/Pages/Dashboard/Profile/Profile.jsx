@@ -2,12 +2,19 @@ import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import UseRole from '../../../hooks/UseRole';
 import coverImg from '../../../assets/coverImg.jpg';
+import LoadingSpinner from '../../../Components/LoadingSpinner/LoadingSpinner';
 
 
 const Profile = () => {
     const { user } = useAuth();
-    const { role } = UseRole();
- 
+    const { role, roleLoading } = UseRole();
+
+    if (roleLoading) return <LoadingSpinner />;
+
+    if (!role) {
+        return <Error message="User role not found" />;
+    }
+    console.log(role)
     return (
         <div className="min-h-screen bg-gray-100 py-10 px-4">
             <div className="mx-auto max-w-4xl bg-white shadow-xl rounded-2xl overflow-hidden">

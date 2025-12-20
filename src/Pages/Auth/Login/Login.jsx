@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
@@ -18,7 +19,7 @@ const Login = () => {
                 navigate(location?.state || '/')
             })
             .catch(error => {
-                console.log(error)
+                 Swal.fire(`error,${error.message},error`)
             })
     }
 
@@ -30,7 +31,7 @@ const Login = () => {
                 alert('Check your email for password reset')
                 window.open('http://www.gmail.com')
             }).cath(error => {
-                console.log(error);
+                Swal.fire(`error,${error.message},error`)
             })
     }
 

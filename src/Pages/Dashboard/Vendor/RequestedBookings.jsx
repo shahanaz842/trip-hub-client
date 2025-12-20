@@ -2,6 +2,7 @@ import React from 'react';
 import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import LoadingSpinner from '../../../Components/LoadingSpinner/LoadingSpinner';
 
 const RequestedBookings = () => {
     const axiosSecure = UseAxiosSecure();
@@ -40,7 +41,7 @@ const RequestedBookings = () => {
     }
 
     console.log(bookings)
-    if (isLoading) return <h2>Loading...</h2>
+    if (isLoading) return <LoadingSpinner/>
 
     return (
         <div className="overflow-x-auto">

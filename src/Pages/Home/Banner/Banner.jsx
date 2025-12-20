@@ -7,92 +7,81 @@ import bannerImg4 from '../../../assets/banner4.png'
 import bannerImg5 from '../../../assets/banner5.png'
 import bannerImg6 from '../../../assets/banner6.png'
 import { Carousel } from 'react-responsive-carousel';
+import { FaArrowRightLong } from 'react-icons/fa6';
+import { Link } from 'react-router';
 
 const Banner = () => {
+    const slides = [
+        {
+            title: "Book Flight Tickets Fast",
+            subtitle: "Compare airlines and get the best prices instantly.",
+            cta1: "Book Now",
+            image: bannerImg1
+        },
+        {
+            title: "Easy Bus Ticket Booking",
+            subtitle: "Find routes and prices in seconds.",
+            cta1: "Book Now",
+            image: bannerImg2
+        },
+        {
+            title: "Best Ticket Deals",
+            subtitle: "Affordable travel for every destination.",
+            cta1: "Book Now",
+            image: bannerImg3
+        },
+        {
+            title: "Safe & Secure Payments",
+            subtitle: "Trusted platform with instant booking.",
+            cta1: "Book Now",
+            image: bannerImg4
+        },
+        {
+            title: "Your Journey Starts Here",
+            subtitle: "Book instantly from your phone.",
+            cta1: "Book Now",
+            image: bannerImg6
+        },
+        {
+            title: "River Launch Tickets Online",
+            subtitle: "Comfortable and scenic river journeys.",
+            cta1: "Book Now",
+            image: bannerImg5
+        }
+    ];
+
     return (
         <Carousel
-            dynamicHeight={true}
-            autoPlay={true}
-            infiniteLoop={true}>
-            <div className='h-[500px] grid grid-cols-6 gap-5 items-center justify-center'>
-                <div className='col-span-3 h-[500px] border-2 text-start'>
-                    <h2 className='text-4xl font-bold text-primary'>Book Flight Tickets Fast</h2>
-                    <p className='text-xl text-gray-400'>Compare airlines and get the best price instantly.</p>
-                    <p className=''>Start your journey with a single click.</p>
-                    <div className='flex items-center ml-35 mt-28'>
-                        <button className='btn rounded-3xl bg-primary border-0 text-white'>Book Your Seat</button>
-                        <button className='btn bg-secondary ml-3'>Be A Vendor</button>
+            autoPlay
+            infiniteLoop
+            showThumbs={false}
+            showStatus={false}
+            dynamicHeight={false}
+        >
+            {slides.map((slide, idx) => (
+                <div
+                    key={idx}
+                    className="relative w-full h-[500px] md:h-[550px] lg:h-[600px] flex flex-col md:flex-row items-center bg-gray-50"
+                >
+                    {/* Text Section */}
+                    <div className="md:w-1/2 p-6 md:p-12 flex flex-col justify-center space-y-4">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">{slide.title}</h2>
+                        <p className="text-lg md:text-xl text-gray-600">{slide.subtitle}</p>
+                        <div className="mt-4">
+                            <Link to='/all-tickets' className="btn btn-primary rounded-3xl px-6 py-2 text-white">{slide.cta1} <FaArrowRightLong /></Link>
+                        </div>
+                    </div>
+
+                    {/* Image Section */}
+                    <div className="md:w-1/2 flex justify-center items-center">
+                        <img
+                            src={slide.image}
+                            alt={slide.title}
+                            className="w-full max-w-lg h-auto object-cover rounded-xl shadow-lg"
+                        />
                     </div>
                 </div>
-                <img className='col-span-2' src={bannerImg1} />
-
-            </div>
-            <div className='h-[500px] grid grid-cols-6 gap-5 items-center justify-center'>
-                <div className='col-span-3 h-[500px] '>
-                    <h2 className='text-4xl font-bold text-primary'>Book Bus Tickets Easily</h2>
-                    <p className='text-xl text-gray-400'>Where Do You Want to Go?</p>
-                    <p className=''>Search routes and get the best available ticket.</p>
-                    <div className='flex items-center ml-35 mt-28'>
-                        <button className='btn rounded-3xl bg-primary border-0 text-white'>Book Your Seat</button>
-                        <button className='btn bg-secondary ml-3'>Be A Vendor</button>
-                    </div>
-                </div>
-                <img className='col-span-2' src={bannerImg2} />
-
-            </div>
-            <div className='h-[500px] grid grid-cols-6 gap-5 items-center justify-center'>
-                <div className='col-span-3 h-[500px] '>
-                    <h2 className='text-4xl font-bold text-primary'>Best Ticket Deals for Every Journey</h2>
-                    <p className='text-xl text-gray-400'>Find affordable buses for every route in Bangladesh.</p>
-                    <p className=''>Find the cheapest options for every destination.</p>
-                    <div className='flex items-center ml-35 mt-28'>
-                        <button className='btn rounded-3xl bg-primary border-0 text-white'>Book Your Seat</button>
-                        <button className='btn bg-secondary ml-3'>Be A Vendor</button>
-                    </div>
-                </div>
-                <img className='col-span-2' src={bannerImg3} />
-
-            </div>
-            <div className='h-[500px] grid grid-cols-6 gap-5 items-center justify-center'>
-                <div className='col-span-3 h-[500px] '>
-                    <h2 className='text-4xl font-bold text-primary'>Safe Booking. Secure Payments.</h2>
-                    <p className='text-xl text-gray-400'>A trusted platform for all your travel needs.</p>
-                    <p className=''>No waiting in lines—book instantly from your phone.</p>
-                    <div className='flex items-center ml-35 mt-28'>
-                        <button className='btn rounded-3xl bg-primary border-0 text-white'>Book Your Seat</button>
-                        <button className='btn bg-secondary text-white ml-3'>Be A Vendor</button>
-                    </div>
-                </div>
-                <img className='col-span-2' src={bannerImg4} />
-
-            </div>
-            <div className='h-[500px] grid grid-cols-6 gap-5 items-center justify-center'>
-                <div className='col-span-3 h-[500px] '>
-                    <h2 className='text-4xl font-bold text-primary'>Your Journey Begins Here</h2>
-                    <p className='text-xl text-gray-400'>Compare airlines and get the best price instantly.</p>
-                    <p className=''>Just a finger tip away</p>
-                    <div className='flex items-center ml-35 mt-28'>
-                        <button className='btn rounded-3xl bg-primary border-0 text-white'>Book Your Seat</button>
-                        <button className='btn bg-secondary ml-3'>Be A Vendor</button>
-                    </div>
-                </div>
-                <img className='col-span-2' src={bannerImg6} />
-
-            </div>
-            <div className='h-[500px] grid grid-cols-6 gap-5 items-center justify-center'>
-                <div className='col-span-3 h-[500px] '>
-                    <h2 className='text-4xl font-bold text-primary'>Launch Tickets Online</h2>
-                    <p className='text-xl text-gray-400'>Safe, comfortable and scenic river journeys.</p>
-                    <p className=''>Choose your destination and travel the way you want.</p>
-                    <div className='flex items-center ml-35 mt-28'>
-                        <button className='btn rounded-3xl bg-primary border-0 text-white'>Book Your Seat</button>
-                        <button className='btn bg-secondary ml-3'>Be A Vendor</button>
-                    </div>
-                </div>
-                <img className='col-span-2' src={bannerImg5} />
-
-            </div>
-
+            ))}
         </Carousel>
     );
 };

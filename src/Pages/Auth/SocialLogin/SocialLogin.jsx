@@ -2,6 +2,7 @@ import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router';
 import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
+import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
     const { signInGoogle } = useAuth();
@@ -28,7 +29,7 @@ const SocialLogin = () => {
                 
             })
             .catch(error => {
-                console.log(error)
+                Swal.fire(`error,${error.message},error`)
             })
     }
 

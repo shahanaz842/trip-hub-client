@@ -5,6 +5,7 @@ import { FaEye, FaUserCheck } from 'react-icons/fa';
 import { IoPersonRemove } from "react-icons/io5";
 import { FaTrashCan } from "react-icons/fa6";
 import Swal from 'sweetalert2';
+import LoadingSpinner from '../../../Components/LoadingSpinner/LoadingSpinner';
 
 const ApproveVendors = () => {
     const axiosSecure = UseAxiosSecure();
@@ -59,7 +60,7 @@ const ApproveVendors = () => {
     };
 
     if (isLoading) {
-        return <p className="text-center mt-20">Loading vendors...</p>;
+        return <LoadingSpinner/>
     }
 
     return (

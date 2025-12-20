@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 import BookingModal from '../../Components/Modal/BookingModal';
+import LoadingSpinner from '../../Components/LoadingSpinner/LoadingSpinner';
 
 
 const TicketDetails = () => {
@@ -54,7 +55,7 @@ const TicketDetails = () => {
         setIsOpenModal(false)
     }
 
-    if (isLoading) return <h2>Loading...</h2>
+    if (isLoading) return <LoadingSpinner/>
 
     return (
         <div className="max-w-6xl mx-auto p-6">
@@ -76,7 +77,7 @@ const TicketDetails = () => {
 
                     {/* <p className="text-gray-600">{ticket.description}</p> */}
 
-                    <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="grid grid-cols-3 gap-4 text-sm">
                         <p>
                             <span className="font-semibold">From:</span> {ticket.from}
                         </p>
@@ -99,6 +100,7 @@ const TicketDetails = () => {
                             <span className="font-semibold">Departure Time:</span>{" "}
                             {ticket.departureTime}
                         </p>
+                        
                     </div>
 
                     {/* Perks */}

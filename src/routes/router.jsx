@@ -17,11 +17,13 @@ import PaymentSuccess from "../Pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../Pages/Dashboard/Payment/PaymentCancel";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 import PrivateRoute from "./PrivateRoute";
-import Vendor from "../Pages/BecomeVendor/Vendor";
 import ApproveVendors from "../Pages/Dashboard/Admin/ApproveVendors";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import Profile from "../Pages/Dashboard/Profile/Profile";
 import RevenueOverview from "../Pages/Dashboard/Vendor/RevenueOverview";
+import BecomeVendor from "../Pages/BecomeVendor/BecomeVendor";
+import UnauthorizedAccess from "../Pages/UnauthorizedAccess/UnauthorizedAccess";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
@@ -41,8 +43,8 @@ export const router = createBrowserRouter([
                 Component: AllTickets
             },
             {
-                path: 'vendor',
-                Component: Vendor
+                path: 'become-vendor',
+                element: <PrivateRoute><BecomeVendor></BecomeVendor></PrivateRoute>
             }
         ]
     },
@@ -62,7 +64,7 @@ export const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
                 index: true,
@@ -117,5 +119,13 @@ export const router = createBrowserRouter([
                 Component: RevenueOverview
             }
         ]
+    },
+    {
+        path : 'unauthorized',
+        Component: UnauthorizedAccess
+    },
+    {
+        path: 'error',
+        Component: ErrorPage
     }
 ])

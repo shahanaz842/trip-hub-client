@@ -1,137 +1,136 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import logoImg from '../assets/logo.png'
-import { FaBoxOpen, FaChartLine, FaMotorcycle, FaRegCreditCard, FaTasks, FaUsers, FaUserTie } from 'react-icons/fa';
+import { FaBoxOpen, FaChartLine,  FaRegCreditCard, FaUsers, FaUserTie } from 'react-icons/fa';
 import { BiSolidAddToQueue } from 'react-icons/bi';
-import { MdOutlineLibraryAddCheck, MdOutlineManageSearch } from 'react-icons/md';
-import { VscRequestChanges } from 'react-icons/vsc';
-import { Megaphone } from 'lucide-react';
+import { SiGooglecloudstorage } from "react-icons/si";
+import { HiSpeakerphone } from "react-icons/hi";
+
+
+
 import UseRole from '../hooks/UseRole';
+import { CgProfile } from "react-icons/cg";
+import { MdOutlineManageSearch, MdOutlineRateReview } from 'react-icons/md';
 
 
 const DashboardLayout = () => {
+    const menuItem =
+        "flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 transition";
     const { role } = UseRole();
     console.log(role);
+    
     return (
         <div className="drawer lg:drawer-open max-w-7xl mx-auto">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 {/* Navbar */}
-                <nav className="navbar w-full bg-base-300">
-                    <label htmlFor="my-drawer-4" aria-label="open sidebar" className="btn btn-square btn-ghost">
-                        {/* Sidebar toggle icon */}
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M9 4v16"></path><path d="M14 10l2 2l-2 2"></path></svg>
+                <nav className="navbar fixed top-0 left-0 right-0 z-50 bg-base-100 border-b px-4">
+                    <label htmlFor="my-drawer-4" className="btn btn-ghost lg:hidden">
+                        ☰
                     </label>
-                    <div className="px-4">Trip Hub Dashboard</div>
+
+                    <div className="flex items-center gap-3">
+                        <Link to='/'>
+                        <img
+                            src={logoImg}
+                            alt="Trip Hub"
+                            className="w-9 h-9 rounded"
+                        />
+                        </Link>
+                        <div>
+                            <h1 className="font-semibold text-lg">Trip Hub Dashboard</h1>
+                            <p className="text-xs text-gray-500 capitalize">
+                                {role || 'user'} panel
+                            </p>
+                        </div>
+                    </div>
                 </nav>
+
+
                 {/* Page content here */}
-                <Outlet></Outlet>
+                <div className="drawer-content pt-16 bg-base-100 min-h-screen">
+                    <Outlet />
+                </div>
             </div>
 
-            <div className="drawer-side is-drawer-close:overflow-visible">
-                <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+            <div className="drawer-side">
+                <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+
+                <aside className="w-64 bg-base-200 min-h-full flex flex-col">
+                    <div className="flex items-center gap-3 px-4 py-4 border-b">
+                        <img src={logoImg} className="w-10" alt="Trip Hub" />
+                        <Link to='/'>
+                            <h2 className="font-bold text-primary">Trip Hub</h2>
+                            <p className="text-xs text-gray-500">Smart Ticketing</p>
+                        </Link>
+                    </div>
+
                     {/* Sidebar content here */}
-                    <ul className="menu w-full grow">
-                        {/* List item */}
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right w-14" data-tip="Trip Hub" to="/">
-                                <img src={logoImg} alt="" />
+                    {/* our dashboard links */}
 
-                            </NavLink>
-                        </li>
-                        <li>
-                            <Link to='/dashboard' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
-                                {/* Home icon */}
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-                                <span className="is-drawer-close:hidden">Homepage</span>
-                            </Link>
-                        </li>
-
-                        {/* our dashboard links */}
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Booked Tickets" to="/dashboard/my-booked-tickets">
-                                <FaBoxOpen />
-                                <span className="is-drawer-close:hidden">My Booked Tickets</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History" to="/dashboard/payment-history">
-                                <FaRegCreditCard />
-                                <span className="is-drawer-close:hidden">Payment History</span>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Revenue Overview" to="/dashboard/revenue-overview">
-                                <FaChartLine />
-                                <span className="is-drawer-close:hidden">Revenue Overview</span>
-                            </NavLink>
-                        </li>
-                       
-                        {/* vendor only links */}
-                        {
-                            role === 'vendor' && <>
-                                <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Add Ticket" to="/dashboard/add-ticket">
-                                        <BiSolidAddToQueue />
-                                        <span className="is-drawer-close:hidden">Add Ticket</span>
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Added Tickets" to="/dashboard/my-added-tickets">
-                                        <MdOutlineLibraryAddCheck />
-                                        <span className="is-drawer-close:hidden">My Added Tickets</span>
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Requested Bookings" to="/dashboard/requested-bookings">
-                                        <VscRequestChanges />
-                                        <span className="is-drawer-close:hidden">Requested Bookings</span>
-                                    </NavLink>
-                                </li>
-
-                            </>
+                    <NavLink
+                        to="/dashboard"
+                        className={({ isActive }) =>
+                            `${menuItem} ${isActive ? 'bg-primary/20 text-primary font-semibold' : ''}`
                         }
-                        {/* admin only links */}
-                        {
-                            role === 'admin' && <>
-                                <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Vendors" to="/dashboard/approve-vendors">
-                                        <FaUserTie />
-                                        <span className="is-drawer-close:hidden">Approve Vendors</span>
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Tickets" to="/dashboard/manage-tickets">
-                                        <MdOutlineManageSearch />
-                                        <span className="is-drawer-close:hidden">Manage Tickets</span>
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Users" to="/dashboard/manage-users">
-                                        <FaUsers />
-                                        <span className="is-drawer-close:hidden">Manage Users</span>
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Advertise Tickets" to="/dashboard/advertise-tickets">
-                                        <Megaphone />
-                                        <span className="is-drawer-close:hidden">Advertise Tickets</span>
-                                    </NavLink>
-                                </li>
-                            </>
-                        }
+                    >
+                        <CgProfile />
+                        <span>Profile</span>
+                    </NavLink>
 
-                        {/* List item */}
-                        <li>
-                            <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
-                                {/* Settings icon */}
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
-                                <span className="is-drawer-close:hidden">Settings</span>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
+                    {/* user only route */}
+
+                    {role === 'user' && (
+                        <>
+                            <p className="px-4 mt-4 text-xs text-gray-400 uppercase">User</p>
+                            <NavLink to="/dashboard/my-booked-tickets" className={menuItem}>
+                                <FaBoxOpen /> My Bookings
+                            </NavLink>
+                            <NavLink to="/dashboard/payment-history" className={menuItem}>
+                                <FaRegCreditCard /> Payments
+                            </NavLink>
+                        </>
+                    )}
+
+                    {/* vendor only links */}
+                    {role === 'vendor' && (
+                        <>
+                            <p className="px-4 mt-4 text-xs text-gray-400 uppercase">Vendor</p>
+                            <NavLink to="/dashboard/add-ticket" className={menuItem}>
+                                <BiSolidAddToQueue /> Add Ticket
+                            </NavLink>
+                            <NavLink to="/dashboard/my-added-tickets" className={menuItem}>
+                                <SiGooglecloudstorage /> Added Tickets
+                            </NavLink>
+                            <NavLink to="/dashboard/requested-bookings" className={menuItem}>
+                                <MdOutlineRateReview /> Booking Requests
+                            </NavLink>
+                            <NavLink to="/dashboard/revenue-overview" className={menuItem}>
+                                <FaChartLine /> Revenue
+                            </NavLink>
+                        </>
+                    )}
+
+                    {/* admin only links */}
+                    {role === 'admin' && (
+                        <>
+                            <p className="px-4 mt-4 text-xs text-gray-400 uppercase">Admin</p>
+                            <NavLink to="/dashboard/manage-tickets" className={menuItem}>
+                                <MdOutlineManageSearch /> Manage Tickets
+                            </NavLink>
+                            <NavLink to="/dashboard/manage-users" className={menuItem}>
+                                <FaUsers /> Manage Users
+                            </NavLink>
+                            <NavLink to="/dashboard/approve-vendors" className={menuItem}>
+                                <FaUserTie /> Vendors
+                            </NavLink>
+                            <NavLink to="/dashboard/advertise-tickets" className={menuItem}>
+                                <HiSpeakerphone /> Advertise
+                            </NavLink>
+                        </>
+                    )}
+
+                </aside>
             </div>
         </div >
     );

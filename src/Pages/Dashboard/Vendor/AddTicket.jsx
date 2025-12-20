@@ -7,6 +7,7 @@ import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import ErrorPage from "../../ErrorPage/ErrorPage";
 
 const AddTicket = () => {
     const navigate = useNavigate();
@@ -84,7 +85,7 @@ const AddTicket = () => {
             console.log(err)
         }
     };
-    if (isError) return <h2>Error</h2>
+    if (isError) return <ErrorPage/>
     return (
         <div className="w-full min-h-[calc(100vh-40px)] flex justify-center items-center bg-gray-50 py-10">
             <form

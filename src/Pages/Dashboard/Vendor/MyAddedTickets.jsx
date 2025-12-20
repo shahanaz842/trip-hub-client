@@ -3,6 +3,7 @@ import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../hooks/useAuth';
 import AddedTicketCard from '../../../Components/Card/AddedTicketCard';
+import LoadingSpinner from '../../../Components/LoadingSpinner/LoadingSpinner';
 
 const MyAddedTickets = () => {
     const {user} = useAuth();
@@ -16,7 +17,7 @@ const MyAddedTickets = () => {
         }
     })
     console.log(tickets);
-    if(isLoading) return <h2>Loading...</h2>
+    if(isLoading) return <LoadingSpinner/>
     return (
          <div className="max-w-7xl mx-auto px-4 py-10">
             <h1 className="text-3xl font-bold mb-6">My Added Tickets</h1>

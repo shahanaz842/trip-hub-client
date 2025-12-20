@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
+import LoadingSpinner from '../../../Components/LoadingSpinner/LoadingSpinner';
 
 const AdvertiseTickets = () => {
     const axiosSecure = UseAxiosSecure();
@@ -38,7 +39,7 @@ const AdvertiseTickets = () => {
             });
     };
 
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <LoadingSpinner/>
 
     return (
         <div className="overflow-x-auto">

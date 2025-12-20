@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 import Swal from 'sweetalert2';
 
-const Vendor = () => {
+const BecomeVendor = () => {
     const {
         register,
         handleSubmit,
@@ -67,17 +67,6 @@ const Vendor = () => {
                                 />
                                 {errors.name && <p className="text-error text-sm">Name is required</p>}
                             </div>
-                            <div>
-                                <label className="label font-medium">Vendor Photo</label>
-                                <input
-                                    {...register('', { required: true })}
-                                    defaultValue={user?.photoURL}
-                                    className="input input-bordered w-full"
-                                    disabled
-                                />
-                                {errors.name && <p className="text-error text-sm">Name is required</p>}
-                            </div>
-
                             <div>
                                 <label className="label font-medium">Email</label>
                                 <input
@@ -159,4 +148,4 @@ const Vendor = () => {
     );
 };
 
-export default Vendor;
+export default BecomeVendor;

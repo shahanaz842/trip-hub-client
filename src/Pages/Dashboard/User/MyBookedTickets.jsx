@@ -3,6 +3,7 @@ import BookingCard from '../../../Components/Card/BookingCard';
 import useAuth from '../../../hooks/useAuth';
 import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import LoadingSpinner from '../../../Components/LoadingSpinner/LoadingSpinner';
 
 const MyBookedTickets = () => {
     const { user } = useAuth();
@@ -16,7 +17,7 @@ const MyBookedTickets = () => {
         },
     });
 
-    if (isLoading) return <p className="text-center">Loading...</p>;
+    if (isLoading) return <LoadingSpinner/>;
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-10">
