@@ -21,46 +21,43 @@ const AllTickets = () => {
     return <LoadingSpinner />;
   }
 
-      // <Swiper
-      //     loop={true}
-      //     effect={'coverflow'}
-      //     grabCursor={true}
-      //     centeredSlides={true}
-      //     slidesPerView={3}
-      //     coverflowEffect={{
-      //       rotate: 30,
-      //       stretch: '50%',
-      //       depth: 200,
-      //       modifier: 1,
-      //       scale: 0.75,
-      //       slideShadows: true,
-      //     }}
-      //     autoplay={{
-      //       delay: 2000,
-      //       disableOnInteraction: false,
-      //     }}
-      //     pagination={true}
-      //     modules={[EffectCoverflow, Pagination, Autoplay]}
-      //     className="mySwiper"
-      //   ></Swiper>
-
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
       <h2 className="text-3xl font-bold mb-8 text-center">
         Available Tickets
       </h2>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <>
+        <Swiper
+          loop={true}
+          effect={'coverflow'}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={3}
+          coverflowEffect={{
+            rotate: 30,
+            stretch: "5%",
+            depth: 130,
+            modifier: 1,
+            scale: 0.65,
+            slideShadows: true,
+          }}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          pagination={true}
+          modules={[EffectCoverflow, Pagination, Autoplay]}
+          className="mySwiper"
+        >
           {
-            tickets.map(ticket => <SwiperSlide key={ticket.id}>
-              <TicketCard ticket={ticket} />
+            tickets.map(ticket => <SwiperSlide>
+              <TicketCard key={ticket._id} ticket={ticket}></TicketCard>
             </SwiperSlide>)
           }
+
         </Swiper>
-        {/* {tickets.map(ticket => (
-          <TicketCard ticket={ticket} />
-        ))} */}
-      </div>
+      </>
+
     </div>
   );
 };
