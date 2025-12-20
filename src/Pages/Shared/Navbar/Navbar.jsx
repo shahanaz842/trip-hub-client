@@ -16,15 +16,15 @@ const Navbar = () => {
 
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/all-tickets'>All Tickets</NavLink></li>
+        <li><NavLink to='/all-tickets'>Tickets</NavLink></li>
         <li><NavLink to={user?'/dashboard' : '/unauthorized'}>Dashboard</NavLink></li>
 
 
-        {
+        {/* {
             user && <>
                 <li><NavLink to='/become-vendor'>Be a Vendor</NavLink></li>
             </>
-        }
+        } */}
 
     </>
     return (

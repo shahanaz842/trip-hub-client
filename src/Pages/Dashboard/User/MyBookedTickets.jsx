@@ -21,10 +21,10 @@ const MyBookedTickets = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-10">
-            <h1 className="text-3xl font-bold mb-6">My Bookings</h1>
+            <h1 className="text-3xl font-bold mb-6 text-center">My Bookings</h1>
 
             {bookings.length === 0 ? (
-                <p className="text-gray-500">No bookings found.</p>
+                <p className="text-gray-500 text-center">No bookings found.</p>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {bookings.map((booking) => (

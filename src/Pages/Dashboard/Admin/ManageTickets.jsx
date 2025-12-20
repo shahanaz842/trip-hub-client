@@ -7,7 +7,7 @@ import LoadingSpinner from '../../../Components/LoadingSpinner/LoadingSpinner';
 const ManageTickets = () => {
     const axiosSecure = UseAxiosSecure();
 
-    const { refetch, data: tickets = [], isLoading } = useQuery({
+    const { refetch, data, isLoading } = useQuery({
         queryKey: ['tickets'],
         queryFn: async () => {
             const res = await axiosSecure.get('/tickets')
@@ -39,6 +39,7 @@ const ManageTickets = () => {
         updateTicketStatus(id, 'rejected')
     }
 
+   const tickets = data?.tickets || [];
     console.log(tickets)
     if (isLoading) return <LoadingSpinner/>
 

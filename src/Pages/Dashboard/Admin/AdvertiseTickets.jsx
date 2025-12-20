@@ -6,7 +6,7 @@ import LoadingSpinner from '../../../Components/LoadingSpinner/LoadingSpinner';
 const AdvertiseTickets = () => {
     const axiosSecure = UseAxiosSecure();
 
-    const { data: tickets = [], refetch, isLoading } = useQuery({
+    const { data, refetch, isLoading } = useQuery({
         queryKey: ['approvedTickets'],
         queryFn: async () => {
             const res = await axiosSecure.get('/tickets?status=approved');
@@ -39,6 +39,7 @@ const AdvertiseTickets = () => {
             });
     };
 
+    const tickets = data?.tickets || [];
     if (isLoading) return <LoadingSpinner/>
 
     return (

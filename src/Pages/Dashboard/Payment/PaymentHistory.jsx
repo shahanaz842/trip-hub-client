@@ -25,7 +25,7 @@ const PaymentHistory = () => {
         <div>
             <h2 className='text-3xl font-bold text-center py-3'>Payment History: {payments.length}</h2>
             {
-                payments.length === 0 ? <p className='text-gray-500 pt-2 text center'>No Transaction Done .</p> :
+                payments.length === 0 ? <p className='text-gray-500 pt-2 text-center'>No Transaction Done .</p> :
                     <div className="overflow-x-auto">
                         <table className="table table-zebra">
                             {/* head */}

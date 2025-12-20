@@ -121,9 +121,9 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/manage-users" className={menuItem}>
                                 <FaUsers /> Manage Users
                             </NavLink>
-                            <NavLink to="/dashboard/approve-vendors" className={menuItem}>
+                            {/* <NavLink to="/dashboard/approve-vendors" className={menuItem}>
                                 <FaUserTie /> Vendors
-                            </NavLink>
+                            </NavLink> */}
                             <NavLink to="/dashboard/advertise-tickets" className={menuItem}>
                                 <HiSpeakerphone /> Advertise
                             </NavLink>

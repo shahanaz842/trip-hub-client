@@ -1,12 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
+import { AiOutlineHome } from "react-icons/ai";
 
 const ErrorPage = () => {
     const navigate = useNavigate();
 
 
     return (
-        <section className='bg-white '>
+        <div className='bg-white '>
             <div className='container flex items-center min-h-screen px-6 py-12 mx-auto'>
                 <div className='flex flex-col items-center max-w-sm mx-auto text-center'>
                     <p className='p-3 text-sm font-medium text-lime-500 rounded-full bg-blue-50 '>
@@ -50,14 +51,22 @@ const ErrorPage = () => {
                                 />
                             </svg>
 
-                            <span>Go back</span>
-                        </button>
+                            <span >Go back</span>
+                        </button >
+                        <button
+                            onClick={() => navigate('/')}
+                            className='flex items-center justify-center w-1/2 px-5 py-1 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto   hover:bg-gray-100 '
+                        >
+                            <AiOutlineHome />
 
-                        <Button label={'Take Me Home'} onClick={() => navigate('/')} />
+                            <span >Home</span>
+                        </button >
+
+                        
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

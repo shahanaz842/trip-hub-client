@@ -55,29 +55,52 @@ const TicketDetails = () => {
         setIsOpenModal(false)
     }
 
-    if (isLoading) return <LoadingSpinner/>
+    if (isLoading) return <LoadingSpinner />
 
     return (
         <div className="max-w-6xl mx-auto p-6">
 
             {/* Image */}
             <div className="rounded-xl overflow-hidden shadow-lg mb-6">
-                <img
-                    src={ticket.image}
-                    alt={ticket.ticketTitle}
-                    className="w-full h-80 object-cover"
-                />
+                <figure className='relative'>
+                    <img
+                        src={ticket.image}
+                        alt={ticket.ticketTitle}
+                        className="h-80 w-full object-cover"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+                    {/* Title on image */}
+                    <div className="absolute bottom-3 left-4 right-4 text-white text-3xl font-bold drop-shadow-md">
+                        <div className="flex items-center gap-2">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                    <img
+                                        src={ticket.vendor.image}
+                                        alt={ticket.vendor.name}
+                                    />
+                                </div>
+                            </label>
+                            <div>
+                                <p className="text-lg font-normal text-white">{ticket.vendor.name}</p>
+                                <p className="text-lg font-normal text-white">{ticket.vendor.email}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </figure>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 {/* Left Content */}
                 <div className="md:col-span-2 space-y-5">
-                    <h1 className="text-3xl font-bold">{ticket.ticketTitle}</h1>
 
+                    <h2 className='text-3xl font-bold'>{ticket.ticketTitle}</h2>
                     {/* <p className="text-gray-600">{ticket.description}</p> */}
 
-                    <div className="grid grid-cols-3 gap-4 text-sm">
+                    <div className="grid grid-cols-2 gap-4 text-sm">
                         <p>
                             <span className="font-semibold">From:</span> {ticket.from}
                         </p>
@@ -100,7 +123,7 @@ const TicketDetails = () => {
                             <span className="font-semibold">Departure Time:</span>{" "}
                             {ticket.departureTime}
                         </p>
-                        
+
                     </div>
 
                     {/* Perks */}

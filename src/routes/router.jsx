@@ -24,11 +24,14 @@ import RevenueOverview from "../Pages/Dashboard/Vendor/RevenueOverview";
 import BecomeVendor from "../Pages/BecomeVendor/BecomeVendor";
 import UnauthorizedAccess from "../Pages/UnauthorizedAccess/UnauthorizedAccess";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
 
 export const router = createBrowserRouter([
     {
         path: '/',
         Component: RootLayout,
+        errorElement:<ErrorPage></ErrorPage>,
+        HydrateFallback: <LoadingSpinner></LoadingSpinner>,
         children: [
             {
                 index: true,
@@ -51,6 +54,8 @@ export const router = createBrowserRouter([
     {
         path: '/',
         Component: AuthLayout,
+        errorElement:<ErrorPage></ErrorPage>,
+        HydrateFallback: <LoadingSpinner></LoadingSpinner>,
         children: [
             {
                 path: 'login',
@@ -64,7 +69,9 @@ export const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
+        errorElement:<ErrorPage></ErrorPage>,
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        HydrateFallback: <LoadingSpinner></LoadingSpinner>,
         children: [
             {
                 index: true,
@@ -124,8 +131,5 @@ export const router = createBrowserRouter([
         path : 'unauthorized',
         Component: UnauthorizedAccess
     },
-    {
-        path: 'error',
-        Component: ErrorPage
-    }
+   
 ])
