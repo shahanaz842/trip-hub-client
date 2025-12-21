@@ -11,6 +11,8 @@ The system is role-based with User, Vendor, and Admin dashboards and includes se
 
 👉 Server URL: [https://your-server-link.com](https://trip-hub-server.vercel.app/)
 
+Admin: admin@vai.com
+
 🚀 Key Features
 🔐 Authentication
 
