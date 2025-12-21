@@ -4,12 +4,15 @@ import useAuth from '../../../hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import Swal from 'sweetalert2';
+import { useState } from 'react';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
     const { signInUser, resetPassword } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleLogin = (data) => {
         console.log('form data', data);
@@ -19,7 +22,7 @@ const Login = () => {
                 navigate(location?.state || '/')
             })
             .catch(error => {
-                 Swal.fire(`error,${error.message},error`)
+                Swal.fire(`error,${error.message},error`)
             })
     }
 
@@ -52,7 +55,17 @@ const Login = () => {
                         }
                         {/* password field */}
                         <label className="label">Password</label>
-                        <input type="password" {...register('password', { required: true, minLength: 6 })} className="input" placeholder="Password" />
+                        <div className='relative'> 
+                            <input type={showPassword ? "text" : "password"} 
+                            {...register('password', { required: true, minLength: 6 })} className="input" placeholder="Password" />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="btn btn-xs absolute top-2 right-5"
+                            >
+                                {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+                            </button>
+                        </div>
                         {
                             errors.password?.type === 'required' && <p className='text-red-500'>Password is required</p>
                         }

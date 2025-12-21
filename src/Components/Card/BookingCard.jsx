@@ -7,7 +7,7 @@ const BookingCard = ({ booking }) => {
     const [timeLeft, setTimeLeft] = useState({});
     const axiosSecure = UseAxiosSecure();
 
-console.log(booking)
+    console.log(booking)
     useEffect(() => {
         const timer = setInterval(() => {
             setTimeLeft(
@@ -18,10 +18,10 @@ console.log(booking)
         return () => clearInterval(timer);
     }, [booking.departureDate, booking.departureTime]);
 
-     const handlePayment = async(booking) => {
+    const handlePayment = async (booking) => {
         const paymentInfo = {
             totalPrice: booking.totalPrice,
-            bookingId: booking._id, 
+            bookingId: booking._id,
             ticketId: booking.ticketId,
             userEmail: booking.userEmail,
             ticketTitle: booking.ticketTitle,
@@ -74,10 +74,10 @@ console.log(booking)
                             <strong>Status:</strong> <span className='text-green-600'>{booking.bookingStatus}</span>
                         </p>
                         {
-                            booking.paymentStatus === 'paid'? 
-                            <span className='text-green-500'>Paid</span> 
-                            : !timeLeft.expired && <button onClick={() => handlePayment(booking)}
-                            className='btn btn-secondary'>Pay Now</button>
+                            booking.paymentStatus === 'paid' ?
+                                <span className='text-green-500'>Paid</span>
+                                : !timeLeft.expired && <button onClick={() => handlePayment(booking)}
+                                    className='btn btn-secondary'>Pay Now</button>
                         }
                     </div>
                 }
@@ -88,23 +88,23 @@ console.log(booking)
                 }
 
                 {/* Countdown */}
-                {
-                    booking.bookingStatus !== 'rejected' &&
-                    <div className="bg-gray-100 rounded-lg p-2 text-center text-sm">
-                        {timeLeft.expired ? (
-                            <span className="text-red-500 font-semibold">
-                                Departure Passed
-                            </span>
-                        ) : (
-                            <div className="flex justify-center gap-2">
-                                <span className="badge badge-outline">{timeLeft.days || 0}d</span>
-                                <span className="badge badge-outline">{timeLeft.hours || 0}h</span>
-                                <span className="badge badge-outline">{timeLeft.minutes || 0}m</span>
-                                <span className="badge badge-outline">{timeLeft.seconds || 0}s</span>
-                            </div>
-                        )}
-                    </div>
-                }
+                {booking.bookingStatus !== 'rejected' &&
+                    booking.paymentStatus !== 'paid' && (
+                        <div className="bg-gray-100 rounded-lg p-2 text-center text-sm">
+                            {timeLeft.expired ? (
+                                <span className="text-red-500 font-semibold">
+                                    Departure Passed
+                                </span>
+                            ) : (
+                                <div className="flex justify-center gap-2">
+                                    <span className="badge badge-outline">{timeLeft.days || 0}d</span>
+                                    <span className="badge badge-outline">{timeLeft.hours || 0}h</span>
+                                    <span className="badge badge-outline">{timeLeft.minutes || 0}m</span>
+                                    <span className="badge badge-outline">{timeLeft.seconds || 0}s</span>
+                                </div>
+                            )}
+                        </div>
+                    )}
 
             </div>
         </div>

@@ -25,6 +25,8 @@ import BecomeVendor from "../Pages/BecomeVendor/BecomeVendor";
 import UnauthorizedAccess from "../Pages/UnauthorizedAccess/UnauthorizedAccess";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
+import VendorRoute from "./VendorRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -77,35 +79,17 @@ export const router = createBrowserRouter([
                 index: true,
                 Component: Profile
             },
-            {
-                path: 'add-ticket',
-                Component: AddTicket
-            },
-            {
-                path: 'my-added-tickets',
-                Component: MyAddedTickets
-            },
+            // user route
             {
                 path: 'my-booked-tickets',
                 Component: MyBookedTickets
             },
-            {
-                path: 'requested-bookings',
-                Component: RequestedBookings
-            },
-            {
-                path: 'manage-tickets',
-                Component: ManageTickets
-            },
-            {
-                path: 'advertise-tickets',
-                Component: AdvertiseTickets
-            },
-            {
+             {
                 path: 'payment-success',
                 Component: PaymentSuccess
             },
-            {
+
+             {
                 path: 'payment-cancelled',
                 Component: PaymentCancel
             },
@@ -113,18 +97,41 @@ export const router = createBrowserRouter([
                 path: 'payment-history',
                 Component: PaymentHistory
             },
+            // vendor only route
             {
-                path: 'approve-vendors',
-                Component: ApproveVendors
+                path: 'add-ticket',
+                element: <VendorRoute><AddTicket></AddTicket></VendorRoute>
             },
             {
-                path: 'manage-users',
-                Component: ManageUsers
+                path: 'my-added-tickets',
+                element: <VendorRoute><MyAddedTickets></MyAddedTickets></VendorRoute>
+            },
+            
+            {
+                path: 'requested-bookings',
+                element: <VendorRoute><RequestedBookings></RequestedBookings></VendorRoute>
             },
             {
                 path: 'revenue-overview',
-                Component: RevenueOverview
-            }
+                element: <VendorRoute><RevenueOverview></RevenueOverview></VendorRoute>
+            },
+            // Admin only route
+            {
+                path: 'manage-tickets',
+                element: <AdminRoute><ManageTickets></ManageTickets></AdminRoute>
+            },
+            {
+                path: 'advertise-tickets',
+                element: <AdminRoute><AdvertiseTickets></AdvertiseTickets></AdminRoute>
+            },
+            {
+                path: 'manage-users',
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+            },
+            // {
+            //     path: 'approve-vendors',
+            //     Component: ApproveVendors
+            // },
         ]
     },
     {

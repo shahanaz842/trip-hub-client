@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../../Components/Logo/Logo';
 import { Link, NavLink } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 
+
 const Navbar = () => {
     const { user, logout } = useAuth();
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+
+
+    useEffect(() => {
+        const html = document.querySelector('html')
+        html.setAttribute('data-theme', theme)
+        localStorage.setItem('theme', theme)
+    }, [theme])
+
 
     const handleLogOut = () => {
         logout()
@@ -13,11 +24,14 @@ const Navbar = () => {
                 console.log(error)
             })
     }
+    const handleTheme = (checked) => {
+        setTheme(checked ? 'dark' : 'light')
+    }
 
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/all-tickets'>Tickets</NavLink></li>
-        <li><NavLink to={user?'/dashboard' : '/unauthorized'}>Dashboard</NavLink></li>
+        <li><NavLink to={user ? '/dashboard' : '/unauthorized'}>Dashboard</NavLink></li>
 
 
         {/* {
@@ -70,6 +84,18 @@ const Navbar = () => {
 
             {/* RIGHT */}
             <div className="navbar-end gap-3">
+                {/* Theme Toggle */}
+
+                {/* Desktop only theme toggle */}
+                <label className="hidden lg:flex items-center gap-2 cursor-pointer">
+                    <span className="text-sm">Theme</span>
+                    <input
+                        onChange={(e) => handleTheme(e.target.checked)}
+                        type="checkbox"
+                        value="synthwave"
+                        className="toggle theme-controller"
+                    />
+                </label>
                 {user ? (
                     <div className="dropdown dropdown-end">
                         <div className="flex flex-col items-center gap-1">

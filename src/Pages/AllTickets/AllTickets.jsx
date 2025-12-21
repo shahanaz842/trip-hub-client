@@ -12,7 +12,7 @@ const AllTickets = () => {
   const [page, setPage] = useState(0);
   const [searchText, setSearchText] = useState('');
   const [transportType, setTransportType] = useState('');
-  const limit = 6;
+  const limit = 9;
 
   const { data, isLoading } = useQuery({
     queryKey: ['approvedTickets', searchText, transportType, page],
@@ -52,38 +52,41 @@ const AllTickets = () => {
       <h2 className="text-3xl font-bold mb-8 text-center">
         Available Tickets
       </h2>
-      {/* search option */}
-      <label className="input my-10">
-        <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <g
-            strokeLinejoin="round"
-            strokeLinecap="round"
-            strokeWidth="2.5"
-            fill="none"
-            stroke="currentColor"
-          >
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.3-4.3"></path>
-          </g>
-        </svg>
-        <input
-          onChange={(e) => setSearchText(e.target.value)}
-          type="search"
-          className="grow"
-          placeholder="Search destination" />
-      </label>
+      <div className='flex justify-between items-center'>
+        <p className='font-semibold text-lg'>Total Tickets: ({total})</p>
+        {/* search option */}
+        <label className="input my-10">
+          <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input
+            onChange={(e) => setSearchText(e.target.value)}
+            type="search"
+            className="grow"
+            placeholder="Search destination" />
+        </label>
 
-      {/* filter option  */}
-      <select
-        value={transportType}
-        onChange={(e) => setTransportType(e.target.value)}
-        className="select select-bordered"
-      >
-        <option value="">All</option>
-        <option value="bus">Bus</option>
-        <option value="train">Train</option>
-        <option value="plane">Plane</option>
-      </select>
+        {/* filter option  */}
+        <select
+          value={transportType}
+          onChange={(e) => setTransportType(e.target.value)}
+          className="select select-bordered"
+        >
+          <option value="">All</option>
+          <option value="bus">Bus</option>
+          <option value="train">Train</option>
+          <option value="plane">Plane</option>
+        </select>
+      </div>
 
       {/* Ticket grid */}
       <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>

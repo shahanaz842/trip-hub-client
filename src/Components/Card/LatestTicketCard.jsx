@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 const LatestTicketCard = ({ ticket }) => {
+const {user} = useAuth();
+
   const {
     _id,
     image,
@@ -61,7 +64,7 @@ const LatestTicketCard = ({ ticket }) => {
         )}
 
         {/* Action */}
-        <Link to={`/ticket/${_id}`} className="card-actions justify-end pt-3">
+        <Link to={ user? `/ticket/${_id}`: '/unauthorized'} className="card-actions justify-end pt-3">
           <button className="btn btn-primary btn-sm">
             See Details
           </button>
