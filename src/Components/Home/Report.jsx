@@ -5,7 +5,7 @@ const Report = () => {
   return (
     <div>
       <div>
-        <h2 className="text-3xl text-primary text-center font-bold">Complaints & Support</h2>
+        <h2 className="text-3xl text-[#383886] text-center font-bold">Complaints & Support</h2>
         <p className="text-gray-500  text-center mt-2">
           We’re here to resolve your concerns quickly and fairly
         </p>

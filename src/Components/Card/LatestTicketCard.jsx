@@ -65,7 +65,7 @@ const {user} = useAuth();
 
         {/* Action */}
         <Link to={ user? `/ticket/${_id}`: '/unauthorized'} className="card-actions justify-end pt-3">
-          <button className="btn btn-primary btn-sm">
+          <button className="bg-[#383886] px-3 py-2 rounded-xl text-white">
             See Details
           </button>
         </Link>

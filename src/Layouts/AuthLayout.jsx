@@ -1,18 +1,18 @@
 import React from 'react';
 import Logo from '../Components/Logo/Logo';
 import { Outlet } from 'react-router';
-import authImg from '../assets/authImg.png'
+import authImg from '../assets/Authentication.gif'
 
 const AuthLayout = () => {
     return (
-        <div>
+        <div className=''>
             <Logo></Logo>
-            <div className='flex items-center w-11/12 mx-auto'>
-                <div className='flex-1'>
+            <div className='flex items-center justify-center w-11/12 mx-auto'>
+                <div className=''>
                     <Outlet></Outlet>
                 </div>
-                <div className='flex-1'>
-                    <img src={authImg} alt="" />
+                <div className='hidden md:block  '>
+                    <img className='cover' src={authImg} alt="" />
                 </div>
             </div>
         </div>

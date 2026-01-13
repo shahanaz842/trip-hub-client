@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { districts } from "../../../Utils/districts";
 import useAuth from "../../../hooks/useAuth";
@@ -8,67 +8,56 @@ import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 import ErrorPage from "../../ErrorPage/ErrorPage";
+import { FaCloudUploadAlt, FaTicketAlt, FaMapMarkerAlt, FaCogs } from "react-icons/fa";
 
 const AddTicket = () => {
     const navigate = useNavigate();
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset
-    } = useForm();
-
+    const [uploadingImage, setUploadingImage] = useState(false);
+    const [imagePreview, setImagePreview] = useState(null);
+    
+    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
     const { user } = useAuth();
     const axiosSecure = UseAxiosSecure();
 
-    const { isPending, isError, mutateAsync, reset: mutationReset } = useMutation({
-        mutationFn: async (payload) =>
-            await axiosSecure.post('/tickets', payload),
-        onSuccess: data => {
-            console.log(data)
-            // show toast
+    // Watch image field to show preview
+    const selectedImage = watch("image");
+    React.useEffect(() => {
+        if (selectedImage && selectedImage[0]) {
+            setImagePreview(URL.createObjectURL(selectedImage[0]));
+        }
+    }, [selectedImage]);
+
+    const { isPending, isError, mutateAsync } = useMutation({
+        mutationFn: async (payload) => await axiosSecure.post('/tickets', payload),
+        onSuccess: () => {
             Swal.fire({
-                position: "top-end",
                 icon: "success",
-                title: "Ticket has been added successfully",
+                title: "Ticket Added!",
+                text: "Your ticket is now pending for approval.",
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2000
             });
-            mutationReset()
-            navigate('/dashboard/my-added-tickets')
+            reset();
+            setImagePreview(null);
+            navigate('/dashboard/my-added-tickets');
         },
-        onError: error => {
-            console.log(error)
-        },
-        onMutate: payload => {
-            console.log('the data after mutate', payload)
-        },
-        onSettled: (data, error) => {
-            console.log(data);
-            if (error) console.log(error)
-        },
-        retry: 3
-    })
+    });
 
     const handleAddTicket = async (data) => {
-        console.log("Ticket Data:", data);
-        const { ticketTitle, from, to, transportType, price, quantity,totalQuantity, departureDate, departureTime, perks, image
-        } = data;
-        const imageFile = image[0];
+        const imageFile = data.image[0];
+        setUploadingImage(true); // Start image upload loading
 
         try {
+            // 1. Upload Image
             const imageURL = await imageUpload(imageFile);
+            setUploadingImage(false); // End image upload loading
+
+            // 2. Prepare Data
             const ticketData = {
-                ticketTitle,
-                from,
-                to,
-                transportType,
-                price: Number(price),
-                quantity: Number(quantity),
-                totalQuantity: Number(totalQuantity),
-                departureDate,
-                departureTime,
-                perks,
+                ...data,
+                price: Number(data.price),
+                quantity: Number(data.quantity),
+                totalQuantity: Number(data.totalQuantity),
                 image: imageURL,
                 vendor: {
                     image: user?.photoURL,
@@ -78,304 +67,166 @@ const AddTicket = () => {
                 createdAt: new Date(),
                 status: 'pending',
                 isVisible: true
-            }
+            };
+
+            // 3. Save to DB
             await mutateAsync(ticketData);
-            reset();
         } catch (err) {
-            console.log(err)
+            setUploadingImage(false);
+            Swal.fire("Error", "Something went wrong during upload", "error");
         }
     };
-    if (isError) return <ErrorPage/>
+
+    if (isError) return <ErrorPage />;
+
     return (
-        <div className="w-full min-h-[calc(100vh-40px)] flex justify-center items-center bg-gray-50 py-10">
+        <div className="w-full min-h-screen bg-slate-50 dark:bg-slate-950 p-4 lg:p-10">
             <form
                 onSubmit={handleSubmit(handleAddTicket)}
-                className="bg-white p-8 rounded-xl shadow-xl w-full max-w-5xl"
+                className="bg-white dark:bg-slate-900 mx-auto rounded-[2.5rem] shadow-2xl shadow-blue-900/10 border border-slate-100 dark:border-slate-800 w-full max-w-6xl overflow-hidden"
             >
-                <h2 className="text-3xl font-bold text-center mb-6 text-primary">
-                    Add New Ticket
-                </h2>
+                {/* Header Section */}
+                <div className="bg-[#383886] p-8 text-white flex items-center gap-4">
+                    <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md">
+                        <FaTicketAlt size={30} />
+                    </div>
+                    <div>
+                        <h2 className="text-2xl font-black uppercase tracking-tight">Create New Entry</h2>
+                        <p className="text-blue-200 text-xs font-bold uppercase tracking-widest">Inventory Management System</p>
+                    </div>
+                </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div className="p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    {/* LEFT COLUMN: Basic Info */}
+                    <div className="lg:col-span-7 space-y-8">
+                        <section>
+                            <div className="flex items-center gap-2 mb-4 text-[#383886] dark:text-blue-400">
+                                <FaCogs />
+                                <h3 className="font-black uppercase text-sm tracking-widest">General Details</h3>
+                            </div>
+                            
+                            <div className="space-y-4">
+                                <div className="form-control">
+                                    <label className="label-text font-bold mb-2 ml-1">Ticket Title</label>
+                                    <input
+                                        {...register("ticketTitle", { required: "Title is required" })}
+                                        type="text"
+                                        placeholder="e.g. Premium Business Class - Dhaka to Cox's Bazar"
+                                        className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl focus:ring-2 ring-[#383886] h-14"
+                                    />
+                                    {errors.ticketTitle && <span className="text-red-500 text-xs mt-1 font-bold">{errors.ticketTitle.message}</span>}
+                                </div>
 
-                    {/* LEFT SIDE */}
-                    <div className="space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="form-control">
+                                        <label className="label-text font-bold mb-2 ml-1">Transport Category</label>
+                                        <select {...register("transportType", { required: true })} className="select select-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14">
+                                            <option value="">Select Type</option>
+                                            <option>Plane</option><option>Bus</option><option>Train</option><option>Launch</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label-text font-bold mb-2 ml-1">Price (BDT)</label>
+                                        <input {...register("price", { required: true })} type="number" placeholder="0.00" className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14" />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
 
-                        {/* Title */}
-                        <div>
-                            <label className="label-text">Title</label>
-                            <input
-                                {...register("ticketTitle", { required: true })}
-                                type="text"
-                                placeholder="Ticket Title"
-                                className="input input-bordered w-full"
-                            />
-                            {errors.ticketTitle && (
-                                <p className="text-red-500 text-sm">Title is required</p>
-                            )}
-                        </div>
-
-                        {/* From / To */}
-                        {/* Location Section */}
-                        <h2 className="text-xl font-semibold mb-3">Location</h2>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                            {/* From */}
-                            <div>
-                                <label className="block font-medium mb-1">From</label>
-                                <select
-                                    {...register("from", { required: true })}
-                                    className="select select-bordered w-full"
-                                    defaultValue=""
-                                >
-                                    <option value="" disabled>
-                                        From
-                                    </option>
-                                    {
-                                        districts.map((district, index) => <option key={index}>{district}</option>)
-                                    }
+                        <section>
+                            <div className="flex items-center gap-2 mb-4 text-[#383886] dark:text-blue-400">
+                                <FaMapMarkerAlt />
+                                <h3 className="font-black uppercase text-sm tracking-widest">Route & Schedule</h3>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <select {...register("from", { required: true })} className="select select-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14" defaultValue="">
+                                    <option value="" disabled>Origin Station</option>
+                                    {districts.map((d, i) => <option key={i}>{d}</option>)}
                                 </select>
-                                {errors.from && (
-                                    <p className="text-red-500 text-sm mt-1">Location is required</p>
-                                )}
-                            </div>
-
-                            {/* To */}
-                            <div>
-                                <label className="block font-medium mb-1">To</label>
-
-                                <select
-                                    {...register("to", { required: true })}
-                                    className="select select-bordered w-full"
-                                    defaultValue=""
-                                >
-                                    <option value="" disabled>
-                                        To
-                                    </option>
-                                    {
-                                        districts.map((district, index) => <option key={index}>{district}</option>)
-                                    }
+                                <select {...register("to", { required: true })} className="select select-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14" defaultValue="">
+                                    <option value="" disabled>Destination</option>
+                                    {districts.map((d, i) => <option key={i}>{d}</option>)}
                                 </select>
-                                {errors.to && (
-                                    <p className="text-red-500 text-sm mt-1">Destination is required</p>
-                                )}
+                                <input type="date" {...register("departureDate", { required: true })} className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14" />
+                                <input type="time" {...register("departureTime", { required: true })} className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14" />
                             </div>
-                        </div>
-
-                        {/* Transport Type */}
-                        <div>
-                            <label className="label-text">Transport Type</label>
-                            <select
-                                {...register("transportType", { required: true })}
-                                className="select select-bordered w-full"
-                            >
-                                <option value="">Choose Transport Type</option>
-                                <option>Plane</option>
-                                <option>Bus</option>
-                                <option>Train</option>
-                                <option>Launch</option>
-                            </select>
-                            {errors.transportType && (
-                                <p className="text-red-500 text-sm mt-1">Choose a transport</p>
-                            )}
-                        </div>
-
-                        {/* Price, Total Quantity & Available Quantity */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {/* Price */}
-                            <div>
-                                <label className="label-text">Price</label>
-                                <input
-                                    {...register("price", { required: true })}
-                                    type="number"
-                                    placeholder="Price per ticket"
-                                    className="input input-bordered w-full"
-                                />
-                            </div>
-
-                            {/* Total Quantity */}
-                            <div>
-                                <label className="label-text">Total Quantity</label>
-                                <input
-                                    {...register("totalQuantity", {
-                                        required: true,
-                                        min: 1
-                                    })}
-                                    type="number"
-                                    placeholder="Total tickets"
-                                    className="input input-bordered w-full"
-                                />
-                                {errors.totalQuantity && (
-                                    <p className="text-red-500 text-sm">Total quantity is required</p>
-                                )}
-                            </div>
-
-                            {/* Available Quantity */}
-                            <div>
-                                <label className="label-text">Available Quantity</label>
-                                <input
-                                    {...register("quantity", {
-                                        required: true,
-                                        min: 0
-                                    })}
-                                    type="number"
-                                    placeholder="Available tickets"
-                                    className="input input-bordered w-full"
-                                />
-                                {errors.quantity && (
-                                    <p className="text-red-500 text-sm">Available quantity is required</p>
-                                )}
-                            </div>
-                        </div>
-
-
-                        {/* Departure Section */}
-                        <h2 className="text-xl font-semibold mt-6 mb-3">Departure</h2>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {/* Date */}
-                            <div>
-                                <label className="block font-medium mb-1">Departure Date</label>
-                                <input
-                                    type="date"
-                                    className="input input-bordered w-full"
-                                    {...register("departureDate", { required: "Date is required" })}
-                                />
-                                {errors.departureDate && (
-                                    <p className="text-red-500 text-sm mt-1">{errors.departureDate.message}</p>
-                                )}
-                            </div>
-
-                            {/* Time */}
-                            <div>
-                                <label className="block font-medium mb-1">Departure Time</label>
-                                <input
-                                    type="time"
-                                    className="input input-bordered w-full"
-                                    {...register("departureTime", { required: "Time is required" })}
-                                />
-                                {errors.departureTime && (
-                                    <p className="text-red-500 text-sm mt-1">{errors.departureTime.message}</p>
-                                )}
-                            </div>
-                        </div>
+                        </section>
                     </div>
 
-                    {/* RIGHT SIDE */}
-                    <div className="space-y-6">
-
-                        {/* Perks */}
-                        <fieldset className="fieldset border border-gray-300 p-4 rounded-lg">
-                            <legend className="font-semibold text-primary">Perks</legend>
-
-                            <div className="flex flex-col md:flex-row gap-3">
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="checkbox"
-                                        {...register("perks")}
-                                        value="AC"
-                                        className="checkbox"
-                                    />
-                                    AC
+                    {/* RIGHT COLUMN: Media & Submission */}
+                    <div className="lg:col-span-5 space-y-8">
+                        
+                        {/* Image Upload Area */}
+                        <div className="form-control">
+                            <label className="label-text font-bold mb-2 ml-1 text-slate-500 uppercase text-[10px] tracking-widest">Visual Asset</label>
+                            <div className="relative group">
+                                <label className={`flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-[2rem] cursor-pointer transition-all duration-300 ${imagePreview ? 'border-transparent' : 'border-blue-200 bg-blue-50/50 dark:bg-slate-800 dark:border-slate-700 hover:bg-blue-50'}`}>
+                                    {imagePreview ? (
+                                        <img src={imagePreview} alt="Preview" className="w-full h-full object-cover rounded-[2rem]" />
+                                    ) : (
+                                        <div className="flex flex-col items-center">
+                                            <FaCloudUploadAlt className="text-4xl text-[#383886] mb-2" />
+                                            <span className="text-sm font-black text-[#383886] uppercase tracking-tighter">Upload Ticket Photo</span>
+                                        </div>
+                                    )}
+                                    <input {...register("image", { required: true })} type="file" accept="image/*" className="hidden" />
                                 </label>
-
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="checkbox"
-                                        {...register("perks")}
-                                        value="Wi-Fi"
-                                        className="checkbox"
-                                    />
-                                    Wi-Fi
-                                </label>
-
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="checkbox"
-                                        {...register("perks")}
-                                        value="Breakfast"
-                                        className="checkbox"
-                                    />
-                                    Breakfast
-                                </label>
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="checkbox"
-                                        {...register("perks")}
-                                        value="Snacks"
-                                        className="checkbox"
-                                    />
-                                    Snacks
-                                </label>
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="checkbox"
-                                        {...register("perks")}
-                                        value="Water"
-                                        className="checkbox"
-                                    />
-                                    Water
-                                </label>
+                                {imagePreview && (
+                                    <div className="absolute inset-0 bg-black/40 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                        <p className="text-white font-bold text-xs uppercase tracking-widest">Click to change photo</p>
+                                    </div>
+                                )}
                             </div>
-                        </fieldset>
-
-                        {/* Image Upload */}
-                        <div className="w-full">
-                            <label className="label-text">Ticket Image</label>
-
-                            <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-blue-400 rounded-lg cursor-pointer bg-blue-50 hover:bg-blue-100 transition">
-                                <span className="text-primary font-semibold">Click to Upload</span>
-
-                                <input
-                                    {...register("image", { required: true })}
-                                    type="file"
-                                    accept="image/*"
-                                    className="hidden"
-                                />
-                            </label>
-
-                            {errors.image && (
-                                <p className="text-red-500 text-sm">Image is required</p>
-                            )}
                         </div>
 
-                        {/* Vendor Name */}
-                        <div>
-                            <label className="label-text">Vendor Name</label>
-                            <input
-                                {...register("vendorName", { required: true })}
-                                type="text"
-                                defaultValue={user?.displayName}
-                                readOnly
-                                placeholder="Vendor Name"
-                                className="input input-bordered w-full"
-                            />
+                        {/* Perks Checkboxes */}
+                        <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
+                            <p className="text-[10px] font-black uppercase text-slate-400 mb-4 tracking-widest">Included Amenities</p>
+                            <div className="grid grid-cols-2 gap-3">
+                                {["AC", "Wi-Fi", "Breakfast", "Snacks", "Water"].map(perk => (
+                                    <label key={perk} className="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" {...register("perks")} value={perk} className="checkbox checkbox-primary checkbox-sm rounded-lg" />
+                                        <span className="text-sm font-bold text-slate-600 dark:text-slate-400">{perk}</span>
+                                    </label>
+                                ))}
+                            </div>
                         </div>
 
-                        {/* Vendor Email */}
-                        <div>
-                            <label className="label-text">Vendor Email</label>
-                            <input
-                                {...register("vendorEmail", { required: true })}
-                                type="email"
-                                defaultValue={user?.email}
-                                readOnly
-                                placeholder="Vendor Email"
-                                className="input input-bordered w-full"
-                            />
+                        {/* Inventory Toggles */}
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="form-control">
+                                <label className="label-text font-bold text-[10px] uppercase mb-1 ml-1">Stock</label>
+                                <input {...register("totalQuantity", { required: true })} type="number" placeholder="Total" className="input input-bordered bg-white dark:bg-slate-800 rounded-2xl" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label-text font-bold text-[10px] uppercase mb-1 ml-1">Current</label>
+                                <input {...register("quantity", { required: true })} type="number" placeholder="Available" className="input input-bordered bg-white dark:bg-slate-800 rounded-2xl" />
+                            </div>
                         </div>
 
-                        {/* Submit Button */}
+                        {/* Action Button */}
                         <button
                             type="submit"
-                            className="btn btn-primary w-full mt-5 text-white"
+                            disabled={uploadingImage || isPending}
+                            className={`w-full py-5 rounded-[2rem] font-black uppercase tracking-[0.2em] text-sm transition-all shadow-xl active:scale-95 flex items-center justify-center gap-3
+                                ${uploadingImage || isPending 
+                                    ? 'bg-slate-200 text-slate-500 cursor-not-allowed' 
+                                    : 'bg-[#ffaa0f] hover:bg-[#e6990d] text-slate-900 shadow-[#ffaa0f]/20'}`}
                         >
-                            {
-                                isPending ? <span className="loading loading-spinner text-white"></span>
-                                    : 'Add Ticket'
-                            }
-
+                            {uploadingImage ? (
+                                <>
+                                    <span className="loading loading-spinner loading-sm"></span>
+                                    Uploading Asset...
+                                </>
+                            ) : isPending ? (
+                                <>
+                                    <span className="loading loading-spinner loading-sm"></span>
+                                    Securing Data...
+                                </>
+                            ) : (
+                                "Confirm & Publish"
+                            )}
                         </button>
                     </div>
                 </div>

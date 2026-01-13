@@ -1,20 +1,66 @@
+/* Fonts must be at the top */
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-
 @import "tailwindcss";
-@plugin "daisyui";
 
-@plugin "daisyui" {
-  themes: winter --default, night --prefersdark;
+
+@theme {
+  /* tripHub Brand Colors */
+  --color-primary: #383886;         /* Deep Blue */
+  --color-primary-hover: #2a2a66;
+  
+  --color-secondary: #ffaa0f;       /* Orange */
+  --color-secondary-hover: #e6990d;
+
+  /* Custom Animations */
+  --animate-float: float 3s ease-in-out infinite;
 }
 
+/* DaisyUI setup should follow the theme */
+@plugin "daisyui" {
+  themes: winter --default, night;
+}
+
+/* Custom variants */
 @custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
+
+@layer components {
+  .search-input-wrapper {
+    @apply w-full relative md:h-full transition-all duration-300 flex items-center;
+  }
+
+  .search-input-field {
+    @apply w-full h-12 md:h-full bg-transparent px-4 font-bold text-sm outline-none dark:text-white placeholder:text-slate-400;
+  }
+
+  .search-input-active {
+    @apply bg-[#383886] dark:bg-[#383886];
+  }
+
+  .search-input-hover {
+    @apply hover:bg-slate-50 dark:hover:bg-slate-800/40;
+  }
+
+  /* Fixed active class to use urbanist weight */
+  a.active {
+    @apply bg-[#383886] font-bold text-white;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
 
 body {
   font-family: "Urbanist", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+  @apply antialiased bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100;
 }
 
-a.active{
-  @apply underline text-primary
+h1, h2, h3, h4 {
+  @apply tracking-tight font-bold leading-tight;
+}
+
+.price-text {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
 }

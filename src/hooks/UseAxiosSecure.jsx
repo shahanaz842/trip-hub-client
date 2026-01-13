@@ -4,7 +4,8 @@ import useAuth from './useAuth';
 import { useNavigate } from 'react-router';
 
 const axiosSecure = axios.create({
-    baseURL: 'https://trip-hub-server.vercel.app'
+    // baseURL: 'https://trip-hub-server.vercel.app'
+    baseURL:  "http://localhost:3000"
 })
 
 const UseAxiosSecure = () => {
@@ -23,7 +24,7 @@ const UseAxiosSecure = () => {
         const resInterceptor = axiosSecure.interceptors.response.use((response) => {
             return response;
         }, (error) => {
-            console.log(error);
+            // console.log(error);
 
             const statusCode = error.response?.status;
             if (statusCode === 401 || statusCode === 403) {

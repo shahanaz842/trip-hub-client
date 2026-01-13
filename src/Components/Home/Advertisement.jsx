@@ -20,10 +20,10 @@ const Advertisement = () => {
     return (
         <section className="my-12">
             <div className='mb-10'>
-                <h2 className="text-3xl text-primary font-bold text-center ">Recommended for You</h2>
+                <h2 className="text-3xl text-[#383886] font-bold text-center ">Recommended for You</h2>
                 <p className='text-center mt-2 text-gray-500'>Verified tickets from trusted vendors for a smooth journey</p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
                 {tickets.map(ticket => (
                     <TicketCard key={ticket._id} ticket={ticket}>
                     </TicketCard>

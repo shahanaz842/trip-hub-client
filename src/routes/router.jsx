@@ -128,10 +128,10 @@ export const router = createBrowserRouter([
                 path: 'manage-users',
                 element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             },
-            // {
-            //     path: 'approve-vendors',
-            //     Component: ApproveVendors
-            // },
+            {
+                path: 'approve-vendors',
+                Component: ApproveVendors
+            },
         ]
     },
     {

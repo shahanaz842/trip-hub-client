@@ -21,7 +21,7 @@ const LatestTickets = () => {
     return (
         <div className="my-12">
             <div className='mb-10'>
-                <h2 className="text-3xl text-primary font-bold text-center ">Latest Tickets</h2>
+                <h2 className="text-3xl text-[#383886] font-bold text-center ">New Routes</h2>
                 <p className='text-center text-gray-500 mt-2'>Find the latest travel options in one place</p>
             </div>
             {
