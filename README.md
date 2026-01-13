@@ -7,9 +7,11 @@ The system is role-based with User, Vendor, and Admin dashboards and includes se
 
 🌐 Live Website
 
-👉 Live URL: https://your-live-site-link.com
+👉 Live URL:https://trip-hub-12f28.web.app
 
-👉 Server URL: https://your-server-link.com
+👉 Server URL:https://trip-hub-server.vercel.app
+
+Admin: admin@vai.com
 
 🚀 Key Features
 🔐 Authentication
