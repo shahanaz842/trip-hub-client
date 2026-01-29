@@ -55,7 +55,7 @@ const ManageTickets = () => {
     return (
         <div className="p-6 bg-slate-50 dark:bg-slate-950 min-h-screen">
             {/* Header & Search Bar */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 mb-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div className="bg-white dark:bg-slate-900 rounded p-6 mb-8 border border-slate-200 dark:border-slate-800 shadow-sm">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
                     <div>
                         <h2 className="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight">Manage Tickets</h2>
@@ -69,7 +69,7 @@ const ManageTickets = () => {
                             <input 
                                 type="text"
                                 placeholder="Search vendor or title..."
-                                className="input input-bordered w-full md:w-80 pl-12 rounded-2xl bg-slate-50 dark:bg-slate-800 border-none h-12 focus:ring-2 ring-[#383886]"
+                                className="input input-bordered w-full md:w-80 pl-12 rounded bg-slate-50 dark:bg-slate-800 border-none h-12 focus:ring-2 ring-[#383886]"
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
@@ -78,7 +78,7 @@ const ManageTickets = () => {
                         <div className="flex items-center gap-2">
                             <FaFilter className="text-slate-400 hidden md:block" />
                             <select 
-                                className="select select-bordered rounded-2xl bg-slate-50 dark:bg-slate-800 border-none h-12 font-bold"
+                                className="select select-bordered rounded bg-slate-50 dark:bg-slate-800 border-none h-12 font-bold"
                                 onChange={(e) => setFilterStatus(e.target.value)}
                             >
                                 <option value="all">All Status</option>
@@ -92,7 +92,7 @@ const ManageTickets = () => {
             </div>
 
             {/* Table Section */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xl shadow-slate-200/50 dark:shadow-none">
+            <div className="bg-white dark:bg-slate-900 rounded border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xl shadow-slate-200/50 dark:shadow-none">
                 <div className="overflow-x-auto">
                     <table className="table w-full border-separate border-spacing-y-2 px-4">
                         <thead className="text-slate-400 uppercase text-[10px] tracking-[0.15em]">
@@ -111,7 +111,7 @@ const ManageTickets = () => {
                                     <td className="rounded-l-2xl border-y border-l border-slate-50 dark:border-slate-800 bg-white dark:bg-transparent">
                                         <div className="flex items-center gap-4">
                                             <div className="avatar">
-                                                <div className="w-12 h-12 rounded-2xl border-2 border-slate-100 dark:border-slate-800">
+                                                <div className="w-12 h-12 rounded border-2 border-slate-100 dark:border-slate-800">
                                                     {ticket.vendor.image ? (
                                                         <img src={ticket.vendor.image} alt="Vendor" />
                                                     ) : (

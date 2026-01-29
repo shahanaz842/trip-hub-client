@@ -23,8 +23,8 @@ const Partners = () => {
   return (
     <section className="mt-20 overflow-hidden">
       <div className="mb-10 text-center">
-        <h2 className="text-3xl text-[#383886] font-bold">Our Trusted Partners</h2>
-        <p className="text-gray-500 mt-2">
+        <h2 className="text-3xl text-[#383886] dark:text-slate-50 font-bold">Our Trusted Partners</h2>
+        <p className="text-slate-600 dark:text-slate-400 mt-2">
           Working with verified transport providers across the country
         </p>
       </div>

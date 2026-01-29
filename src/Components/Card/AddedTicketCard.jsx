@@ -58,7 +58,7 @@ const AddedTicketCard = ({ ticket }) => {
 
                 {/* Price Over Image - Highly visible on XL screens */}
                 <div className="absolute bottom-4 left-4 right-4 z-20 flex sm:flex-col xl:flex-row items-end xl:items-center justify-between xl:justify-start gap-2">
-                    <div className="bg-[#383886] text-white px-4 py-2 rounded-xl shadow-2xl border border-white/10 backdrop-blur-sm">
+                    <div className="bg-[#383886] text-white px-4 py-2 rounded shadow-2xl border border-white/10 backdrop-blur-sm">
                         <p className="text-[8px] uppercase font-bold opacity-80 leading-none mb-1">Unit Price</p>
                         <p className="text-lg xl:text-xl font-black leading-none">৳{ticket.price}</p>
                     </div>
@@ -79,7 +79,7 @@ const AddedTicketCard = ({ ticket }) => {
 
                     <div className="space-y-4">
                         {/* Route Info */}
-                        <div className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+                        <div className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded border border-slate-100 dark:border-slate-800">
                             <FaMapMarkerAlt className="text-[#ffaa0f] shrink-0" />
                             <div className="flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-300">
                                 <span>{ticket.from}</span>
@@ -90,11 +90,11 @@ const AddedTicketCard = ({ ticket }) => {
 
                         {/* Schedule & Quantity */}
                         <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
-                            <div className="flex items-center gap-2 text-[11px] font-bold text-slate-500 uppercase bg-slate-50 dark:bg-slate-800/30 px-3 py-2 rounded-xl">
+                            <div className="flex items-center gap-2 text-[11px] font-bold text-slate-500 uppercase bg-slate-50 dark:bg-slate-800/30 px-3 py-2 rounded">
                                 <FaCalendarAlt className="text-slate-400" />
                                 {ticket.departureDate} | {ticket.departureTime}
                             </div>
-                            <div className="flex items-center gap-2 text-[11px] font-bold text-slate-500 uppercase bg-slate-50 dark:bg-slate-800/30 px-3 py-2 rounded-xl">
+                            <div className="flex items-center gap-2 text-[11px] font-bold text-slate-500 uppercase bg-slate-50 dark:bg-slate-800/30 px-3 py-2 rounded">
                                 <FaChair className="text-slate-400" />
                                 {ticket.quantity} Slots Available
                             </div>
@@ -112,13 +112,13 @@ const AddedTicketCard = ({ ticket }) => {
                         <button
                             onClick={() => setIsOpenModal(true)}
                             disabled={ticket.status === "rejected"}
-                            className="flex-1 xl:flex-none flex items-center justify-center gap-2 px-6 py-2.5 bg-white dark:bg-slate-800 hover:bg-[#383886] hover:text-white text-[#383886] dark:text-slate-200 text-xs font-black rounded-xl transition-all shadow-sm border border-slate-200 dark:border-slate-700 active:scale-95 disabled:opacity-30"
+                            className="flex-1 xl:flex-none flex items-center justify-center gap-2 px-6 py-2.5 bg-white dark:bg-slate-800 hover:bg-[#383886] hover:text-white text-[#383886] dark:text-slate-200 text-xs font-black rounded transition-all shadow-sm border border-slate-200 dark:border-slate-700 active:scale-95 disabled:opacity-30"
                         >
                             <FaEdit /> Update
                         </button>
                         <button
                             onClick={() => handleTicketDelete(ticket._id)}
-                            className="flex-1 xl:flex-none flex items-center justify-center gap-2 px-6 py-2.5 bg-red-50 dark:bg-red-900/20 hover:bg-red-500 hover:text-white text-red-500 text-xs font-black rounded-xl transition-all active:scale-95"
+                            className="flex-1 xl:flex-none flex items-center justify-center gap-2 px-6 py-2.5 bg-red-50 dark:bg-red-900/20 hover:bg-red-500 hover:text-white text-red-500 text-xs font-black rounded transition-all active:scale-95"
                         >
                             <FaTrashAlt />
                         </button>

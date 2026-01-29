@@ -35,12 +35,12 @@ const PaymentHistory = () => {
                 </div>
 
                 {payments.length === 0 ? (
-                    <div className="bg-white dark:bg-slate-900 rounded-3xl p-20 text-center border border-dashed border-slate-200 dark:border-slate-800">
+                    <div className="bg-white dark:bg-slate-900 rounded p-20 text-center border border-dashed border-slate-200 dark:border-slate-800">
                         <FaReceipt className="mx-auto text-5xl text-slate-200 mb-4" />
                         <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">No transactions found yet.</p>
                     </div>
                 ) : (
-                    <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
+                    <div className="bg-white dark:bg-slate-900 rounded shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="bg-slate-50 dark:bg-slate-800/50 text-slate-400 text-[10px] font-black uppercase tracking-widest border-b border-slate-100 dark:border-slate-800">

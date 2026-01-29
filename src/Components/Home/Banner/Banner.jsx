@@ -109,13 +109,13 @@ const Hero = () => {
 
         </div>
       </div>
-
+           
       {/* Floating Search Bar */}
-      <div className={`px-4 opacity-85 md:opacity-100 z-40 transition-all duration-300 ${isSticky
-          ? "md:fixed md:top-17 md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-5xl"
+      <div  className={`px-4 opacity-85 md:opacity-100 z-40 transition-all duration-500 ${isSticky
+          ? "md:fixed md:top-17 md:left-1/2 md:-translate-x-1/2 md:w-full lg:md:max-w-5xl"
           : "md:absolute mt-1 md:left-1/2 md:bottom-20 md:-translate-x-1/2 md:translate-y-1/2 md:w-full md:max-w-5xl"
         }`}>
-        <div className="rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg shadow-xl border border-slate-200 dark:border-slate-800">
+        <div className="rounded bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg shadow-xl border border-slate-200 dark:border-slate-800">
           <SearchForm
             initialMode={mode}
             showTabs={false}

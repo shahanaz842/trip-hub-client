@@ -122,13 +122,13 @@ const BookingCard = ({ booking }) => {
                     {booking.bookingStatus === 'accepted' && booking.paymentStatus !== 'paid' && !timeLeft.expired && (
                         <button
                             onClick={() => handlePayment(booking)}
-                            className="flex items-center gap-2 px-6 py-2.5 bg-[#383886] hover:bg-[#ffaa0f] text-white text-xs font-black rounded-xl transition-all shadow-lg active:scale-95"
+                            className="flex items-center gap-2 px-6 py-2.5 bg-[#383886] hover:bg-[#ffaa0f] text-white text-xs font-black rounded transition-all shadow-lg active:scale-95"
                         >
                             <FaCreditCard /> Pay Now
                         </button>
                     )}
                     {booking.bookingStatus === 'pending' && (
-                        <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-xl border border-blue-100 dark:border-blue-800/30">
+                        <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded border border-blue-100 dark:border-blue-800/30">
                             <p className="text-[10px] text-blue-600 dark:text-blue-400 font-bold leading-tight uppercase tracking-wider">
                                 Waiting for Vendor Approval
                             </p>

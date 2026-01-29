@@ -114,7 +114,7 @@ const AllTickets = () => {
       <hr className="my-10 border-slate-200 dark:border-[#ffaa0f]" />
 
       {/* Control Bar */}
-      <div className='flex flex-col md:flex-row justify-between items-center gap-4 mb-8 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl'>
+      <div className='flex flex-col md:flex-row justify-between items-center gap-4 mb-8 p-4 bg-slate-50 dark:bg-slate-900/50 rounded'>
         <p className='font-semibold text-lg text-slate-700 dark:text-slate-300'>
           Available Options: <span className="text-blue-600 font-bold">({total})</span>
         </p>
@@ -133,7 +133,7 @@ const AllTickets = () => {
         <div className='grid grid-cols-1 xl:grid-cols-2 gap-6'>{Array.from({ length: 5 }).map((_, i) => <TicketCardSkeleton key={i} />)}</div> 
         : tickets.length > 0 ? (
           <>
-            <div className='grid grid-cols-1 xl:grid-cols-2 gap-6'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {tickets.map(ticket => <TicketCard key={ticket._id} ticket={ticket} />)}
             </div>
 

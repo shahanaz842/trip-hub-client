@@ -93,7 +93,7 @@ const Login = () => {
 
     return (
         <div className="  flex flex-col justify-center items-center p-6">
-            <div className="w-full max-w-md rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
+            <div className="w-full max-w-md rounded shadow-2xl border border-slate-100 overflow-hidden">
                 
                 {/* Header */}
                 <div className="bg-slate-900 px-8 py-4 text-center relative">
@@ -104,7 +104,7 @@ const Login = () => {
                     <button 
                         type="button"
                         onClick={handleClearForm}
-                        className="absolute top-4 right-4 p-2 bg-slate-800 text-slate-400 rounded-lg hover:text-white hover:bg-slate-700 transition-all border border-slate-700"
+                        className="absolute top-4 right-4 p-2 bg-slate-800 text-slate-400  hover:text-white hover:bg-slate-700 transition-all border border-slate-700"
                         title="Clear all fields"
                     >
                         <FiRefreshCw size={14} />
@@ -114,14 +114,14 @@ const Login = () => {
                 <div className="px-8 py-4">
                     {/* Role Quick Switcher */}
                     <div className="mb-1">
-                        <div className="grid grid-cols-3 gap-1 bg-slate-100 px-1.5 py-1 rounded-2xl">
-                            <button onClick={() => autoFill('admin@vai.com', 'Admin@1')} className="flex flex-col items-center gap-1 py-2 px-1 rounded-xl hover:bg-white text-slate-600 hover:text-indigo-600 hover:shadow-sm transition-all text-[11px] font-bold uppercase tracking-tighter">
+                        <div className="grid grid-cols-3 gap-1 bg-slate-100 px-1.5 py-1 rounded">
+                            <button onClick={() => autoFill('admin@vai.com', 'Admin@1')} className="flex flex-col items-center gap-1 py-2 px-1 rounded hover:bg-white text-slate-600 hover:text-indigo-600 hover:shadow-sm transition-all text-[11px] font-bold uppercase tracking-tighter">
                                 <FiShield size={16} /> Admin
                             </button>
-                            <button onClick={() => autoFill('red@line.com', 'Redline@1')} className="flex flex-col items-center gap-1 py-2 px-1 rounded-xl hover:bg-white text-slate-600 hover:text-indigo-600 hover:shadow-sm transition-all text-[11px] font-bold uppercase tracking-tighter">
+                            <button onClick={() => autoFill('red@line.com', 'Redline@1')} className="flex flex-col items-center gap-1 py-2 px-1 rounded hover:bg-white text-slate-600 hover:text-indigo-600 hover:shadow-sm transition-all text-[11px] font-bold uppercase tracking-tighter">
                                 <FiBriefcase size={16} /> Vendor
                             </button>
-                            <button onClick={() => autoFill('far@hana.com', 'Farhana@1')} className="flex flex-col items-center gap-1 py-2 px-1 rounded-xl hover:bg-white text-slate-600 hover:text-indigo-600 hover:shadow-sm transition-all text-[11px] font-bold uppercase tracking-tighter">
+                            <button onClick={() => autoFill('far@hana.com', 'Farhana@1')} className="flex flex-col items-center gap-1 py-2 px-1 rounded hover:bg-white text-slate-600 hover:text-indigo-600 hover:shadow-sm transition-all text-[11px] font-bold uppercase tracking-tighter">
                                 <FiUser size={16} /> User
                             </button>
                         </div>
@@ -133,7 +133,7 @@ const Login = () => {
                             <input 
                                 type="email" 
                                 {...register('email', { required: 'Email is required' })}
-                                className="input input-bordered w-full rounded-xl bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all" 
+                                className="input input-bordered w-full rounded bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all" 
                                 placeholder="name@company.com" 
                             />
                         </div>
@@ -144,7 +144,7 @@ const Login = () => {
                                 <input 
                                     type={showPassword ? "text" : "password"} 
                                     {...register('password', { required: 'Password is required' })} 
-                                    className="input input-bordered w-full rounded-xl bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all" 
+                                    className="input input-bordered w-full rounded bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all" 
                                     placeholder="••••••••" 
                                 />
                                 <button
@@ -168,7 +168,7 @@ const Login = () => {
 
                         <button 
                             disabled={loading}
-                            className="btn w-full bg-slate-900 hover:bg-[#383886] text-white border-none rounded-xl h-12 shadow-sm shadow-indigo-100 transition-all font-bold uppercase tracking-widest flex items-center justify-center gap-2"
+                            className="btn w-full bg-slate-900 hover:bg-[#383886] text-white border-none rounded h-12 shadow-sm shadow-indigo-100 transition-all font-bold uppercase tracking-widest flex items-center justify-center gap-2"
                         >
                             {loading ? <FiLoader className="animate-spin" size={20} /> : 'Login'}
                         </button>

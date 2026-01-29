@@ -24,7 +24,7 @@ const DashboardLayout = () => {
     const sidebarWidth = isExpanded ? "w-64" : "w-20";
 
     const menuItem = ({ isActive }) => `
-        flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 group
+        flex items-center gap-4 px-4 py-3 rounded transition-all duration-300 group
         ${isActive
             ? 'bg-[#383886] text-white shadow-lg shadow-blue-900/20'
             : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800'}
@@ -159,7 +159,7 @@ const DashboardLayout = () => {
 
                         {/* The Profile Image / Avatar */}
                         <div className="relative group cursor-pointer">
-                            <div className="w-12 h-12 rounded-2xl overflow-hidden border-2 border-slate-100 dark:border-slate-800 p-0.5 group-hover:border-[#ffaa0f] transition-all duration-300">
+                            <div className="w-12 h-12 rounded overflow-hidden border-2 border-slate-100 dark:border-slate-800 p-0.5 group-hover:border-[#ffaa0f] transition-all duration-300">
                                 {user?.photoURL ? (
                                     <img
                                         src={user.photoURL}

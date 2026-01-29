@@ -56,7 +56,7 @@ const ApproveVendors = () => {
             cancelButtonColor: "#64748b",
             customClass: {
                 title: 'text-xl font-bold',
-                popup: 'rounded-3xl'
+                popup: 'rounded'
             }
         }).then(result => {
             if (result.isConfirmed) {
@@ -83,15 +83,15 @@ const ApproveVendors = () => {
                 
                 {/* Mini Stats Panel */}
                 <div className="flex gap-3">
-                    <div className="bg-white border border-slate-200 px-4 py-2 rounded-2xl flex items-center gap-3 shadow-sm">
-                        <div className="p-2 bg-amber-50 text-amber-600 rounded-lg"><FiClock size={16}/></div>
+                    <div className="bg-white border border-slate-200 px-4 py-2 rounded flex items-center gap-3 shadow-sm">
+                        <div className="p-2 bg-amber-50 text-amber-600 "><FiClock size={16}/></div>
                         <div>
                             <p className="text-[10px] uppercase font-black text-slate-400 leading-none">Pending</p>
                             <p className="text-lg font-bold text-slate-700">{pendingCount}</p>
                         </div>
                     </div>
-                    <div className="bg-white border border-slate-200 px-4 py-2 rounded-2xl flex items-center gap-3 shadow-sm">
-                        <div className="p-2 bg-emerald-50 text-emerald-600 rounded-lg"><FiCheckCircle size={16}/></div>
+                    <div className="bg-white border border-slate-200 px-4 py-2 rounded flex items-center gap-3 shadow-sm">
+                        <div className="p-2 bg-emerald-50 text-emerald-600 "><FiCheckCircle size={16}/></div>
                         <div>
                             <p className="text-[10px] uppercase font-black text-slate-400 leading-none">Active</p>
                             <p className="text-lg font-bold text-slate-700">{approvedCount}</p>
@@ -133,7 +133,7 @@ const ApproveVendors = () => {
                                             </div>
                                         </td>
                                         <td className="py-5">
-                                            <span className="px-3 py-1 bg-slate-100 text-slate-600 rounded-lg text-[11px] font-bold uppercase tracking-wider">
+                                            <span className="px-3 py-1 bg-slate-100 text-slate-600  text-[11px] font-bold uppercase tracking-wider">
                                                 {vendor.transportType}
                                             </span>
                                         </td>
@@ -152,7 +152,7 @@ const ApproveVendors = () => {
                                         <td className="py-5 pr-8 text-center">
                                             <div className="flex justify-center gap-2">
                                                 {/* View Detail */}
-                                                {/* <button className="p-2.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all" title="View Dossier">
+                                                {/* <button className="p-2.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-all" title="View Dossier">
                                                     <FiEye size={18} />
                                                 </button> */}
 
@@ -160,14 +160,14 @@ const ApproveVendors = () => {
                                                     <div className="flex gap-2 border-x border-slate-100 px-2 mx-2">
                                                         <button
                                                             onClick={() => updateVendorsStatus(vendor, 'approved')}
-                                                            className="p-2.5 text-emerald-500 hover:bg-emerald-50 rounded-xl transition-all"
+                                                            className="p-2.5 text-emerald-500 hover:bg-emerald-50 rounded transition-all"
                                                             title="Authorize"
                                                         >
                                                             <FiCheckCircle size={18} />
                                                         </button>
                                                         <button
                                                             onClick={() => updateVendorsStatus(vendor, 'rejected')}
-                                                            className="p-2.5 text-rose-400 hover:bg-rose-50 rounded-xl transition-all"
+                                                            className="p-2.5 text-rose-400 hover:bg-rose-50 rounded transition-all"
                                                             title="Decline"
                                                         >
                                                             <FiXCircle size={18} />
@@ -177,7 +177,7 @@ const ApproveVendors = () => {
 
                                                 <button
                                                     onClick={() => handleVendorDelete(vendor._id)}
-                                                    className="p-2.5 text-slate-300 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all"
+                                                    className="p-2.5 text-slate-300 hover:text-rose-600 hover:bg-rose-50 rounded transition-all"
                                                     title="Erase Record"
                                                 >
                                                     <FiTrash2 size={18} />

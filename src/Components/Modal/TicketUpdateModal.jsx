@@ -58,7 +58,7 @@ const TicketUpdateModal = ({ ticket, closeModal }) => {
             className="fixed inset-0 bg-black/40 flex justify-center items-center z-50"
 
         >
-            <div className="bg-white rounded-xl w-96 p-6 shadow-xl space-y-4">
+            <div className="bg-white rounded w-96 p-6 shadow-xl space-y-4">
                 <h3 className="font-bold text-lg mb-3">Update Tickets</h3>
 
                 <form onSubmit={handleSubmit(handleTicketUpdate)} className="space-y-4">

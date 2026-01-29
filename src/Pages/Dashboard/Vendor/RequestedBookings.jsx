@@ -69,7 +69,7 @@ const RequestedBookings = () => {
                             <input 
                                 type="text"
                                 placeholder="Search by email or route..."
-                                className="pl-9 pr-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs focus:ring-2 focus:ring-[#383886] outline-none w-full md:w-64 dark:text-white transition-all"
+                                className="pl-9 pr-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs focus:ring-2 focus:ring-[#383886] outline-none w-full md:w-64 dark:text-white transition-all"
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
@@ -78,7 +78,7 @@ const RequestedBookings = () => {
                         <div className="relative">
                             <FaFilter className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs" />
                             <select 
-                                className="pl-9 pr-8 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs font-bold uppercase tracking-widest focus:ring-2 focus:ring-[#383886] outline-none appearance-none dark:text-white cursor-pointer"
+                                className="pl-9 pr-8 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs font-bold uppercase tracking-widest focus:ring-2 focus:ring-[#383886] outline-none appearance-none dark:text-white cursor-pointer"
                                 onChange={(e) => setStatusFilter(e.target.value)}
                             >
                                 <option value="all">All Status</option>
@@ -91,7 +91,7 @@ const RequestedBookings = () => {
                 </div>
 
                 {/* Table Section */}
-                <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+                <div className="bg-white dark:bg-slate-900 rounded shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
@@ -121,7 +121,7 @@ const RequestedBookings = () => {
                                                 <p className="text-[10px] text-slate-500 font-medium uppercase mt-1">{booking.from} → {booking.to}</p>
                                             </td>
                                             <td className="px-6 py-5 text-center">
-                                                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-lg">
+                                                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 ">
                                                     <FaChair size={10} />
                                                     <span className="text-xs font-black">{booking.quantity}</span>
                                                 </div>
@@ -144,14 +144,14 @@ const RequestedBookings = () => {
                                                     <div className="flex justify-end gap-2">
                                                         <button 
                                                             onClick={() => updateBookingStatus(booking._id, 'accepted')}
-                                                            className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-all shadow-lg shadow-green-500/20 active:scale-90"
+                                                            className="p-2 bg-green-500 hover:bg-green-600 text-white  transition-all shadow-lg shadow-green-500/20 active:scale-90"
                                                             title="Approve"
                                                         >
                                                             <FaCheck size={12} />
                                                         </button>
                                                         <button 
                                                             onClick={() => updateBookingStatus(booking._id, 'rejected')}
-                                                            className="p-2 bg-rose-500 hover:bg-rose-600 text-white rounded-lg transition-all shadow-lg shadow-rose-500/20 active:scale-90"
+                                                            className="p-2 bg-rose-500 hover:bg-rose-600 text-white  transition-all shadow-lg shadow-rose-500/20 active:scale-90"
                                                             title="Reject"
                                                         >
                                                             <FaTimes size={12} />

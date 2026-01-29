@@ -36,7 +36,7 @@ const MyAddedTickets = () => {
                         My Added Tickets <span className="text-[#ffaa0f]">({tickets.length})</span>
                     </h1>
                 </div>
-                <Link to="/dashboard/add-ticket" className="px-6 py-3 bg-[#383886] hover:bg-[#ffaa0f] text-white rounded-2xl font-black text-xs uppercase tracking-widest transition-all shadow-lg flex items-center gap-2">
+                <Link to="/dashboard/add-ticket" className="px-6 py-3 bg-[#383886] hover:bg-[#ffaa0f] text-white rounded font-black text-xs uppercase tracking-widest transition-all shadow-lg flex items-center gap-2">
                     <FaPlus /> Add New Ticket
                 </Link>
             </div>

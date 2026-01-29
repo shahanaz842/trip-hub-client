@@ -11,7 +11,7 @@ const Report = () => {
         </p>
       </div>
       <div
-        className="relative h-[60vh] w-[60vw] mx-auto hover:shadow hover:scale-105 transition-transform      rounded-2xl my-20 bg-cover bg-center"
+        className="relative h-[60vh] w-[60vw] mx-auto hover:shadow hover:scale-105 transition-transform      rounded my-20 bg-cover bg-center"
         style={{
           backgroundImage: `
       linear-gradient(to right,

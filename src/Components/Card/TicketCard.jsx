@@ -1,7 +1,14 @@
-import { Link } from "react-router";
-import { FaBus, FaTrain, FaPlane, FaShip } from "react-icons/fa";
+import React from 'react';
+import { Link } from "react-router"; 
+import { FaBus, FaTrain, FaPlane, FaShip, FaArrowRight } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const TicketCard = ({ ticket }) => {
+    // SAFETY CHECK: Prevents "destructure property of undefined" error
+    if (!ticket || !ticket.vendor) {
+        return <div className="h-40 bg-slate-100 animate-pulse rounded-[2rem]"></div>;
+    }
+
     const { _id, from, to, transportType, price, quantity, departureDate, vendor } = ticket;
 
     const getIcon = () => {
@@ -16,111 +23,63 @@ const TicketCard = ({ ticket }) => {
     };
 
     return (
-        <div
-            className="
-            border border-gray-300 dark:border-slate-600 hover:border-[#ffaa0f]
-            group bg-white dark:bg-slate-900 rounded-xl 
-            flex flex-col md:flex-row overflow-hidden mb-4
-            transition-all duration-300 ease-out
-
-            hover:-translate-y-[2px]
-            cursor-pointer
-            hover:border-[#ffaa0f]
-            hover:shadow-lg
-
-            focus-within:shadow-lg
-            focus-within:-translate-y-[2px]
-          focus-within:border-[#ffaa0f]
-          "
-            role="article"
-            aria-label={`Ticket from ${from} to ${to}`}
+        <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full"
         >
+            {/* Header */}
+            <div className="p-5 flex justify-between items-center">
+                <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-[9px] font-black uppercase text-slate-500 rounded-lg">
+                    {departureDate}
+                </span>
+                <img src={vendor.image} alt="" className="h-6 w-10 object-contain" />
+            </div>
 
-
-            {/* Left: Journey Info */}
-            <div className="flex-grow p-5 md:p-6 flex flex-col md:flex-row items-center gap-6 md:gap-12">
-
-                {/* Vendor Logo & Date */}
-                <div className="flex md:flex-col items-center gap-2 min-w-[100px]">
-                    <img
-                        src={vendor.image}
-                        alt={`${vendor.name} logo`}
-                        className="w-14 rounded-lg object-contain border border-slate-100 p-1"
-                    />
-                    <p className="text-[11px] font-medium text-slate-500 uppercase tracking-tight">
-                        {departureDate}
-                    </p>
-                </div>
-
-                {/* Route Visual */}
-                <div className="flex items-center gap-4 flex-grow w-full md:w-auto">
-                    <span className="text-base font-bold text-slate-900 dark:text-slate-100">
-                        {from}
-                    </span>
-
-                    <div className="flex-grow flex items-center relative group-hover:px-2 transition-all">
-                        <div className="w-full h-[1px] bg-slate-300 dark:bg-slate-700 relative">
-                            <div className="absolute -left-1 -top-[3px] w-2 h-2 rounded-full border border-slate-400 bg-white"></div>
-                            <div className="absolute -right-1 -top-[3px] w-2 h-2 rounded-full bg-slate-400"></div>
-                        </div>
-                        <span
-                            className="
-                              absolute left-1/2 -translate-x-1/2 
-                              text-slate-500 text-xs 
-                              bg-white dark:bg-slate-900 px-2
-                              dark:group-hover:text-[#a9a9e9]
-                              group-hover:text-[#2c2c85]
-                              transition-colors
-                            "
-                            aria-hidden="true"
-                        >
-                            {getIcon()}
-                        </span>
+            {/* Body */}
+            <div className="px-6 py-4 flex-grow">
+                <div className="flex items-center justify-between gap-2">
+                    <div className="flex-1">
+                        <h3 className="text-lg font-black text-slate-800 dark:text-white uppercase truncate">{from}</h3>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Origin</p>
                     </div>
-
-                    <span className="text-base font-bold text-slate-900 dark:text-slate-100 text-right">
-                        {to}
-                    </span>
+                    <div className="flex flex-col items-center min-w-[50px] text-indigo-500">
+                        {getIcon()}
+                        <div className="w-full h-[1.5px] bg-slate-100 dark:bg-slate-800 mt-1 relative">
+                            <div className="absolute -right-0.5 -top-[3px] w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                        </div>
+                    </div>
+                    <div className="flex-1 text-right">
+                        <h3 className="text-lg font-black text-slate-800 dark:text-white uppercase truncate">{to}</h3>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Dest.</p>
+                    </div>
                 </div>
             </div>
 
-            {/* Right: Pricing & Action */}
-            <div
-                className="
-                  p-5 md:p-6 bg-slate-200 dark:bg-slate-700
-                  border-t md:border-t-0 md:border-l border-slate-100 dark:border-slate-800
-                  flex flex-row md:flex-col items-center justify-between md:justify-center
-                  min-w-[160px] gap-2
-                "
-            >
-                <div className="text-left md:text-center">
-                    <p className="text-xl font-bold text-[slate-900] dark:text-white leading-none">
-                        ৳{price}
-                    </p>
-                    <p className="text-[10px] text-slate-600 dark:text-slate-50 mt-1">
-                        {quantity} seats left
+            {/* Hover Bottom Section */}
+            <div className="relative h-24 w-full overflow-hidden border-t border-slate-50 dark:border-slate-800">
+                {/* Information Layer */}
+                <div className="absolute inset-0 px-6 flex items-center justify-between transition-all duration-500 lg:group-hover:opacity-0 lg:group-hover:-translate-y-full">
+                    <div>
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Fare</p>
+                        <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">৳{price}</p>
+                    </div>
+                    <p className="text-[10px] font-black text-emerald-500 uppercase bg-emerald-50 dark:bg-emerald-900/20 px-2 py-1 rounded-md">
+                        {quantity} Left
                     </p>
                 </div>
 
-                <Link
-                    to={`/ticket/${_id}`}
-                    className="w-auto md:w-full focus:outline-none"
-                    aria-label={`View details for ticket from ${from} to ${to}`}
-                >
-                    <button
-                        className="
-                          px-5 py-2 md:w-full text-xs font-bold rounded-lg
-                          text-white bg-[#383886] light:hover:bg-[#383886]  hover:scale-105
-                          dark:bg-slate-500
-                          transition-colors duration-200 shadow-sm
-                          active:scale-95 cursor-pointer
-                        "
-                    >
-                        View Details
-                    </button>
-                </Link>
+                {/* Action Layer */}
+                <div className="flex items-center justify-center px-4 w-full h-full relative lg:absolute lg:inset-0 lg:translate-y-full lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:transition-all lg:duration-500 lg:bg-white lg:dark:bg-slate-900">
+                    <Link to={`/ticket/${_id}`} className="w-full">
+                        <button className="w-full bg-[#383886] dark:bg-indigo-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-[#ffaa0f] transition-colors shadow-xl">
+                            View Details <FaArrowRight size={10} />
+                        </button>
+                    </Link>
+                </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

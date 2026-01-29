@@ -109,7 +109,7 @@ const BecomeVendor = () => {
                                 {/* Personal Information Section */}
                                 <div className="space-y-6 md:col-span-2">
                                     <div className="flex items-center gap-3 border-b border-slate-100 pb-3">
-                                        <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg"><FiUser /></div>
+                                        <div className="p-2 bg-indigo-50 text-indigo-600 "><FiUser /></div>
                                         <h3 className="font-black text-slate-800 uppercase text-xs tracking-widest">Representative Information</h3>
                                     </div>
                                     
@@ -119,7 +119,7 @@ const BecomeVendor = () => {
                                             <input
                                                 {...register('name', { required: "Name is required" })}
                                                 defaultValue={user?.displayName}
-                                                className="input input-bordered w-full rounded-xl bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all font-bold text-slate-700"
+                                                className="input input-bordered w-full rounded bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all font-bold text-slate-700"
                                             />
                                             {errors.name && <p className="text-rose-500 text-[10px] font-bold mt-1 uppercase">{errors.name.message}</p>}
                                         </div>
@@ -130,7 +130,7 @@ const BecomeVendor = () => {
                                                 <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                                                 <input
                                                     defaultValue={user?.email}
-                                                    className="input input-bordered w-full pl-11 rounded-xl bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed"
+                                                    className="input input-bordered w-full pl-11 rounded bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed"
                                                     disabled
                                                 />
                                             </div>
@@ -141,7 +141,7 @@ const BecomeVendor = () => {
                                 {/* Contact & Logistics Section */}
                                 <div className="space-y-6 md:col-span-1">
                                     <div className="flex items-center gap-3 border-b border-slate-100 pb-3">
-                                        <div className="p-2 bg-emerald-50 text-emerald-600 rounded-lg"><FiMapPin /></div>
+                                        <div className="p-2 bg-emerald-50 text-emerald-600 "><FiMapPin /></div>
                                         <h3 className="font-black text-slate-800 uppercase text-xs tracking-widest">Logistics</h3>
                                     </div>
 
@@ -150,7 +150,7 @@ const BecomeVendor = () => {
                                             <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Business Address</label>
                                             <input
                                                 {...register('address', { required: "Address required" })}
-                                                className="input input-bordered w-full rounded-xl bg-slate-50 border-slate-200 text-sm"
+                                                className="input input-bordered w-full rounded bg-slate-50 border-slate-200 text-sm"
                                                 placeholder="Street, City, Country"
                                             />
                                         </div>
@@ -160,7 +160,7 @@ const BecomeVendor = () => {
                                                 <FiPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                                                 <input
                                                     {...register('phoneNo', { required: "Phone required" })}
-                                                    className="input input-bordered w-full pl-11 rounded-xl bg-slate-50 border-slate-200 text-sm"
+                                                    className="input input-bordered w-full pl-11 rounded bg-slate-50 border-slate-200 text-sm"
                                                     placeholder="+880..."
                                                 />
                                             </div>
@@ -171,7 +171,7 @@ const BecomeVendor = () => {
                                 {/* Legal Section */}
                                 <div className="space-y-6 md:col-span-1">
                                     <div className="flex items-center gap-3 border-b border-slate-100 pb-3">
-                                        <div className="p-2 bg-amber-50 text-amber-600 rounded-lg"><FiFileText /></div>
+                                        <div className="p-2 bg-amber-50 text-amber-600 "><FiFileText /></div>
                                         <h3 className="font-black text-slate-800 uppercase text-xs tracking-widest">Legal & Type</h3>
                                     </div>
 
@@ -180,7 +180,7 @@ const BecomeVendor = () => {
                                             <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 ml-1">Fleet Type</label>
                                             <select 
                                                 {...register('transportType', { required: true })}
-                                                className="select select-bordered w-full rounded-xl bg-slate-50 border-slate-200 font-bold text-slate-600"
+                                                className="select select-bordered w-full rounded bg-slate-50 border-slate-200 font-bold text-slate-600"
                                             >
                                                 <option value="">Select Transport</option>
                                                 <option value="Plane">Airways (Plane)</option>
@@ -195,7 +195,7 @@ const BecomeVendor = () => {
                                                 <FiCreditCard className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                                                 <input
                                                     {...register('license', { required: "Legal ID required" })}
-                                                    className="input input-bordered w-full pl-11 rounded-xl bg-slate-50 border-slate-200 text-sm font-mono"
+                                                    className="input input-bordered w-full pl-11 rounded bg-slate-50 border-slate-200 text-sm font-mono"
                                                     placeholder="LCN-XXXX-XXXX"
                                                 />
                                             </div>
@@ -208,7 +208,7 @@ const BecomeVendor = () => {
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="btn w-full bg-slate-900 hover:bg-indigo-600 text-white border-none rounded-2xl h-14 shadow-xl shadow-indigo-100 transition-all font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 disabled:bg-slate-300"
+                                        className="btn w-full bg-slate-900 hover:bg-indigo-600 text-white border-none rounded h-14 shadow-xl shadow-indigo-100 transition-all font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 disabled:bg-slate-300"
                                     >
                                         {loading ? (
                                             <><FiLoader className="animate-spin" size={20} /> Processing Application...</>

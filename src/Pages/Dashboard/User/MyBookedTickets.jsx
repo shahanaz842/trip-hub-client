@@ -32,7 +32,7 @@ const MyBookedTickets = () => {
                 </div>
 
                 {bookings.length === 0 ? (
-                    <div className="bg-white dark:bg-slate-900 rounded-3xl p-20 text-center border-2 border-dashed border-slate-200 dark:border-slate-800">
+                    <div className="bg-white dark:bg-slate-900 rounded p-20 text-center border-2 border-dashed border-slate-200 dark:border-slate-800">
                         <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">No adventures found yet.</p>
                     </div>
                 ) : (

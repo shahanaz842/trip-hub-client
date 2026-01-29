@@ -2,7 +2,7 @@ const TicketCardSkeleton = () => {
     return (
         <div
             className="
-              bg-white dark:bg-slate-900 rounded-xl 
+              bg-white dark:bg-slate-900 rounded 
               border border-slate-200 dark:border-slate-800
               flex flex-col md:flex-row overflow-hidden mb-4
               animate-pulse
@@ -14,7 +14,7 @@ const TicketCardSkeleton = () => {
 
                 {/* Vendor Logo & Date */}
                 <div className="flex md:flex-col items-center gap-3 min-w-[100px]">
-                    <div className="w-10 h-10 rounded-lg bg-slate-200 dark:bg-slate-700" />
+                    <div className="w-10 h-10  bg-slate-200 dark:bg-slate-700" />
                     <div className="h-3 w-20 rounded bg-slate-200 dark:bg-slate-700" />
                 </div>
 
@@ -45,7 +45,7 @@ const TicketCardSkeleton = () => {
                     <div className="h-3 w-20 rounded bg-slate-200 dark:bg-slate-700" />
                 </div>
 
-                <div className="w-24 md:w-full h-8 rounded-lg bg-slate-300 dark:bg-slate-700" />
+                <div className="w-24 md:w-full h-8  bg-slate-300 dark:bg-slate-700" />
             </div>
         </div>
     );

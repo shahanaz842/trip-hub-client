@@ -87,7 +87,7 @@ const AddTicket = () => {
             >
                 {/* Header Section */}
                 <div className="bg-[#383886] p-8 text-white flex items-center gap-4">
-                    <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md">
+                    <div className="bg-white/10 p-4 rounded backdrop-blur-md">
                         <FaTicketAlt size={30} />
                     </div>
                     <div>
@@ -113,7 +113,7 @@ const AddTicket = () => {
                                         {...register("ticketTitle", { required: "Title is required" })}
                                         type="text"
                                         placeholder="e.g. Premium Business Class - Dhaka to Cox's Bazar"
-                                        className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl focus:ring-2 ring-[#383886] h-14"
+                                        className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded focus:ring-2 ring-[#383886] h-14"
                                     />
                                     {errors.ticketTitle && <span className="text-red-500 text-xs mt-1 font-bold">{errors.ticketTitle.message}</span>}
                                 </div>
@@ -121,14 +121,14 @@ const AddTicket = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="form-control">
                                         <label className="label-text font-bold mb-2 ml-1">Transport Category</label>
-                                        <select {...register("transportType", { required: true })} className="select select-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14">
+                                        <select {...register("transportType", { required: true })} className="select select-bordered bg-slate-50 dark:bg-slate-800 border-none rounded h-14">
                                             <option value="">Select Type</option>
                                             <option>Plane</option><option>Bus</option><option>Train</option><option>Launch</option>
                                         </select>
                                     </div>
                                     <div className="form-control">
                                         <label className="label-text font-bold mb-2 ml-1">Price (BDT)</label>
-                                        <input {...register("price", { required: true })} type="number" placeholder="0.00" className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14" />
+                                        <input {...register("price", { required: true })} type="number" placeholder="0.00" className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded h-14" />
                                     </div>
                                 </div>
                             </div>
@@ -140,16 +140,16 @@ const AddTicket = () => {
                                 <h3 className="font-black uppercase text-sm tracking-widest">Route & Schedule</h3>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <select {...register("from", { required: true })} className="select select-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14" defaultValue="">
+                                <select {...register("from", { required: true })} className="select select-bordered bg-slate-50 dark:bg-slate-800 border-none rounded h-14" defaultValue="">
                                     <option value="" disabled>Origin Station</option>
                                     {districts.map((d, i) => <option key={i}>{d}</option>)}
                                 </select>
-                                <select {...register("to", { required: true })} className="select select-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14" defaultValue="">
+                                <select {...register("to", { required: true })} className="select select-bordered bg-slate-50 dark:bg-slate-800 border-none rounded h-14" defaultValue="">
                                     <option value="" disabled>Destination</option>
                                     {districts.map((d, i) => <option key={i}>{d}</option>)}
                                 </select>
-                                <input type="date" {...register("departureDate", { required: true })} className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14" />
-                                <input type="time" {...register("departureTime", { required: true })} className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded-2xl h-14" />
+                                <input type="date" {...register("departureDate", { required: true })} className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded h-14" />
+                                <input type="time" {...register("departureTime", { required: true })} className="input input-bordered bg-slate-50 dark:bg-slate-800 border-none rounded h-14" />
                             </div>
                         </section>
                     </div>
@@ -181,12 +181,12 @@ const AddTicket = () => {
                         </div>
 
                         {/* Perks Checkboxes */}
-                        <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
+                        <div className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded border border-slate-100 dark:border-slate-800">
                             <p className="text-[10px] font-black uppercase text-slate-400 mb-4 tracking-widest">Included Amenities</p>
                             <div className="grid grid-cols-2 gap-3">
                                 {["AC", "Wi-Fi", "Breakfast", "Snacks", "Water"].map(perk => (
                                     <label key={perk} className="flex items-center gap-3 cursor-pointer">
-                                        <input type="checkbox" {...register("perks")} value={perk} className="checkbox checkbox-primary checkbox-sm rounded-lg" />
+                                        <input type="checkbox" {...register("perks")} value={perk} className="checkbox checkbox-primary checkbox-sm " />
                                         <span className="text-sm font-bold text-slate-600 dark:text-slate-400">{perk}</span>
                                     </label>
                                 ))}
@@ -197,11 +197,11 @@ const AddTicket = () => {
                         <div className="grid grid-cols-2 gap-4">
                             <div className="form-control">
                                 <label className="label-text font-bold text-[10px] uppercase mb-1 ml-1">Stock</label>
-                                <input {...register("totalQuantity", { required: true })} type="number" placeholder="Total" className="input input-bordered bg-white dark:bg-slate-800 rounded-2xl" />
+                                <input {...register("totalQuantity", { required: true })} type="number" placeholder="Total" className="input input-bordered bg-white dark:bg-slate-800 rounded" />
                             </div>
                             <div className="form-control">
                                 <label className="label-text font-bold text-[10px] uppercase mb-1 ml-1">Current</label>
-                                <input {...register("quantity", { required: true })} type="number" placeholder="Available" className="input input-bordered bg-white dark:bg-slate-800 rounded-2xl" />
+                                <input {...register("quantity", { required: true })} type="number" placeholder="Available" className="input input-bordered bg-white dark:bg-slate-800 rounded" />
                             </div>
                         </div>
 

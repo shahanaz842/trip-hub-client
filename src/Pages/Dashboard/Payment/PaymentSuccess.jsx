@@ -60,12 +60,12 @@ const PaymentSuccess = () => {
             <h2 className="text-3xl font-black text-slate-800 dark:text-white mb-2">Payment Successful</h2>
             <p className="text-slate-500 text-sm mb-6 uppercase tracking-widest font-bold">Your journey is officially confirmed!</p>
 
-            <div className="bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl mb-8 border border-slate-200 dark:border-slate-700">
+            <div className="bg-slate-50 dark:bg-slate-800 p-4 rounded mb-8 border border-slate-200 dark:border-slate-700">
                 <p className="text-[10px] text-slate-400 font-bold uppercase mb-1">Transaction ID</p>
                 <code className="text-[#383886] dark:text-blue-400 font-mono font-bold">{paymentInfo.transactionId}</code>
             </div>
 
-            <Link to="/dashboard/payment-history" className="block w-full py-4 bg-[#383886] text-white rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-[#ffaa0f] transition-all shadow-lg shadow-blue-500/20">
+            <Link to="/dashboard/payment-history" className="block w-full py-4 bg-[#383886] text-white rounded font-black uppercase text-xs tracking-widest hover:bg-[#ffaa0f] transition-all shadow-lg shadow-blue-500/20">
                 View History & Receipts
             </Link>
         </div>

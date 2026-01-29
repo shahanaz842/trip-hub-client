@@ -15,6 +15,13 @@
   --animate-float: float 3s ease-in-out infinite;
 }
 
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #383886;
+  --color-secondary: #ffaa0f;
+}
+
 /* DaisyUI setup should follow the theme */
 @plugin "daisyui" {
   themes: winter --default, night;

@@ -75,15 +75,15 @@ const AdvertiseTickets = () => {
                 </div>
 
                 <div className="flex gap-4 w-full lg:w-auto">
-                    <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4 flex-1 lg:flex-none lg:min-w-[180px]">
-                        <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl"><FaTicketAlt /></div>
+                    <div className="bg-white p-4 rounded shadow-sm border border-slate-200 flex items-center gap-4 flex-1 lg:flex-none lg:min-w-[180px]">
+                        <div className="p-3 bg-indigo-50 text-indigo-600 rounded"><FaTicketAlt /></div>
                         <div>
                             <p className="text-xs font-bold text-slate-400 uppercase">Approved</p>
                             <p className="text-xl font-black text-slate-800">{stats.total}</p>
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4 flex-1 lg:flex-none lg:min-w-[180px]">
-                        <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl"><FaCheckCircle /></div>
+                    <div className="bg-white p-4 rounded shadow-sm border border-slate-200 flex items-center gap-4 flex-1 lg:flex-none lg:min-w-[180px]">
+                        <div className="p-3 bg-emerald-50 text-emerald-600 rounded"><FaCheckCircle /></div>
                         <div>
                             <p className="text-xs font-bold text-slate-400 uppercase">Live Ads</p>
                             <p className="text-xl font-black text-slate-800">{stats.advertised}</p>
@@ -99,7 +99,7 @@ const AdvertiseTickets = () => {
                     <input 
                         type="text" 
                         placeholder="Search by title or route..." 
-                        className="input input-bordered w-full pl-12 rounded-xl bg-slate-50 border-none h-12 focus:ring-2 ring-indigo-500"
+                        className="input input-bordered w-full pl-12 rounded bg-slate-50 border-none h-12 focus:ring-2 ring-indigo-500"
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </div>

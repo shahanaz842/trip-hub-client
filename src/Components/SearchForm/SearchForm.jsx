@@ -50,7 +50,7 @@ const SearchForm = ({ onSearch, isCompact, loading, showTabs = true, initialMode
     <div
       ref={containerRef}
       className={`bg-white  dark:bg-slate-900 dark:border dark:border-slate-500 transition-all duration-500 overflow-visible
-        ${isCompact ? "rounded-full" : "rounded-2xl"}
+        ${isCompact ? "rounded-full" : "rounded"}
         ${activeField ? "scale-[1.01] md:scale-[1.02] ring-4 ring-primary/5" : "scale-100"} 
       `}
     >
@@ -71,16 +71,16 @@ const SearchForm = ({ onSearch, isCompact, loading, showTabs = true, initialMode
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSearch)} className={`flex flex-col md:flex-row items-center gap-2 md:gap-0 p-2 border-[#ffaa0f] rounded-2xl border-b-8 border-l-2 border-r-2 ${isCompact ? "md:h-14" : "md:h-16"}`}>
+      <form onSubmit={handleSubmit(onSearch)} className={`flex flex-col md:flex-row items-center gap-2 md:gap-0 p-2 border-[#ffaa0f] rounded border-b-8 border-l-2 border-r-2 ${isCompact ? "md:h-14" : "md:h-16"}`}>
 
         {/* Departure */}
-        <div className={`search-input-wrapper md:flex-[1.5] rounded-xl md:rounded-l-xl ${activeField === 'from' ? 'search-input-active' : 'search-input-hover'}`}>
+        <div className={`search-input-wrapper md:flex-[1.5] rounded md:rounded-l-xl ${activeField === 'from' ? 'search-input-active' : 'search-input-hover'}`}>
           <input
             {...register("from", { required: true })}
             onFocus={() => setActiveField('from')}
             onChange={(e) => { register("from").onChange(e); handleFilter(e, "from"); }}
             placeholder="From"
-            className="search-input-field bg-slate-100  dark:bg-slate-700 rounded-xl md:mr-1"
+            className="search-input-field bg-slate-100  dark:bg-slate-700 rounded md:mr-1"
           />
           {activeField === "from" && suggestions.length > 0 && (
             <SuggestionList items={suggestions} onSelect={(c) => { setValue("from", c); setSuggestions([]); setActiveField(null); }} />
@@ -99,13 +99,13 @@ const SearchForm = ({ onSearch, isCompact, loading, showTabs = true, initialMode
         </div>
 
         {/* Arrival */}
-        <div className={`search-input-wrapper rounded-xl md:rounded-l-xl md:flex-[1.5] ${activeField === 'to' ? 'search-input-active' : 'search-input-hover'}`}>
+        <div className={`search-input-wrapper rounded md:rounded-l-xl md:flex-[1.5] ${activeField === 'to' ? 'search-input-active' : 'search-input-hover'}`}>
           <input
             {...register("to", { required: true })}
             onFocus={() => setActiveField('to')}
             onChange={(e) => { register("to").onChange(e); handleFilter(e, "to"); }}
             placeholder="To"
-            className="search-input-field bg-slate-100 dark:bg-slate-700 rounded-xl md:ml-1"
+            className="search-input-field bg-slate-100 dark:bg-slate-700 rounded md:ml-1"
           />
           {activeField === "to" && suggestions.length > 0 && (
             <SuggestionList items={suggestions} onSelect={(c) => { setValue("to", c); setSuggestions([]); setActiveField(null); }} />
@@ -123,7 +123,7 @@ const SearchForm = ({ onSearch, isCompact, loading, showTabs = true, initialMode
             type="date"
             {...register("date", { required: true })}
             onFocus={() => setActiveField('date')}
-            className="search-input-field bg-slate-100 dark:bg-slate-700 rounded-xl md:rounded-r-xs pl-12 md:ml-2 pr-4 text-xs cursor-pointer"
+            className="search-input-field bg-slate-100 dark:bg-slate-700 rounded md:rounded-r-xs pl-12 md:ml-2 pr-4 text-xs cursor-pointer"
           />
         </div>
 
@@ -132,7 +132,7 @@ const SearchForm = ({ onSearch, isCompact, loading, showTabs = true, initialMode
           type="submit"
           disabled={!currentFrom || !currentTo || loading}
           className={`bg-[#383886] dark:bg-[#ffaa0f] dark:hover:bg-[#fd8801] hover:bg-[#ffaa0f] text-white flex items-center justify-center transition-all duration-300 w-full md:w-auto h-12 shadow-lg active:scale-95
-            ${isCompact ? "md:w-11 md:h-11 md:rounded-full p-3 md:mx-2" : "px-10 rounded-xl md:rounded-none md:rounded-r-xl"}
+            ${isCompact ? "md:w-11 md:h-11 md:rounded-full p-3 md:mx-2" : "px-10 rounded md:rounded-none md:rounded-r-xl"}
           `}
         >
           <svg className="w-5 h-5 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
@@ -145,12 +145,12 @@ const SearchForm = ({ onSearch, isCompact, loading, showTabs = true, initialMode
 
 /* Internal Suggestion List Component */
 const SuggestionList = ({ items, onSelect }) => (
-  <div className="absolute z-[100] w-full top-full left-0 mt-2 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-xl shadow-2xl p-2 animate-in fade-in slide-in-from-top-2">
+  <div className="absolute z-[100] w-full top-full left-0 mt-2 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded shadow-2xl p-2 animate-in fade-in slide-in-from-top-2">
     {items.map(city => (
       <div
         key={city}
         onClick={() => onSelect(city)}
-        className="p-3 flex gap-1 hover:bg-primary hover:text-white cursor-pointer text-sm font-bold rounded-lg dark:text-slate-200 transition-colors"
+        className="p-3 flex gap-1 hover:bg-primary hover:text-white cursor-pointer text-sm font-bold  dark:text-slate-200 transition-colors"
       >
         <FaMapMarkerAlt/> {city}
       </div>

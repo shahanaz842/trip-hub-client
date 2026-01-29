@@ -110,7 +110,7 @@ const Navbar = () => {
 
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content mt-3 w-56 rounded-xl bg-base-100 shadow-lg z-[60]"
+                        className="menu menu-sm dropdown-content mt-3 w-56 rounded bg-base-100 shadow-lg z-[60]"
                     >
                         {links}
                     </ul>
@@ -148,7 +148,7 @@ const Navbar = () => {
 
                         <ul
                             tabIndex={0}
-                            className="menu dropdown-content mt-3 w-52 rounded-xl bg-base-100 shadow-lg"
+                            className="menu dropdown-content mt-3 w-52 rounded bg-base-100 shadow-lg"
                         >
                             <li>
                                 <div className='flex'>

@@ -42,7 +42,7 @@ const DigitalTicket = ({ booking }) => {
                                 </div>
                             </div>
 
-                            <div className="bg-slate-50 p-6 rounded-2xl flex justify-between items-center border border-slate-100">
+                            <div className="bg-slate-50 p-6 rounded flex justify-between items-center border border-slate-100">
                                 <div>
                                     <p className="text-[10px] font-bold uppercase text-slate-400">From</p>
                                     <p className="font-black text-2xl uppercase">{booking.from}</p>
@@ -77,7 +77,7 @@ const DigitalTicket = ({ booking }) => {
                             </div>
                         </div>
 
-                        <div className="w-48 bg-slate-900 text-white rounded-3xl p-6 flex flex-col items-center justify-center text-center">
+                        <div className="w-48 bg-slate-900 text-white rounded p-6 flex flex-col items-center justify-center text-center">
                             <FaQrcode className="text-8xl mb-4" />
                             <p className="text-[9px] font-bold opacity-60 uppercase tracking-widest leading-tight">Terminal Gate Scan</p>
                             <div className="mt-8 border-t border-white/20 pt-4 w-full">
@@ -97,7 +97,7 @@ const DigitalTicket = ({ booking }) => {
             {/* Trigger Button */}
             <button 
                 onClick={() => handlePrint()} // Wrap in a callback
-                className="flex items-center gap-2 px-5 py-2 bg-[#383886] hover:bg-[#ffaa0f] text-white text-[10px] font-black rounded-lg transition-all uppercase tracking-widest shadow-md"
+                className="flex items-center gap-2 px-5 py-2 bg-[#383886] hover:bg-[#ffaa0f] text-white text-[10px] font-black  transition-all uppercase tracking-widest shadow-md"
             >
                 <FaDownload /> Download Ticket
             </button>

@@ -80,7 +80,7 @@ const Register = () => {
 
     return (
         <div className=" flex flex-col justify-center items-center  py-12">
-            <div className="w-full max-w-lg  rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+            <div className="w-full max-w-lg  rounded shadow-sm border border-slate-100 overflow-hidden">
                 
                 {/* Header */}
                 <div className="bg-slate-900 px-8 py-4 text-center">
@@ -100,7 +100,7 @@ const Register = () => {
                                 <input
                                     type="text"
                                     {...register("name", { required: "Name is required" })}
-                                    className="input dark:bg-slate-800 input-bordered w-full pl-11 rounded-xl bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all text-sm"
+                                    className="input dark:bg-slate-800 input-bordered w-full pl-11 rounded bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all text-sm"
                                     placeholder="John Doe"
                                 />
                             </div>
@@ -110,7 +110,7 @@ const Register = () => {
                         {/* Photo Upload */}
                         <div className="form-control">
                             <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1 mb-2">Profile Image</label>
-                            <label className="flex items-center justify-center gap-2 w-full h-[48px] rounded-xl bg-slate-50 border-2 border-dashed border-slate-200 hover:border-indigo-400 hover:bg-indigo-50 transition-all cursor-pointer">
+                            <label className="flex items-center justify-center gap-2 w-full h-[48px] rounded bg-slate-50 border-2 border-dashed border-slate-200 hover:border-indigo-400 hover:bg-indigo-50 transition-all cursor-pointer">
                                 <FiCamera className="text-slate-400" />
                                 <span className="text-xs font-bold text-slate-500">
                                     {watch('photo')?.[0]?.name ? <span className="text-indigo-600 truncate max-w-[100px]">{watch('photo')[0].name}</span> : "Select File"}
@@ -134,7 +134,7 @@ const Register = () => {
                             <input
                                 type="email"
                                 {...register("email", { required: "Email required" })}
-                                className="input input-bordered w-full pl-11 rounded-xl bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all text-sm"
+                                className="input input-bordered w-full pl-11 rounded bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all text-sm"
                                 placeholder="name@company.com"
                             />
                         </div>
@@ -156,7 +156,7 @@ const Register = () => {
                                         message: "Must include A-Z, a-z, 123, and symbols"
                                     }
                                 })}
-                                className="input input-bordered w-full px-11 rounded-xl bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all text-sm"
+                                className="input input-bordered w-full px-11 rounded bg-slate-50 border-slate-200 focus:ring-2 ring-indigo-500 transition-all text-sm"
                                 placeholder="••••••••"
                             />
                             <button
@@ -181,7 +181,7 @@ const Register = () => {
                     {/* Submit Button */}
                     <button 
                         disabled={isSubmitting}
-                        className="btn w-full bg-slate-900 hover:bg-indigo-600 text-white border-none rounded-xl h-12 shadow-sm shadow-indigo-100 transition-all font-bold uppercase tracking-widest flex items-center justify-center gap-2 disabled:bg-slate-300"
+                        className="btn w-full bg-slate-900 hover:bg-indigo-600 text-white border-none rounded h-12 shadow-sm shadow-indigo-100 transition-all font-bold uppercase tracking-widest flex items-center justify-center gap-2 disabled:bg-slate-300"
                     >
                         {isSubmitting ? (
                             <><FiLoader className="animate-spin" size={18} /> Provisioning Account...</>

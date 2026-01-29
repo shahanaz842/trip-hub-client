@@ -108,13 +108,13 @@ const ManageUsers = () => {
             </div>
 
             {/* 2. Control Bar */}
-            <div className="bg-white rounded-2xl p-4 mb-6 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="bg-white rounded p-4 mb-6 shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div className="relative w-full md:w-96">
                     <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                     <input 
                         type="text" 
                         placeholder="Search by name or email..." 
-                        className="input input-bordered w-full pl-12 rounded-xl bg-slate-50 border-none focus:ring-2 ring-indigo-500"
+                        className="input input-bordered w-full pl-12 rounded bg-slate-50 border-none focus:ring-2 ring-indigo-500"
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </div>
@@ -124,7 +124,7 @@ const ManageUsers = () => {
             </div>
 
             {/* 3. Main Table */}
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div className="bg-white rounded shadow-sm border border-slate-200 overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="table w-full border-separate border-spacing-0">
                         <thead>
@@ -180,7 +180,7 @@ const ManageUsers = () => {
                                         {user.role === 'vendor' ? (
                                             <button
                                                 onClick={() => handleMarkFraud(user)}
-                                                className="btn btn-sm bg-rose-50 text-rose-600 border-none hover:bg-rose-600 hover:text-white rounded-lg font-bold transition-all"
+                                                className="btn btn-sm bg-rose-50 text-rose-600 border-none hover:bg-rose-600 hover:text-white  font-bold transition-all"
                                             >
                                                 <MdBlock /> Suspend
                                             </button>
@@ -201,8 +201,8 @@ const ManageUsers = () => {
 // --- Helper Components for Professional Look ---
 
 const StatCard = ({ icon, label, value, color }) => (
-    <div className="bg-white px-6 py-3 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4">
-        <div className={`p-3 rounded-xl bg-slate-50 ${color} text-lg`}>{icon}</div>
+    <div className="bg-white px-6 py-3 rounded shadow-sm border border-slate-200 flex items-center gap-4">
+        <div className={`p-3 rounded bg-slate-50 ${color} text-lg`}>{icon}</div>
         <div>
             <div className="text-xs font-bold text-slate-400 uppercase tracking-tighter">{label}</div>
             <div className="text-xl font-black text-slate-800 leading-tight">{value}</div>
@@ -228,7 +228,7 @@ const ActionButton = ({ onClick, icon, tooltip, activeColor }) => (
     <div className="tooltip tooltip-top" data-tip={tooltip}>
         <button
             onClick={onClick}
-            className={`w-9 h-9 flex items-center justify-center rounded-xl bg-slate-100 text-slate-500 transition-all ${activeColor} hover:text-white`}
+            className={`w-9 h-9 flex items-center justify-center rounded bg-slate-100 text-slate-500 transition-all ${activeColor} hover:text-white`}
         >
             {icon}
         </button>

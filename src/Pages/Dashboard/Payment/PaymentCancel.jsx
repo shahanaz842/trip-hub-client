@@ -21,7 +21,7 @@ const PaymentCancel = () => {
                     No charges were made to your account.
                 </p>
 
-                <div className="bg-amber-50 dark:bg-amber-900/10 p-4 rounded-2xl mb-8 border border-amber-100 dark:border-amber-900/30 flex items-start gap-3 text-left">
+                <div className="bg-amber-50 dark:bg-amber-900/10 p-4 rounded mb-8 border border-amber-100 dark:border-amber-900/30 flex items-start gap-3 text-left">
                     <FaExclamationTriangle className="text-amber-500 mt-1 shrink-0" />
                     <div>
                         <p className="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase mb-1">
@@ -38,7 +38,7 @@ const PaymentCancel = () => {
                 <div className="space-y-3">
                     <Link 
                         to="/dashboard/my-booked-tickets" 
-                        className="block w-full py-4 bg-[#383886] text-white rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-[#ffaa0f] transition-all shadow-lg active:scale-95"
+                        className="block w-full py-4 bg-[#383886] text-white rounded font-black uppercase text-xs tracking-widest hover:bg-[#ffaa0f] transition-all shadow-lg active:scale-95"
                     >
                         Try Again
                     </Link>

@@ -41,7 +41,7 @@ const RevenueOverview = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Revenue Card */}
                 <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-5">
-                    <div className="w-14 h-14 bg-[#383886]/10 rounded-2xl flex items-center justify-center text-[#383886] text-xl">
+                    <div className="w-14 h-14 bg-[#383886]/10 rounded flex items-center justify-center text-[#383886] text-xl">
                         <FaDollarSign />
                     </div>
                     <div>
@@ -52,7 +52,7 @@ const RevenueOverview = () => {
 
                 {/* Added Card */}
                 <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-5">
-                    <div className="w-14 h-14 bg-[#ffaa0f]/10 rounded-2xl flex items-center justify-center text-[#ffaa0f] text-xl">
+                    <div className="w-14 h-14 bg-[#ffaa0f]/10 rounded flex items-center justify-center text-[#ffaa0f] text-xl">
                         <FaTicketAlt />
                     </div>
                     <div>
@@ -63,7 +63,7 @@ const RevenueOverview = () => {
 
                 {/* Sold Card */}
                 <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-5">
-                    <div className="w-14 h-14 bg-green-100 dark:bg-green-900/20 rounded-2xl flex items-center justify-center text-green-500 text-xl">
+                    <div className="w-14 h-14 bg-green-100 dark:bg-green-900/20 rounded flex items-center justify-center text-green-500 text-xl">
                         <FaShoppingBag />
                     </div>
                     <div>
