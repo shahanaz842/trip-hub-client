@@ -192,7 +192,7 @@ IMGBB_API_KEY=your_imgbb_key
 ---
 
 ## 📸 Project Preview
-![Project Screenshot](./assets/trip-hub-home.png)
+![Project Screenshot](./src/assets/trip-hub-home.png)
 
 ---
 
