@@ -1,229 +1,213 @@
-🎟️ TicketBari – Online Ticket Booking Platform
-📌 Project Overview
-
-TicketBari is a full-stack Online Ticket Booking Platform built using the MERN stack. The platform allows users to discover and book travel tickets (Bus, Train, Launch, Plane), while vendors can manage tickets and bookings, and admins control approvals, advertisements, and user roles.
-
-The system is role-based with User, Vendor, and Admin dashboards and includes secure authentication, real-time booking workflows, and online payments.
-
-🌐 Live Website
-
-👉 Live URL:https://trip-hub-12f28.web.app
-
-👉 Server URL:https://trip-hub-server.vercel.app
-
-Admin: admin@vai.com
-
-🚀 Key Features
-🔐 Authentication
-
-Email & Password login and registration
-
-Google Social Login
-
-Password validation (uppercase, lowercase, min 6 characters)
-
-Protected routes with persistent login on reload
-
-Firebase authentication secured with environment variables
-
-🏠 Home Page
-
-Hero banner / slider
-
-Advertisement Section (max 6 admin-selected tickets)
-
-Latest Tickets Section
-
-Extra informative sections (e.g., Why Choose Us, Popular Routes)
-
-Responsive design for all devices
-
-🎫 All Tickets Page
-
-Shows admin-approved tickets only
-
-Search by route (From → To)
-
-Filter by transport type
-
-Pagination for better performance
-
-Ticket details navigation
-
-📄 Ticket Details (Protected)
-
-Full ticket information
-
-Countdown based on departure date & time
-
-“Book Now” modal with quantity validation
-
-Auto-disable booking for expired or sold-out tickets
-
-📊 Dashboard System
-👤 User Dashboard
-
-User Profile
-
-My Booked Tickets
-
-Booking status: pending / accepted / rejected / paid
-
-Stripe payment integration
-
-Countdown for departure
-
-Transaction History (Stripe payments)
-
-🧑‍💼 Vendor Dashboard
-
-Vendor Profile
-
-Add Ticket (with image upload via imgbb)
-
-My Added Tickets (update/delete)
-
-Requested Bookings (accept/reject)
-
-Revenue Overview with charts
-
-🛡️ Admin Dashboard
-
-Admin Profile
-
-Manage Tickets (approve/reject)
-
-Manage Users (make admin/vendor, mark fraud)
-
-Advertise Tickets (max 6 at a time)
-
-Fraud vendors’ tickets are hidden automatically
-
-💳 Payment System
-
-Secure Stripe payment integration
-
-Automatic ticket quantity reduction after payment
-
-Transaction history tracking
-
-🛠️ Technologies Used
-🔵 Frontend
-
-React 19
-
-React Router
-
-TanStack React Query
-
-Axios
-
-Firebase Authentication
-
-Tailwind CSS + DaisyUI
-
-Swiper & React Responsive Carousel
-
-React Hook Form
-
-SweetAlert2 & React Hot Toast
-
-Recharts
-
-Lucide Icons
-
-🟢 Backend
-
-Node.js
-
-Express.js
-
-MongoDB
-
-Firebase Admin SDK
-
-Stripe
-
-dotenv
-
-CORS
-
-📦 Client Dependencies
-@tanstack/react-query
-axios
-firebase
-react
-react-router
-react-hook-form
-tailwindcss
-daisyui
-swiper
-recharts
-sweetalert2
-react-hot-toast
-
-📦 Server Dependencies
-express
-mongodb
-cors
-dotenv
-firebase-admin
-stripe
-
-🔐 Security
-
-Firebase config secured using environment variables
-
-MongoDB credentials hidden via .env
-
-JWT-based secure API access
-
-CORS properly configured for production
-
-📈 Commit History
-
-✅ 20+ meaningful commits on client side
-
-✅ 12+ meaningful commits on server side
-
-Clear and descriptive commit messages
-
-📱 Responsiveness & UI
-
-Fully responsive (mobile, tablet, desktop)
-
-Clean layout with consistent spacing
-
-Equal-height cards and grid layouts
-
-Eye-friendly color contrast
-
-Dashboard optimized for data visualization
-
-⚠️ Notes
-
-No page breaks or errors on reload
-
-Private routes persist authentication
-
-Firebase authorized domains configured properly
-
-Server works smoothly in production without CORS / 404 / 504 errors
-
-👨‍💻 Author
-SM Mehedi Hasan Shawon
-Full Stack MERN Developer
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# 🎟️ TicketBari – MERN Stack Online Ticket Booking Platform
+
+## 📌 Overview
+TicketBari is a **full-stack MERN (MongoDB, Express.js, React, Node.js) web application** designed to streamline online ticket booking for multiple transport systems including Bus, Train, Launch, and Flights.
+
+The platform implements **role-based access control (RBAC)** with three user roles — **User, Vendor, and Admin** — ensuring secure workflows, efficient data management, and scalable architecture.
+
+---
+
+## 🌐 Live Application
+- 🔗 Frontend: https://trip-hub-12f28.web.app  
+- 🔗 Backend API: https://trip-hub-server.vercel.app  
+
+---
+
+## 🧩 Core Functionalities
+
+### 🔐 Authentication & Authorization
+- Firebase Authentication (Email/Password + Google OAuth)
+- JWT-based API protection
+- Role-based route access (User / Vendor / Admin)
+- Persistent login session (no logout on reload)
+- Secure environment variable management
+
+---
+
+### 👤 User Module
+- Browse and search tickets (From → To filtering)
+- Filter by transport type and sort by price
+- Book tickets with quantity validation
+- Real-time booking status tracking:
+  - Pending
+  - Accepted
+  - Rejected
+  - Paid
+- Stripe payment integration
+- Transaction history dashboard
+
+---
+
+### 🧑‍💼 Vendor Module
+- Create and manage ticket listings
+- Upload images via imgbb API
+- Update/delete tickets dynamically
+- Handle booking requests (Accept / Reject)
+- View performance metrics (Revenue, Sales)
+- Data visualization using charts
+
+---
+
+### 🛡️ Admin Module
+- Approve or reject vendor-submitted tickets
+- Manage users and assign roles
+- Detect and mark fraudulent vendors
+- Control homepage advertisement (max 6 tickets)
+- Monitor system activity and platform performance
+
+---
+
+## 📊 Data Visualization & Analytics
+- Interactive dashboards using Recharts
+- Vendor insights:
+  - Total revenue
+  - Tickets sold
+  - Tickets added
+- Real-time API-driven data updates
+
+---
+
+## 🔄 Booking Workflow
+1. User submits booking request → Status: **Pending**  
+2. Vendor reviews request:
+   - Accept → Payment enabled  
+   - Reject → Booking cancelled  
+3. User completes payment via Stripe → Status: **Paid**  
+4. Ticket quantity updates automatically in database  
+
+---
+
+## 💳 Payment Integration
+- Stripe payment gateway implementation
+- Dynamic price calculation (unit price × quantity)
+- Secure transaction handling
+- Payment history tracking
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js (Component-based architecture)
+- React Router (Client-side routing)
+- TanStack React Query (Server state management)
+- Tailwind CSS + DaisyUI (UI design)
+- Axios (HTTP client)
+- Firebase Authentication
+- React Hook Form (Form management)
+- Recharts (Data visualization)
+
+### Backend
+- Node.js (Runtime environment)
+- Express.js (REST API framework)
+- MongoDB (NoSQL database)
+- Firebase Admin SDK (Auth verification)
+- Stripe API (Payments)
+- dotenv (Environment config)
+- CORS (Cross-origin handling)
+
+---
+
+## 📦 Key Dependencies
+- react, react-router-dom
+- @tanstack/react-query
+- axios
+- firebase
+- recharts
+- express
+- mongodb
+- stripe
+- cors
+- dotenv
+
+---
+
+## 🔐 Security Implementation
+- Environment variable protection (.env)
+- JWT token-based API security
+- Firebase Admin token verification
+- Protected routes (frontend + backend)
+- CORS configuration for production
+
+---
+
+## ⚡ Performance & Optimization
+- Pagination for scalable data loading
+- Optimized API calls using React Query
+- Lazy loading and efficient component rendering
+- Error handling and loading states implemented
+
+---
+
+## 📱 Responsive Design
+- Mobile-first approach
+- Fully responsive across:
+  - Mobile
+  - Tablet
+  - Desktop
+- Consistent UI/UX design system
+
+---
+
+## 🚀 Local Development Setup
+
+### Clone Client
+```bash
+git clone <CLIENT_REPO_URL>
+cd client
+npm install
+npm run dev
+```
+
+### Clone Server
+```bash
+git clone <SERVER_REPO_URL>
+cd server
+npm install
+node index.js
+```
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file:
+
+```env
+MONGODB_URI=your_mongodb_uri
+STRIPE_SECRET_KEY=your_stripe_key
+FIREBASE_API_KEY=your_firebase_key
+IMGBB_API_KEY=your_imgbb_key
+```
+
+---
+
+## ⚠️ Best Practices Followed
+- Clean and modular code structure  
+- Meaningful Git commit history  
+- Secure API and authentication flow  
+- No sensitive data exposure  
+- Production-ready deployment  
+
+---
+
+## 📸 Project Preview
+![Project Screenshot](./assets/trip-hub-home.png)
+
+---
+
+## 👨‍💻 Developer
+**SM Mehedi Hasan Shawon**  
+MERN Stack Developer  
+
+---
+
+## 🎯 Key Skills Demonstrated
+- Full-Stack Web Development (MERN)
+- REST API Design & Integration
+- Authentication & Authorization (JWT, Firebase)
+- Payment Gateway Integration (Stripe)
+- State Management (React Query)
+- Role-Based System Architecture
+- Responsive UI Development
+- Data Visualization & Dashboard Design
