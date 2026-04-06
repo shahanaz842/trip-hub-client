@@ -1,7 +1,7 @@
-# 🎟️ TicketBari – MERN Stack Online Ticket Booking Platform
+# 🎟️ TripHub – MERN Stack Online Ticket Booking Platform
 
 ## 📌 Overview
-TicketBari is a **full-stack MERN (MongoDB, Express.js, React, Node.js) web application** designed to streamline online ticket booking for multiple transport systems including Bus, Train, Launch, and Flights.
+TripHub is a **full-stack MERN (MongoDB, Express.js, React, Node.js) web application** designed to streamline online ticket booking for multiple transport systems including Bus, Train, Launch, and Flights.
 
 The platform implements **role-based access control (RBAC)** with three user roles — **User, Vendor, and Admin** — ensuring secure workflows, efficient data management, and scalable architecture.
 
@@ -197,7 +197,7 @@ IMGBB_API_KEY=your_imgbb_key
 ---
 
 ## 👨‍💻 Developer
-**SM Mehedi Hasan Shawon**  
+**Shahanaz Pervin**  
 MERN Stack Developer  
 
 ---
