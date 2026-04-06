@@ -157,40 +157,48 @@ git clone <CLIENT_REPO_URL>
 cd client
 npm install
 npm run dev
+```
 
 ### Clone Server
+```bash
 git clone <SERVER_REPO_URL>
 cd server
 npm install
 node index.js
+```
 
-## Environment Variables
+---
 
-### Create .env file:
+## 🔑 Environment Variables
 
+Create a `.env` file:
+
+```env
 MONGODB_URI=your_mongodb_uri
 STRIPE_SECRET_KEY=your_stripe_key
 FIREBASE_API_KEY=your_firebase_key
 IMGBB_API_KEY=your_imgbb_key
+```
 
 ---
 
 ## ⚠️ Best Practices Followed
-- Clean and modular code structure
-- Meaningful Git commit history
-- Secure API and authentication flow
-- No sensitive data exposure
-- Production-ready deployment
+- Clean and modular code structure  
+- Meaningful Git commit history  
+- Secure API and authentication flow  
+- No sensitive data exposure  
+- Production-ready deployment  
 
 ---
 
 ## 📸 Project Preview
+![Project Screenshot](./assets/trip-hub-home.png)
 
+---
 
 ## 👨‍💻 Developer
-
-SM Mehedi Hasan Shawon
-MERN Stack Developer
+**SM Mehedi Hasan Shawon**  
+MERN Stack Developer  
 
 ---
 
