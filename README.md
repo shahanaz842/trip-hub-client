@@ -173,25 +173,33 @@ STRIPE_SECRET_KEY=your_stripe_key
 FIREBASE_API_KEY=your_firebase_key
 IMGBB_API_KEY=your_imgbb_key
 
-⚠️ Best Practices Followed
-Clean and modular code structure
-Meaningful Git commit history
-Secure API and authentication flow
-No sensitive data exposure
-Production-ready deployment
-📸 Project Preview
+---
 
-👨‍💻 Developer
+## ⚠️ Best Practices Followed
+- Clean and modular code structure
+- Meaningful Git commit history
+- Secure API and authentication flow
+- No sensitive data exposure
+- Production-ready deployment
+
+---
+
+## 📸 Project Preview
+
+
+## 👨‍💻 Developer
 
 SM Mehedi Hasan Shawon
 MERN Stack Developer
 
-🎯 Key Skills Demonstrated
-Full-Stack Web Development (MERN)
-REST API Design & Integration
-Authentication & Authorization (JWT, Firebase)
-Payment Gateway Integration (Stripe)
-State Management (React Query)
-Role-Based System Architecture
-Responsive UI Development
-Data Visualization & Dashboard Design
+---
+
+## 🎯 Key Skills Demonstrated
+- Full-Stack Web Development (MERN)
+- REST API Design & Integration
+- Authentication & Authorization (JWT, Firebase)
+- Payment Gateway Integration (Stripe)
+- State Management (React Query)
+- Role-Based System Architecture
+- Responsive UI Development
+- Data Visualization & Dashboard Design
