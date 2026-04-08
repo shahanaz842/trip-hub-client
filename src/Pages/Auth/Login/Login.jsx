@@ -65,7 +65,8 @@ const Login = () => {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                navigate(location?.state || '/');
+                const destination = location.state?.from || location.state || '/';
+                navigate(destination, { state: location.state });
             })
             .catch(error => {
                 // Use the custom error mapper here
@@ -183,7 +184,7 @@ const Login = () => {
                     <SocialLogin />
 
                     <p className="text-center  text-sm text-slate-500 font-medium">
-                        Need a corporate account? 
+                        New to our platform? 
                         <Link state={location.state} className='text-[#383886] font-bold ml-1 hover:underline' to='/Register'>Register</Link>
                     </p>
                 </div>

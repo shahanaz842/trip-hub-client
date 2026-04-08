@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import UseRole from '../../../hooks/UseRole';
 import coverImg from '../../../assets/coverImg.jpg';
 import LoadingSpinner from '../../../Components/LoadingSpinner/LoadingSpinner';
 import { FaUserEdit, FaKey, FaEnvelope, FaIdBadge, FaShieldAlt } from 'react-icons/fa';
+import ProfileUpdateModal from '../../../Components/Modal/ProfileUpdateModal';
 
 const Profile = () => {
-    const { user } = useAuth();
+    const { user, updateUserProfile } = useAuth();
     const { role, roleLoading } = UseRole();
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
     if (roleLoading) return <LoadingSpinner />;
 
@@ -63,7 +65,7 @@ const Profile = () => {
                             </div>
 
                             <div className="flex gap-3">
-                                <button className="flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white rounded font-bold text-sm shadow-lg shadow-slate-900/20 hover:bg-slate-800 transition-all active:scale-95">
+                                <button onClick={() => setIsOpenModal(true)} className="flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white rounded font-bold text-sm shadow-lg shadow-slate-900/20 hover:bg-slate-800 transition-all active:scale-95">
                                     <FaUserEdit /> Update Profile
                                 </button>
                                 <button className="p-2.5 bg-white text-slate-400 border border-slate-200 rounded hover:text-slate-600 hover:border-slate-300 transition-all">
@@ -124,7 +126,20 @@ const Profile = () => {
                     Profile managed by SecureAuth-System. Last login: Today at 10:45 AM
                 </p>
             </div>
+             {/* Adjusted position based on new image width (sm:w-56) */}
+            <div className="hidden sm:block absolute left-56 lg:left-64 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 bg-slate-50 dark:bg-slate-950 rounded-full z-10 border-r border-slate-100 dark:border-slate-800" />
+
+            {/* Update Modal */}
+            {isOpenModal && (
+                <ProfileUpdateModal
+                    user={user}
+                    updateUserProfile={updateUserProfile}
+                    closeModal={() => setIsOpenModal(false)}
+                    isOpenModal={isOpenModal}
+                />
+            )}
         </div>
+        
     );
 };
 

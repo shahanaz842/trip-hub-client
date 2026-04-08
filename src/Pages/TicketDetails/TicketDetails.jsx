@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router';
+import { Link, useLocation, useNavigate, useParams } from 'react-router';
 import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 import BookingModal from '../../Components/Modal/BookingModal';
 import LoadingSpinner from '../../Components/LoadingSpinner/LoadingSpinner';
-import { 
-  FaClock, FaMapMarkerAlt, FaWifi, FaSnowflake, FaChevronRight, 
-  FaCalendarAlt, FaCheck, 
+import {
+  FaClock, FaMapMarkerAlt, FaWifi, FaSnowflake, FaChevronRight,
+  FaCalendarAlt, FaCheck,
   FaHome
 } from 'react-icons/fa';
 import { FaBottleWater } from "react-icons/fa6";
@@ -19,12 +19,16 @@ import { districtCoords } from '../../Utils/districts';
 
 // Framer Motion
 import { motion, AnimatePresence, useScroll, useMotionValue, useTransform } from 'framer-motion';
+import useAuth from '../../hooks/useAuth';
 
 const PRIMARY = '#383886';
 const SECONDARY = '#ffaa0f';
 
 const TicketDetails = () => {
   const { id } = useParams();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const axiosSecure = UseAxiosSecure();
 
   const [timeLeft, setTimeLeft] = useState({});
@@ -41,6 +45,32 @@ const TicketDetails = () => {
       return res.data;
     },
   });
+
+  const handleBookingClick = () => {
+    if (user) {
+      setIsOpenModal(true);
+    } else {
+      navigate('/login', {
+        state: {
+          from: location.pathname,
+          openModal: true
+        }
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (user && location.state?.openModal) {
+      setIsOpenModal(true);
+
+      // Clear the state so it doesn't pop up again if they refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [user, location.state]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Countdown
   useEffect(() => {
@@ -357,7 +387,7 @@ const TicketDetails = () => {
                                 <p className="text-2xl font-bold">{timeLeft[key] ?? '--'}</p>
                               </div>
                               <p className="text-xs uppercase font-medium text-gray-500 dark:text-gray-400">
-                                {key.charAt(0).toUpperCase() + key.slice(1).slice(0,3)}
+                                {key.charAt(0).toUpperCase() + key.slice(1).slice(0, 3)}
                               </p>
                             </div>
                           ))}
@@ -382,7 +412,7 @@ const TicketDetails = () => {
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          onClick={() => setIsOpenModal(true)}
+                          onClick={handleBookingClick}
                           className="w-full py-4 bg-[#383886] hover:bg-[#ffaa0f] text-white font-semibold rounded-lg transition-all shadow-md hover:shadow-lg uppercase tracking-wide flex items-center justify-center gap-2"
                         >
                           Book Now <FaChevronRight />

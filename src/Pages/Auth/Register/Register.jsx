@@ -41,7 +41,7 @@ const Register = () => {
 
             // 3. Create user in backend database
             const userInfo = {
-                email: data.email,
+                email: data.email.toLowerCase(),
                 displayName: data.name,
                 photoURL: uploadedImageURL,
                 role: 'user', // Default role

@@ -21,7 +21,7 @@ const BookingModal = ({ ticket, closeModal }) => {
     const totalSeats = 40;
     const seats = Array.from({ length: totalSeats }, (_, i) => ({
         id: `${Math.floor(i / 4) + 1}${String.fromCharCode(65 + (i % 4))}`,
-        isBooked: Math.random() < 0.1, // Randomly disabled for visual effect
+        // isBooked: Math.random() < 0.1, // Randomly disabled for visual effect
     }));
 
     const {

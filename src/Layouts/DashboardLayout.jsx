@@ -38,7 +38,7 @@ const DashboardLayout = () => {
 
                 {/* Logo Section */}
                 <div className="flex items-center gap-3 px-5 py-6 overflow-hidden h-20">
-                    <img src={logoImg} className="w-10 min-w-[40px]" alt="Trip Hub" />
+                    <Link to="/"><img src={logoImg} className="w-10 min-w-[40px]" alt="Trip Hub" /></Link>
                     {isExpanded && (
                         <div className="whitespace-nowrap animate-in fade-in duration-500">
                             <h2 className="font-black text-slate-800 dark:text-white uppercase tracking-tighter">Trip Hub</h2>

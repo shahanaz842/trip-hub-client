@@ -50,7 +50,7 @@ const AddedTicketCard = ({ ticket }) => {
                     alt={ticket.ticketTitle}
                     className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                
+
                 {/* Status Badge */}
                 <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter shadow-lg z-20 ${getStatusColor(ticket.status)}`}>
                     {ticket.status}

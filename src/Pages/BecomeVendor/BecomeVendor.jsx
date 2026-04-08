@@ -213,7 +213,7 @@ const BecomeVendor = () => {
                                         {loading ? (
                                             <><FiLoader className="animate-spin" size={20} /> Processing Application...</>
                                         ) : (
-                                            <>Submit Verification <FiSend /></>
+                                            <>Submit <FiSend /></>
                                         )}
                                     </button>
                                     <p className="text-center text-[10px] text-slate-400 font-medium mt-4">

@@ -89,7 +89,7 @@ const Navbar = () => {
 
     </>
     return (
-        <div className="navbar bg-base-100 shadow-md px-4 lg:px-8 sticky top-0 z-50">
+        <div className="navbar bg-base-100/80 shadow-md px-4 lg:px-8 sticky top-0 z-50">
 
             {/* LEFT */}
             <div className="navbar-start gap-2">

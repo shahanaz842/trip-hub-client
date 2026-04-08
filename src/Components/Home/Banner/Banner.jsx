@@ -16,14 +16,14 @@ const Hero = () => {
   const modes = [
     { id: "bus", icon: <FaBus /> },
     { id: "train", icon: <FaTrain /> },
-    { id: "flight", icon: <FaPlane /> },
+    { id: "plane", icon: <FaPlane /> },
     { id: "launch", icon: <FaShip /> },
   ];
 
   const heroContent = {
     bus: { title: "Bus Journey", sub: "Verified operators for your safe road trips.", video: bus },
     train: { title: "Train Travels", sub: "Scenic tracks and reliable railway schedules.", video: train },
-    flight: { title: "Sky Routes", sub: "Fastest domestic and international connections.", video: plan },
+    plane: { title: "Sky Routes", sub: "Fastest domestic and international connections.", video: plan },
     launch: { title: "River Cruises", sub: "Traditional travel with modern comfort.", video: ferry },
   };
 
@@ -52,7 +52,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 min-h-[65vh] md:min-h-[75vh] md:flex items-center pt-24 pb-10 md:pb-36">
+    <section className="relative overflow-visible bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 min-h-[65vh] md:min-h-[75vh] md:flex items-center pt-24 pb-10 md:pb-36">
 
       {/* Decorative Background Image */}
 
@@ -113,7 +113,7 @@ const Hero = () => {
       {/* Floating Search Bar */}
       <div  className={`px-4 opacity-85 md:opacity-100 z-40 transition-all duration-500 ${isSticky
           ? "md:fixed md:top-17 md:left-1/2 md:-translate-x-1/2 md:w-full lg:md:max-w-5xl"
-          : "md:absolute mt-1 md:left-1/2 md:bottom-20 md:-translate-x-1/2 md:translate-y-1/2 md:w-full md:max-w-5xl"
+          : "md:absolute mt-1 md:left-1/2 md:bottom-20 md:-translate-x-1/2 md:translate-y-1/2 md:w-full md:max-w-5xl z-50"
         }`}>
         <div className="rounded bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg shadow-xl border border-slate-200 dark:border-slate-800">
           <SearchForm
