@@ -27,6 +27,8 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import LoadingSpinner from "../Components/LoadingSpinner/LoadingSpinner";
 import VendorRoute from "./VendorRoute";
 import AdminRoute from "./AdminRoute";
+import About from "../Pages/About/About";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
     {
@@ -50,6 +52,14 @@ export const router = createBrowserRouter([
             {
                 path: 'become-vendor',
                 element: <PrivateRoute><BecomeVendor></BecomeVendor></PrivateRoute>
+            },
+            {
+                path: 'about',
+                Component: About
+            },
+            {
+                path: 'contact-us',
+                Component: ContactUs
             }
         ]
     },
